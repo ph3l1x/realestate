@@ -1,0 +1,19 @@
+/**
+ * @file
+ * css for Backstretch module.
+ */
+
+.backstretch-caption-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+}
+.backstretch-caption-container .caption {
+  z-index: 1;
+}
+.backstretch-caption-container.inactive .caption {
+  z-index: 0;
+}
+
