@@ -2,3 +2,4 @@ sites/default/files
 rets-cron.log
 .idea
 .idea/*
+/.idea/
