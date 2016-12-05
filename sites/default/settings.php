@@ -249,8 +249,8 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'the208wrapshop',
-      'username' => 'the208wrapshop',
+      'database' => 'realestate',
+      'username' => 'realestate',
       'password' => 'giznad0',
       'host' => 'localhost',
       'port' => '',
