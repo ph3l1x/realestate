@@ -8,7 +8,7 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss', './scss/*.scss', './sites/all/themes/the208wrapshop/css/sass/*.scss']
+  sass: ['./scss/**/*.scss', './scss/*.scss', './sites/all/themes/realestate/css/sass/*.scss']
 
 };
 
@@ -16,16 +16,16 @@ gulp.task('default', ['sass', 'sassx']);
 
 gulp.task('sassx', function(done) {
 
- gulp.src('./sites/all/themes/the208wrapshop/css/sass/*.scss')
+ gulp.src('./sites/all/themes/realestate/css/sass/*.scss')
    .pipe(sass({
         errLogToConsole: true
    }))
-   .pipe(gulp.dest('./sites/all/themes/the208wrapshop/css/'))
+   .pipe(gulp.dest('./sites/all/themes/realestate/css/'))
    .pipe(minifyCss({
         keepSpecialComments: 0
    }))
    .pipe(rename({ extname: '.min.css' }))
-   .pipe(gulp.dest('./sites/all/themes/the208wrapshop/css/'))
+   .pipe(gulp.dest('./sites/all/themes/realestate/css/'))
    .on('end', done);
 });
 
