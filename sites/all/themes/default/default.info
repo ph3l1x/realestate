@@ -29,6 +29,7 @@ regions[page_bottom]    = 'Page bottom'
 
 stylesheets[all][]    = 'bootstrap/dist/css/bootstrap.css'
 stylesheets[all][]    = 'css/theme.min.css'
+stylesheets[all][]    = 'css/responsive.min.css'
 
 
 ;;;;;;;;;;;;;;;;;;;;;
