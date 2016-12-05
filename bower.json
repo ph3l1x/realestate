@@ -1,12 +1,12 @@
 {
-  "name": "homesinboise",
-  "description": "Homesinboise Real Estate Website",
+  "name": "realestate",
+  "description": "Mindimage Real Estate Website",
   "main": "main.js",
   "authors": [
     "phelix <rperry@mindimage.net>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/ph3l1x/homesinboise",
+  "homepage": "https://github.com/ph3l1x/realestate",
   "ignore": [
     "**/.*",
     "node_modules",
