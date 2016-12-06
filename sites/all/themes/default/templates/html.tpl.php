@@ -61,12 +61,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <?php print $styles; ?>
   <!-- HTML5 element support for IE6-8 -->
   <!--[if lt IE 9]>
     <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <?php print $scripts; ?>
+  <script src="https://use.fontawesome.com/6da9e649f5.js"></script>
 </head>
 <body<?php print $body_attributes; ?>>
   <div id="skip-link">
