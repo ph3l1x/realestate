@@ -74,20 +74,32 @@
  */
 ?>
 <div class="main-container <?php print $container_class; ?>">
-    <?php if (!empty($page['navigation'])): ?>
-        <nav id="navigation" class="container-fluid">
-            <?php print render($page['navigation']); ?>
-        </nav>
-    <?php endif; ?>
+  <?php if (!empty($page['navigation'])): ?>
+    <nav id="navigation" class="container-fluid">
+      <?php print render($page['navigation']); ?>
+    </nav>
+  <?php endif; ?>
   <header role="banner" id="page-header" class="container-fluid">
+    <video autoplay="" class="fullscreen-bg__video" loop="" muted="" poster="/sites/default/files/Boise-Is-Waiting.jpg" width="100%">
+      <source src="/sites/default/files/Boise-Is-Waiting.mp4" type="video/mp4" />
+    </video>
     <?php if (!empty($site_slogan)): ?>
       <p class="lead"><?php print $site_slogan; ?></p>
     <?php endif; ?>
 
-    <?php print render($page['header']); ?>
+    <div class="headerContainer container-fluid">
+      <div class="container">
+        <?php if ($logo): ?>
+          <a class="col-sm-2 logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+          </a>
+        <?php endif; ?>
+        <?php print render($page['header']); ?>
+      </div>
+    </div>
   </header> <!-- /#page-header -->
 
-  <div class="row">
+  <div class="">
 
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="col-sm-3" role="complementary">

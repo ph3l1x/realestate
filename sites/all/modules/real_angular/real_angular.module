@@ -1,0 +1,67 @@
+<?php
+function hib_angular_menu() {
+    $items = array();
+    $items['rets_search'] = array(
+        'title' => t('Homesinboise Rets Search'),
+        'page callback' => 'hib_angular_search',
+        'access arguments' => array('access content'),
+    );
+//    $items['rets_search/display'] = array(
+//        'title' => t('Display calender'),
+//        'page callback' => 'hib_angular_display',
+//        'access arguments' => array('access content'),
+//    );
+
+    return $items;
+}
+function hib_angular_theme() {
+    $themes = array();
+    $themes['hib_angular'] = array(
+        'template' => 'themes/hib_angular',
+        'parameters' => array(),
+    );
+    return $themes;
+}
+function hib_angular_search() {
+    angularjs_init_application('hib_angular');
+    drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/controller/retsSearch.controller.js');
+    drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/directives/retsSearchForm.directive.js');
+    drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/directives/retsSearchResults.directive.js');
+    drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/services/retsAPI.service.js');
+    drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/app.js');
+
+    return theme('hib_angular');
+}
+
+function hib_angular_display() {
+
+    return drupal_get_form('hib_angular_form');
+}
+function hib_angular_form($form, &$form_state) {
+    $form['L_ListingID'] = array(
+        '#type' => 'textfield',
+        '#title' => 'MLS Number',
+        '#attributes' => array(
+            'ng-change' => array('retsFormChange()'),
+            'ng-model' => array('form.L_ListingID')
+        )
+    );
+    $form['L_Keyword2'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Beds',
+        '#attributes' => array(
+            'ng-change' => array('retsFormChange()'),
+            'ng-model' => array('form.L_Keyword2')
+        )
+    );
+//    $form['retsSearchMarkup'] = array(
+//        '#type' => 'item',
+//        '#ng_controller' => 'RetsSearchCtrl',
+//        '#markup' => '<div rets-search-form>Majellin!</div>'
+//    );
+//    $form['submit'] = array(
+//        '#type' => 'submit',
+//        '#value' => 'Submit that shit!'
+//    );
+    return $form;
+}

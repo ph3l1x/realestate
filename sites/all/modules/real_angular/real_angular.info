@@ -1,0 +1,9 @@
+name = Homesinboise Angular
+description = Custom Angular Setup for Homesinboise
+core = 7.x
+dependencies[] = angularjs
+
+
+version = "7.x-1.3"
+core = "7.x"
+project = "hib_angular"

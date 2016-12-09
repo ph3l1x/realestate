@@ -1,0 +1,74 @@
+<div>
+    <div ng-repeat="result in results">
+        <div class="views-row" style="clear:both;">
+            <div class="mlsResultRow col-xs-12">
+                <div class="mlsResultRowInner">
+                    <div class="mlsResultColumn1 mlsResult col-sm-4">
+                        <div class="views-field views-field-field-mls-main-image">
+                            <div class="field-content">
+                                <a href="/mls/{{ result.L_ListingID }}">
+                                    <img typeof="foaf:Image" src="{{ result.photos[0] }}" width="250" height="175"
+                                         alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="amountPictures">
+                            <div class="field-content">{{ result.photos.length }} photos</div>
+                        </div>
+                    </div>
+                    <div class="mlsResultColumn2 mlsResult col-sm-4">
+                        <div class="mlsResultListPrice">
+                            <div class="views-field views-field-field-mls-list-price">
+                                <div class="field-content">$3,495,000</div>
+                            </div>
+                        </div>
+                        <div class="mlsResultAddress">
+                            <a href="mls/98625227">
+                                <div class="field-content address_street">2121 Eastside Drive</div>
+                                <div class="field-content address_city">McCall</div>
+                                ,
+                                <div class="field-content address_state">ID</div>
+                                <div class="field-content address_zip">83638</div>
+                            </a>
+                        </div>
+                        <div class="mlsResultType">
+                            <div class="views-field views-field-field-mls-listing-type">
+                                <div class="field-content">Single Family</div>
+                            </div>
+                        </div>
+                        <div class="mlsResultBeds">
+                            <img src="sites/all/themes/homesinboise/images/bed.png">
+                            <div class="field-content">4</div>
+                        </div>
+                        <div class="mlsResultBaths">
+                            <img src="sites/all/themes/homesinboise/images/bath.png">
+                            <div class="field-content">5</div>
+                        </div>
+                        <div class="mlsResultButton">
+                            <button onclick="window.location.href='mls/98625227'"
+                                    class="button-primary btn btn-default">View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mlsResultColumn3 mlsResult col-sm-4">
+                        <div class="mlsResultAgentPicture">
+                            <div class="hibLogo">
+                                <img src="/sites/default/files/imce/hib-logo.png">
+                            </div>
+                            <div class="agentImage">
+                                <img src="http://homesinboise.com/sites/default/files/styles/agent_picture_on_listing_results/public/jacob%20cinematic.jpg?itok=Mqyafn_X">
+                            </div>
+                        </div>
+                        <div class="mlsResultAgentName">
+                            <a href="team/jacob-detweiler-vice-president">
+                                Jacob Detweiler, Vice President
+                            </a>
+                        </div>
+                        <div class="mlsResultAgentPhone">208.571-1294</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
