@@ -1,5 +1,5 @@
 
-var app = angular.module('hib_angular', ['node', 'nodes', 'ngRoute']).
+var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute']).
 
     directive('retsSearchForm', retsSearchFormDirective).
     directive('retsSearchResults', retsSearchResultsDirective).

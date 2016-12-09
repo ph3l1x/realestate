@@ -3,7 +3,7 @@ function retsSearchFormDirective(retsAPI) {
         restrict: 'A',
         replace: true,
         transclude: true,
-        templateUrl: '/sites/all/modules/custom/hib_angular/themes/search_form.html',
+        templateUrl: '/sites/all/modules/real_angular/themes/search_form.html',
         link: {},
      //   scope: { "results" : "=" },
         controller: function($scope, $element) {
