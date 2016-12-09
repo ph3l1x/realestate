@@ -1,43 +1,39 @@
 <?php
-function hib_angular_menu() {
+function real_angular_menu() {
     $items = array();
-    $items['rets_search'] = array(
-        'title' => t('Homesinboise Rets Search'),
-        'page callback' => 'hib_angular_search',
+    $items['home_search'] = array(
+        'title' => t('Home Search'),
+        'page callback' => 'real_angular_search',
         'access arguments' => array('access content'),
     );
-//    $items['rets_search/display'] = array(
-//        'title' => t('Display calender'),
-//        'page callback' => 'hib_angular_display',
-//        'access arguments' => array('access content'),
-//    );
+
 
     return $items;
 }
-function hib_angular_theme() {
+function real_angular_theme() {
     $themes = array();
-    $themes['hib_angular'] = array(
-        'template' => 'themes/hib_angular',
+    $themes['real_angular'] = array(
+        'template' => 'themes/real_angular',
         'parameters' => array(),
     );
     return $themes;
 }
-function hib_angular_search() {
-    angularjs_init_application('hib_angular');
+function real_angular_search() {
+    angularjs_init_application('real_angular');
     drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/controller/retsSearch.controller.js');
     drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/directives/retsSearchForm.directive.js');
     drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/directives/retsSearchResults.directive.js');
     drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/services/retsAPI.service.js');
     drupal_add_js(drupal_get_path('module', 'hib_angular') . '/js/app.js');
 
-    return theme('hib_angular');
+    return theme('real_angular');
 }
 
-function hib_angular_display() {
+function real_angular_display() {
 
-    return drupal_get_form('hib_angular_form');
+    return drupal_get_form('real_angular_form');
 }
-function hib_angular_form($form, &$form_state) {
+function real_angular_form($form, &$form_state) {
     $form['L_ListingID'] = array(
         '#type' => 'textfield',
         '#title' => 'MLS Number',

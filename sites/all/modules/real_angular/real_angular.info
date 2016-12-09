@@ -1,5 +1,5 @@
-name = Homesinboise Angular
-description = Custom Angular Setup for Homesinboise
+name = RealEstate Angular
+description = Custom Angular for Mindimage Real Estate
 core = 7.x
 dependencies[] = angularjs
 
