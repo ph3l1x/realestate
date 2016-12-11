@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88ff6058-753e-4a8a-be14-64af0617df9d" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/sites/all/modules/real_angular/js/controller/retsSearch.controller.js" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/js/controller/retsMap.controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/sites/all/themes/default/js/angular-google-maps.js" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/js/misc/angular-google-maps.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/sites/all/themes/default/js/angular-simple-logger.js" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/js/misc/angular-simple-logger.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sites/all/themes/default/js/lodash.js" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/js/misc/lodash.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/real_angular/js/app.js" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/real_angular/themes/real_angular.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/real_angular/themes/real_angular.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/default/css/sass/theme.scss" afterPath="$PROJECT_DIR$/sites/all/themes/default/css/sass/theme.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/default/css/theme.css" afterPath="$PROJECT_DIR$/sites/all/themes/default/css/theme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/default/css/theme.min.css" afterPath="$PROJECT_DIR$/sites/all/themes/default/css/theme.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/default/default.info" afterPath="$PROJECT_DIR$/sites/all/themes/default/default.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php" />
     </list>
     <ignored path="realestate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,16 +26,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="default.info" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sites/all/themes/default/default.info">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -54,11 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="real_angular.module" pinned="false" current-in-tab="false">
+      <file leaf-file-name="html.tpl.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="real_angular.module" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="28" column="91" selection-start-line="28" selection-start-column="91" selection-end-line="28" selection-end-column="91" />
+            <state relative-caret-position="234">
+              <caret line="22" column="78" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -170,8 +162,8 @@
         <option value="$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php" />
         <option value="$PROJECT_DIR$/sites/all/modules/real_angular/js/controller/retsMap.controller.js" />
         <option value="$PROJECT_DIR$/sites/all/modules/real_angular/js/app.js" />
-        <option value="$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module" />
         <option value="$PROJECT_DIR$/sites/all/themes/default/default.info" />
+        <option value="$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module" />
       </list>
     </option>
   </component>
@@ -1201,7 +1193,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40727000" />
+    <option name="totallyTimeSpent" value="41072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="1132" width="1859" height="986" extended-state="0" />
@@ -1541,7 +1533,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/default/js/lodash.js">
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/js/misc/lodash.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
@@ -1599,10 +1591,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php">
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/js/controller/retsMap.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+        <state relative-caret-position="0">
+          <caret line="0" column="87" selection-start-line="0" selection-start-column="87" selection-end-line="0" selection-end-column="87" />
           <folding />
         </state>
       </provider>
@@ -1615,10 +1607,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/js/controller/retsMap.controller.js">
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/default/templates/html.tpl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="87" selection-start-line="0" selection-start-column="87" selection-end-line="0" selection-end-column="87" />
+        <state relative-caret-position="126">
+          <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/default/default.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1633,16 +1633,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/real_angular/real_angular.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="28" column="91" selection-start-line="28" selection-start-column="91" selection-end-line="28" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/default/default.info">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="234">
+          <caret line="22" column="78" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
           <folding />
         </state>
       </provider>
