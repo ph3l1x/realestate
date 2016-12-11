@@ -1,5 +1,5 @@
 <div>
-    <div ng-repeat="result in results">
+    <div ng-repeat="result in results track by $index">
         <div class="views-row" style="clear:both;">
             <div class="mlsResultRow col-xs-12">
                 <div class="mlsResultRowInner">
@@ -7,7 +7,8 @@
                         <div class="views-field views-field-field-mls-main-image">
                             <div class="field-content">
                                 <a href="/mls/{{ result.L_ListingID }}">
-                                    <img typeof="foaf:Image" src="{{ result.photos[0] }}" width="250" height="175"
+                                    http://homesinboise.com/sites/default/files/styles/listing_results_images/public/98623079-1476526501-1.jpg?itok=jiySDf2P
+                                    <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.IMAGES[0] }}" width="250" height="175"
                                          alt="">
                                 </a>
                             </div>
@@ -19,7 +20,7 @@
                     <div class="mlsResultColumn2 mlsResult col-sm-4">
                         <div class="mlsResultListPrice">
                             <div class="views-field views-field-field-mls-list-price">
-                                <div class="field-content">$3,495,000</div>
+                                <div class="field-content">{{ result.L_AskingPrice }}</div>
                             </div>
                         </div>
                         <div class="mlsResultAddress">
