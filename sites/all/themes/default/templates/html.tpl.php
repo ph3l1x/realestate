@@ -68,6 +68,7 @@
     <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <?php print $scripts; ?>
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB0xuXCqqp8PwnXUqpJBEVgBjE6zCVLsbg'></script>
   <script src="https://use.fontawesome.com/6da9e649f5.js"></script>
 </head>
 <body<?php print $body_attributes; ?>>

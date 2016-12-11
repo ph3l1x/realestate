@@ -48,9 +48,7 @@ scripts[] = 'bootstrap/js/popover.js'
 scripts[] = 'bootstrap/js/scrollspy.js'
 scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
-scripts[] = 'js/angular-google-maps.js'
 scripts[] = 'js/lodash.js'
-scripts[] = 'js/angular-simple-logger.js'
 scripts[] = 'js/default.js'
 
 ; Disable the CDN provider so compiled source files can be used.
