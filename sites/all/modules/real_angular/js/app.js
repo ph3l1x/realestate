@@ -1,6 +1,7 @@
 
 var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute', 'uiGmapgoogle-maps']).
-    controller('retsMapController', ['$scope']).
+    controller('retsMap', retsMapController).
+    controller('infoWindow', infoWindowController).
     directive('retsSearchForm', retsSearchFormDirective).
     directive('retsSearchResults', retsSearchResultsDirective).
     factory('retsAPI', retsAPI).
@@ -9,15 +10,8 @@ var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute', 'uiGmapgoo
                 v: '3.20',
                 libraries: 'weather,geometry,visualization'
             });
-        }]
-    ).
-    config(function($routeProvider) {
-        $routeProvider.
-        when('/', {
-             controller:retsMapController,
-            templateUrl: Drupal.settings.angularjsApp.basePath + 'home_search'
-    });
-});
+        }]);
+
 
     // controller('RetsSearchCtrl', ['$scope']).
     // config(function($routeProvider) {
