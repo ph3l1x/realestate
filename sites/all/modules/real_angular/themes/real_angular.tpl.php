@@ -1,5 +1,6 @@
 <div id="real_angular" ng-controller="retsMap" ng-app="real_angular">
     <div rets-search-form></div>
+    <div class="searchListingsContainer" rets-search-results></div>
     <div class="searchMapContainer">
         <ui-gmap-google-map
             class="gmap"
@@ -22,15 +23,14 @@
                     show="window.show"
                     coords="window.model"
                     options="window.options"
-                    templateUrl="'/sites/all/themes/default/templates/infowindow.tpl'"
-                    templateParaneter="window.model"
+                    templateUrl="'/sites/all/modules/real_angular/themes/infowindow.html'"
+                    templateParameter="window.model"
                     ng-cloak>
-<!--                    <div >WTF {{ markers.title }}</div>-->
                 </ui-gmap-window>
             </ui-gmap-markers>
         </ui-gmap-google-map>
     </div>
-    <div class="searchListingsContainer">
-        <div rets-search-results></div>
+
+
     </div>
 </div>

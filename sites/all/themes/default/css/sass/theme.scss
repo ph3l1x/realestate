@@ -89,6 +89,7 @@ html, body {
 	position: relative;
 	z-index: 5;
 	background: rgba(0, 0, 0, .8);
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
 }
 
 .logo {
@@ -155,8 +156,27 @@ section h1.page-header {
 }
 
 .page-home-search {
+	.ph-sticky {
+		position: fixed !important;
+		top: 0;
+		z-index: 100;
+		width: 100%;
+	}
+
+	.ph-sticky .headerContainer {
+		background: #333 !important;
+	}
+
+	.ph-stickySearch {
+		position: fixed !important;
+		top: 110px;
+		width: 100%;
+		z-index: 100;
+		background: #fff;
+	}
 	section {
 		padding-left: 0;
+		padding-right: 0;
 	}
 	nav {
 		display: none;
@@ -165,6 +185,7 @@ section h1.page-header {
 		float: left;
 		width: 100%;
 		height: 60px;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
 		ul {
 			list-style: none;
 			li {
@@ -196,31 +217,241 @@ section h1.page-header {
 	}
 
 	.searchMapContainer {
-		float: left;
-		width: 50%;
+		//float: left;
+		//width: 100%;
 		height: calc(100vh - 170px);
 		position: relative;
+		overflow: hidden;
 	}
 	.searchListingsContainer {
 		float: right;
-		width: 50%;
-		//margin-top:26px;
+		width: 645px;
+		margin-top: 170px;
 		//overflow: scroll;
 
 	}
 
 	.mlsResultRow {
-		padding-right: 5px;
-		padding-left: 0;
+		padding: 0;
 	}
 
-	.listingRows:nth-child(4n) {
-		.mlsResultRow {
-			padding-right: 0;
+	.listingRows {
+		padding: 0 0 3px 0;
+	}
+	//.listingRows:nth-child(4n) {
+	//	.mlsResultRow {
+	//		padding-right: 0;
+	//	}
+	//}
+
+	.mlsResultRowInner {
+	}
+	.listingResultsAgentContainer {
+		padding: 10px;
+	}
+	.listingContainer {
+		.listingStyles {
+			position: absolute;
+			z-index: 20;
+		}
+		text-shadow: 0 0 3px rgba(0, 0, 0, .5);
+		font-family: Ubuntu, sans-serif;
+		color: #fff;
+		height: 170px;
+		font-size: 13px;
+		position: relative;
+		img {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		.imageCount {
+			top: 5px;
+			left: 5px;
+		}
+		.floats {
+			float: left;
+		}
+		.propertyType {
+			top: 89px;
+			left: 20px;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+		.priceLineItems {
+			top: 107px;
+			left: 20px;
+			.mini {
+				margin-top: 15px;
+			}
+		}
+		.askingPrice {
+			font-size: 28px;
+			padding-right: 10px;
+		}
+		.addressContainer {
+			top: inherit;
+			bottom: 6px;
+			left: 20px;
+		}
+		.state, .city {
+			padding-left: 5px;
+		}
+		.listingBackdrop {
+			background: rgba(0, 0, 0, .3);
+			height: 170px;
+			width: 320px;
+			transition: all 0.3s ease;
+		}
+		a:hover .listingBackdrop {
+			background: none;
+		}
+	}
+	.selected .listingBackdrop {
+		background: none;
+	}
+	.searchContainer {
+		padding-top: 13px;
+		background: #f4f4f4;
+		background: -moz-linear-gradient(top,  #f4f4f4 0%, #e5e5e5 100%);
+		background: -webkit-linear-gradient(top,  #f4f4f4 0%,#e5e5e5 100%);
+		background: linear-gradient(to bottom,  #f4f4f4 0%,#e5e5e5 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#e5e5e5',GradientType=0 );
+
+		.input-group {
+			width: 200px;
+		}
+		.searchContainerInner {
+			//padding: 0;
+		}
+		ul.searchParent {
+			//padding:0 0 0 15px;
+			padding: 0;
+			li.parentLI {
+				font-family: Ubuntu, sans-serif;
+				font-size: 15px;
+				padding: 8px 17px;
+				position: relative;
+				ul.searchChild {
+					box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+					position: absolute;
+					left: 0;
+					top: 48px;
+					padding: 10px 0;
+					background: #fff;
+					white-space: nowrap;
+					li.childLI {
+						float: none;
+						padding: 11px 15px 0;
+						label {
+							font-weight: normal;
+						}
+						// Custom Checkbox Styles
+						[type="checkbox"]:not(:checked),
+						[type="checkbox"]:checked {
+							position: absolute;
+							left: -9999px;
+						}
+						[type="checkbox"]:not(:checked) + label,
+						[type="checkbox"]:checked + label {
+							position: relative;
+							padding-left: 25px;
+							cursor: pointer;
+						}
+						[type="checkbox"]:not(:checked) + label:before,
+						[type="checkbox"]:checked + label:before {
+							content: '';
+							position: absolute;
+							left:0; top: 2px;
+							width: 17px; height: 17px;
+							border: 1px solid #aaa;
+							background: #f8f8f8;
+							border-radius: 3px;
+							box-shadow: inset 0 1px 3px rgba(0,0,0,.3)
+						}
+						[type="checkbox"]:not(:checked) + label:after,
+						[type="checkbox"]:checked + label:after {
+							content: '✔';
+							position: absolute;
+							top: 3px; left: 4px;
+							font-size: 18px;
+							line-height: 0.8;
+							color: #09ad7e;
+							transition: all .2s;
+						}
+						[type="checkbox"]:not(:checked) + label:after {
+							opacity: 0;
+							transform: scale(0);
+						}
+						[type="checkbox"]:checked + label:after {
+							opacity: 1;
+							transform: scale(1);
+						}
+						[type="checkbox"]:disabled:not(:checked) + label:before,
+						[type="checkbox"]:disabled:checked + label:before {
+							box-shadow: none;
+							border-color: #bbb;
+							background-color: #ddd;
+						}
+						[type="checkbox"]:disabled:checked + label:after {
+							color: #999;
+						}
+						[type="checkbox"]:disabled + label {
+							color: #aaa;
+						}
+						[type="checkbox"]:checked:focus + label:before,
+						[type="checkbox"]:not(:checked):focus + label:before {
+							border: 1px dotted blue;
+						}
+						label:hover:before {
+							border: 1px solid #4778d9!important;
+						}
+					}
+				}
+			}
+			li.parentLI a:hover {
+				color: #882719;
+				text-decoration: none;
+			}
+			li.parentLI a {
+				display: block;
+				color: #000;
+				text-decoration: none;
+				transition: all 0.3s ease;
+			}
+			li.parentLI:not(.first):after {
+				content: "";
+				border-right: 1px solid #fff;
+				height: 60px;
+				display: block;
+				position: absolute;
+				right: 0px;
+				bottom: -10px;
+			}
+			li.parentLI.first {
+				padding: 1px 17px 1px 0;
+			}
+			li.parentLI.first:after {
+				content: '';
+				border-right: 1px solid #fff;
+				height: 60px;
+				display: block;
+				position: relative;
+				right: -17px;
+				bottom: 48px;
+			}
 		}
 	}
 
-	.mlsResultRowInner {
-		position: relative;
-	}
 }
+

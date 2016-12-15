@@ -1,12 +1,38 @@
 <div>
-    <div class="listingRows" ng-repeat="result in results track by $index">
-        <div class="mlsResultRow col-xs-12 col-sm-6">
+    <div class="listingResultsAgentContainer">
+        Random Real Estate Agent Will Appear Here.
+    </div>
+    <div
+        class="listingRows col-md-12 col-lg-6"
+        ng-repeat="result in markers track by $index"
+        ng-class="{selected: result == window.model}"
+        ng-mouseover="window.model = result"
+    >
+        <div class="mlsResultRow">
             <div class="mlsResultRowInner">
                 <div class="listingContainer">
-                    <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.L_IMAGES }}" width="100%" alt="">
+                    <a href="#">
+                        <div class="listingBackdrop listingStyles"></div>
+                        <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.results.L_IMAGES }}"  alt="">
+                        <div class="imageCount listingStyles floats">{{ result.results.ImageCount }} photos</div>
+                        <div class="propertyType listingStyles">{{ result.results.L_Type_ }} for sale</div>
+                        <div class="priceLineItems listingStyles">
+                            <div class="askingPrice floats">${{ result.results.L_AskingPrice }}</div>
+                            <div class="beds floats mini">{{ result.results.L_Keyword_2 }} bds</div>
+                            <div class="baths floats mini">{{ result.results.LM_Dec_3 }} ba</div>
+                            <div class="sqft floats mini">{{ result.results.LM_int4_27 }} sqft</div>
+                        </div>
+                        <div class="addressContainer listingStyles">
+                            <!--<div class="streetNum floats">{{ result.results.LM_AddressNumber }}</div>-->
+                            <div class="street floats">{{ result.results.L_Address }}, </div>
+                            <div class="state floats">{{ result.results.L_City }}, </div>
+                            <div class="city floats">{{ result.results.L_State }}</div>
+                        </div>
+                    </a>
+
                 </div>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </div>
 

@@ -10,16 +10,13 @@ function retsMapController($scope, uiGmapGoogleMapApi, uiGmapIsReady, retsAPI) {
     };
 
     $scope.options = {
-            scrollwheel: true,
-            streetViewControl: false,
-            mapTypeControl: false,
+            scrollwheel: false,
+            streetViewControl: true,
+            mapTypeControl: true,
             scaleControl: false,
             rotateControl: false,
-            zoomControl: false
-    };
-    $scope.windowOptions = {
-        content: 'This is some fucking shit',
-        zIndex: 999
+            zoomControl: false,
+            draggable: false,
     };
 
     $scope.window = {
@@ -33,26 +30,20 @@ function retsMapController($scope, uiGmapGoogleMapApi, uiGmapIsReady, retsAPI) {
         }
     };
 
-    var createMarker = function(i, lat, long) {
+    var createMarker = function(i, lat, long, item) {
         var ret = {
             latitude: lat,
             longitude: long,
-            title: 'bitch tits-' + i,
-            text: 'lalalala',
             show: false,
             events: {
                 mouseover: function(marker, eventName, model, args) {
-                    console.log("DADDY", args);
                     $scope.window.show = true;
                     $scope.window.model = model;
                 }
             }
         };
-        // ret.onClick = function() {
-        //     console.log("clicked");
-        //     ret.show = !ret.show;
-        //     $scope.$apply();
-        // };
+
+        ret['results'] = item;
         ret['id'] = i;
         return ret;
     };
@@ -61,35 +52,19 @@ function retsMapController($scope, uiGmapGoogleMapApi, uiGmapIsReady, retsAPI) {
     $scope.markers = [];
     uiGmapIsReady.promise()
         .then(function (instances) {
-            console.log(instances[0].map);
+            // console.log(instances[0].map);
         })
         .then(function () {
             retsAPI.default().success(function(result) {
-                $scope.results = result;
                 var i = 0;
                    result.forEach(function(item) {
-                       markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'] ));
+                       markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'], item ));
                    i++;
                 });
                 $scope.markers = markers;
                 console.log("MARKERS: ", $scope.markers);
-                console.log("MAP: ", $scope.map);
         });
     });
-
-    // $scope.markersEvents = {
-    //     mouseover: function(gMarker, eventName, model) {
-    //         model.show = true;
-    //         $scope.$apply();
-    //     }
-    // };
-
-    $scope.windowOptions = {
-        visible: false
-    };
-    $scope.onClick = function() {
-        $scope.windowOptions.visible = !$scope.windowOptions.visible;
-    };
 
     uiGmapGoogleMapApi.then(function (maps) {
         angular.extend($scope.map, {

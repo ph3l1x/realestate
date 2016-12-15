@@ -79,7 +79,7 @@
       <?php print render($page['navigation']); ?>
     </nav>
   <?php endif; ?>
-  <header role="banner" id="page-header" class="container-fluid">
+  <header role="banner" id="page-header" class="ph-sticky container-fluid">
     <video autoplay="" class="fullscreen-bg__video" loop="" muted="" poster="/sites/default/files/Boise-Is-Waiting.jpg" width="100%">
       <source src="/sites/default/files/Boise-Is-Waiting.mp4" type="video/mp4" />
     </video>
