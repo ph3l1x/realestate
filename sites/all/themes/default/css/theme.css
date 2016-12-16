@@ -234,7 +234,7 @@ section h1.page-header {
   background: -moz-linear-gradient(top, #f4f4f4 0%, #e5e5e5 100%);
   background: -webkit-linear-gradient(top, #f4f4f4 0%, #e5e5e5 100%);
   background: linear-gradient(to bottom, #f4f4f4 0%, #e5e5e5 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#e5e5e5',GradientType=0 ); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#e5e5e5', GradientType=0); }
   .page-home-search .searchContainer .input-group {
     width: 200px; }
   .page-home-search .searchContainer ul.searchParent {
@@ -302,6 +302,30 @@ section h1.page-header {
             border: 1px dotted blue; }
           .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI label:hover:before {
             border: 1px solid #4778d9 !important; }
+      .page-home-search .searchContainer ul.searchParent li.parentLI .priceChild {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+        position: absolute;
+        left: 0;
+        top: 48px;
+        padding: 10px 0;
+        background: #fff;
+        position: absolute;
+        width: 250px; }
+        .page-home-search .searchContainer ul.searchParent li.parentLI .priceChild .priceContainer {
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          float: left; }
+        .page-home-search .searchContainer ul.searchParent li.parentLI .priceChild .mm {
+          float: left;
+          width: 40px;
+          text-align: center;
+          padding-top: 3px; }
+        .page-home-search .searchContainer ul.searchParent li.parentLI .priceChild .pm {
+          float: left;
+          width: 80px; }
+          .page-home-search .searchContainer ul.searchParent li.parentLI .priceChild .pm input {
+            width: 100%; }
     .page-home-search .searchContainer ul.searchParent li.parentLI a:hover {
       color: #882719;
       text-decoration: none; }

@@ -12,11 +12,11 @@
                 </div>
             </li>
             <li class="parentLI">
-                <a ng-click="lTypeShow = !lTypeShow" href="#">
+                <a ng-click="showCurrentSelection = 1" href="#">
                     Listing Type <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </a>
                 <!-- Child Menu -->
-                <ul ng-show="lTypeShow" class="searchChild">
+                <ul ng-show="showCurrentSelection === 1" class="searchChild">
                     <li class="childLI" ng-repeat="lType in lTypes track by $index">
                         <input
                             type="checkbox"
@@ -31,14 +31,14 @@
                 </ul>
             </li>
             <li class="parentLI">
-                <a ng-click="" href="#">
-                    $200k-$500k <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <a ng-click="showCurrentSelection = 2" href="#">
+                    ${{ priceMinValueSmall }}k-$500k <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </a>
                 <!-- Child Menu -->
-                <div ng-show="" class="divChild">
+                <div ng-show="showCurrentSelection === 2" class="priceChild divChild">
                     <div class="priceContainer">
-                        <div class="priceMin"><input type="text" /></div>
-                        <div class="priceMax"><input type="text" /></div>
+                        <div class="priceMin pm"><input ng-value="priceMinValue" class="form-control priceInputMin" type="text" /></div><div class="priceDash mm"><i class="fa fa-minus" aria-hidden="true"></i></div>
+                        <div class="priceMax pm"><input ng-value="priceMaxValue" class="form-control priceInputMax" type="text" /></div>
                     </div>
                 </div>
             </li>

@@ -89,7 +89,7 @@ html, body {
 	position: relative;
 	z-index: 5;
 	background: rgba(0, 0, 0, .8);
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .4);
 }
 
 .logo {
@@ -185,7 +185,7 @@ section h1.page-header {
 		float: left;
 		width: 100%;
 		height: 60px;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .4);
 		ul {
 			list-style: none;
 			li {
@@ -323,10 +323,10 @@ section h1.page-header {
 	.searchContainer {
 		padding-top: 13px;
 		background: #f4f4f4;
-		background: -moz-linear-gradient(top,  #f4f4f4 0%, #e5e5e5 100%);
-		background: -webkit-linear-gradient(top,  #f4f4f4 0%,#e5e5e5 100%);
-		background: linear-gradient(to bottom,  #f4f4f4 0%,#e5e5e5 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#e5e5e5',GradientType=0 );
+		background: -moz-linear-gradient(top, #f4f4f4 0%, #e5e5e5 100%);
+		background: -webkit-linear-gradient(top, #f4f4f4 0%, #e5e5e5 100%);
+		background: linear-gradient(to bottom, #f4f4f4 0%, #e5e5e5 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#e5e5e5', GradientType=0);
 
 		.input-group {
 			width: 200px;
@@ -343,7 +343,7 @@ section h1.page-header {
 				padding: 8px 17px;
 				position: relative;
 				ul.searchChild {
-					box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+					box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .4);
 					position: absolute;
 					left: 0;
 					top: 48px;
@@ -372,18 +372,21 @@ section h1.page-header {
 						[type="checkbox"]:checked + label:before {
 							content: '';
 							position: absolute;
-							left:0; top: 2px;
-							width: 17px; height: 17px;
+							left: 0;
+							top: 2px;
+							width: 17px;
+							height: 17px;
 							border: 1px solid #aaa;
 							background: #f8f8f8;
 							border-radius: 3px;
-							box-shadow: inset 0 1px 3px rgba(0,0,0,.3)
+							box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3)
 						}
 						[type="checkbox"]:not(:checked) + label:after,
 						[type="checkbox"]:checked + label:after {
 							content: '✔';
 							position: absolute;
-							top: 3px; left: 4px;
+							top: 3px;
+							left: 4px;
 							font-size: 18px;
 							line-height: 0.8;
 							color: #09ad7e;
@@ -414,8 +417,40 @@ section h1.page-header {
 							border: 1px dotted blue;
 						}
 						label:hover:before {
-							border: 1px solid #4778d9!important;
+							border: 1px solid #4778d9 !important;
 						}
+					}
+				}
+				.priceChild {
+					box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .4);
+					position: absolute;
+					left: 0;
+					top: 48px;
+					padding: 10px 0;
+					background: #fff;
+					position: absolute;
+					width: 250px;
+					.priceContainer {
+						position: relative;
+						left: 50%;
+						transform: translateX(-50%);
+						float: left;
+					}
+					.mm {
+						float: left;
+						width: 40px;
+						text-align: center;
+						padding-top: 3px;
+					}
+					.pm {
+						float: left;
+						width: 80px;
+						input {
+							width: 100%;
+						}
+						//input.priceInputMin:after {
+						//	content: " - "
+						//}
 					}
 				}
 			}

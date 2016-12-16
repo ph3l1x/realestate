@@ -58,19 +58,11 @@ function retsAPI($http, $q) {
                 'Access-Control-Allow-Headers' : '*'
             }
         }).success(function (response) {
-            if(response) {
-                response.forEach(function(item) {
-                    /**
-                     * Update and modify values here if needed.
-                     */
-                    item['ImageCount'] = item.IMAGES.length;
-                    item['L_AskingPrice'] = parseFloat(item['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                });
-
-                return response;
-            } else {
-                return $q.reject();
-            }
+               for(var i = 0, len = response.length; i < len; i++) {
+                   response[i]['ImageCount'] = response[i].IMAGES.length;
+                   response[i]['L_AskingPrice'] = parseFloat(response[i]['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                   return response;
+               }
         })
     };
     service.listingType = function() {
