@@ -48,12 +48,12 @@
                 </a>
 				<ul ng-show="showCurrentSelection === 3" class="searchChild">
 
-					<a ng-click="beddingSave(1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
-					<a ng-click="beddingSave(2)" href="#"><li data-value="2" class="childLI ng-scope" >2+</li></a>
-					<a ng-click="beddingSave(3)" href="#"><li data-value="3" class="childLI ng-scope" >3+</li></a>
-					<a ng-click="beddingSave(4)" href="#"><li data-value="4" class="childLI ng-scope" >4+</li></a>
-					<a ng-click="beddingSave(5)" href="#"><li data-value="5" class="childLI ng-scope" >5+</li></a>
-					<a ng-click="beddingSave(6)" href="#"><li data-value="6" class="childLI ng-scope" >6+</li></a>
+					<a ng-click="typeSave('beds',1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
+					<a ng-click="typeSave('beds',2)" href="#"><li data-value="2" class="childLI ng-scope" >2+</li></a>
+					<a ng-click="typeSave('beds',3)" href="#"><li data-value="3" class="childLI ng-scope" >3+</li></a>
+					<a ng-click="typeSave('beds',4)" href="#"><li data-value="4" class="childLI ng-scope" >4+</li></a>
+					<a ng-click="typeSave('beds',5)" href="#"><li data-value="5" class="childLI ng-scope" >5+</li></a>
+					<a ng-click="typeSave('beds',6)" href="#"><li data-value="6" class="childLI ng-scope" >6+</li></a>
                 </ul>
 			</li>
             <li class="parentLI">0+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i></li>
