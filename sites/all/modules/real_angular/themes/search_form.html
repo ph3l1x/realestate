@@ -17,14 +17,31 @@
                 </a>
                 <!-- Child Menu -->
                 <ul ng-show="lTypeShow" class="searchChild">
-                    <li class="childLI" ng-repeat="lTypes in lType track by $index">
-                        <input type="checkbox" id="lType{{ $index }}"/>
-                        <label ng-click="typeSearch('L_Type_', lTypes)" for="lType{{ $index }}">{{ lTypes }}</label>
+                    <li class="childLI" ng-repeat="lType in lTypes track by $index">
+                        <input
+                            type="checkbox"
+                            ng-model="lType.selected"
+                            value="lType.name"
+                            ng-click="typeSave()"
+                            id="lType{{ $index }}"/>
+                        <label  for="lType{{ $index }}">{{ lType.name }}</label>
+
 
                     </li>
                 </ul>
             </li>
-            <li class="parentLI">$200k-$500k <i class="fa fa-caret-down" aria-hidden="true"></i></li>
+            <li class="parentLI">
+                <a ng-click="" href="#">
+                    $200k-$500k <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+                <!-- Child Menu -->
+                <div ng-show="" class="divChild">
+                    <div class="priceContainer">
+                        <div class="priceMin"><input type="text" /></div>
+                        <div class="priceMax"><input type="text" /></div>
+                    </div>
+                </div>
+            </li>
             <li class="parentLI">0+ Beds <i class="fa fa-caret-down" aria-hidden="true"></i></li>
             <li class="parentLI">0+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i></li>
             <li class="parentLI last">Boise <i class="fa fa-caret-down" aria-hidden="true"></i></li>

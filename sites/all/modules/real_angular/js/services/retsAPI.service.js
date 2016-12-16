@@ -2,16 +2,25 @@ function retsAPI($http, $q) {
     var service = {};
     
     service.get = function(values) {
-        var val = [];
-        values.forEach(function(value) {
-            console.log("value", value);
-            val.push(value.key + '=' + value.value);
-        });
-        console.log("SSSSSSSS", val);
-        
+        // var val = [];
+        // var newName = [];
+        // values.forEach(function(value, i) {
+        //     if(i > 0) {
+        //         newName.push({name: value.name.join('|')});
+        //     }
+        //     console.log('i', i);
+        //     console.log('newname', newName);
+        //     console.log("value", value);
+        //     val.push(value.filter + '=' + value.name);
+        // });
+        // console.log("SSSSSSSS", val);
+        //
+        var def = $q.defer();
         return $http({
-            url: 'http://rets.mindimage.net/search.php?' + val.join('&'),
-            method: 'get',
+            // url: 'http://rets.mindimage.net/search.php?' + val.join('&'),
+            url: 'http://rets.mindimage.net/search.php',
+            method: 'post',
+            data: values,
             withCredentials: false,
             crossDomain: true,
             headers: {
@@ -19,19 +28,23 @@ function retsAPI($http, $q) {
                 'Access-Control-Allow-Headers' : '*'
             }
         }).success(function (response) {
-            if(response) {
-                response.forEach(function(item) {
-                    /**
-                     * Update and modify values here if needed.
-                     */
-                    item['L_AskingPrice'] = parseFloat(item['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                    item['ImageCount'] = item.IMAGES.length;
-                });
+            def.resolve(response);
 
-                return response;
-            } else {
-               return $q.reject();
-            }
+            // console.log("DEF.PROMISE", def.promise);
+            // resolve.forEach(function(item) {
+            //     console.log("ITEM", item);
+            //     /**
+            //      * Update and modify values here if needed.
+            //      */
+            //     item['L_AskingPrice'] = parseFloat(item['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            //     item['ImageCount'] = item.IMAGES.length;
+            //
+            // });
+
+            return def.promise;
+
+        }).error(function(theError) {
+            console.log("ERROR GETTING LISTING DATA", theError);
         })
     };
     service.default = function() {
