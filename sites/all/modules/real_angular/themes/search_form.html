@@ -48,16 +48,47 @@
                 </a>
 				<ul ng-show="showCurrentSelection === 3" class="searchChild">
 
-					<a ng-click="beddingSave(1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
-					<a ng-click="beddingSave(2)" href="#"><li data-value="2" class="childLI ng-scope" >2+</li></a>
-					<a ng-click="beddingSave(3)" href="#"><li data-value="3" class="childLI ng-scope" >3+</li></a>
-					<a ng-click="beddingSave(4)" href="#"><li data-value="4" class="childLI ng-scope" >4+</li></a>
-					<a ng-click="beddingSave(5)" href="#"><li data-value="5" class="childLI ng-scope" >5+</li></a>
-					<a ng-click="beddingSave(6)" href="#"><li data-value="6" class="childLI ng-scope" >6+</li></a>
+					<a ng-click="beddingSave('Beds',1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
+					<a ng-click="beddingSave('Beds',2)" href="#"><li data-value="2" class="childLI ng-scope" >2+</li></a>
+					<a ng-click="beddingSave('Beds',3)" href="#"><li data-value="3" class="childLI ng-scope" >3+</li></a>
+					<a ng-click="beddingSave('Beds',4)" href="#"><li data-value="4" class="childLI ng-scope" >4+</li></a>
+					<a ng-click="beddingSave('Beds',5)" href="#"><li data-value="5" class="childLI ng-scope" >5+</li></a>
+					<a ng-click="beddingSave('Beds',6)" href="#"><li data-value="6" class="childLI ng-scope" >6+</li></a>
                 </ul>
 			</li>
-            <li class="parentLI">0+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i></li>
-            <li class="parentLI last">Boise <i class="fa fa-caret-down" aria-hidden="true"></i></li>
+            <li class="parentLI"> 
+                <a ng-click="showCurrentSelection = 4" href="#">
+                    0+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+				<ul ng-show="showCurrentSelection === 4" class="searchChild">
+
+					<a ng-click="beddingSave('Baths',1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
+					<a ng-click="beddingSave('Baths',1.5)" href="#"><li data-value="2" class="childLI ng-scope" >1.5+</li></a>
+					<a ng-click="beddingSave('Baths',2)" href="#"><li data-value="3" class="childLI ng-scope" >2+</li></a>
+					<a ng-click="beddingSave('Baths',2.5)" href="#"><li data-value="4" class="childLI ng-scope" >2.5+</li></a>
+					<a ng-click="beddingSave('Baths',3)" href="#"><li data-value="5" class="childLI ng-scope" >3+</li></a>
+					<a ng-click="beddingSave('Baths',3.5)" href="#"><li data-value="6" class="childLI ng-scope" >3.5+</li></a>
+                </ul>
+			</li>
+            <li class="parentLI">
+                <a ng-click="showCurrentSelection = 5" href="#">
+                    Listing City <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+                <!-- Child Menu -->
+                <ul ng-show="showCurrentSelection === 5" class="searchChild">
+                    <li class="childLI" ng-repeat="city in cities track by $index">
+                        <input
+                            type="checkbox"
+                            ng-model="city.selected"
+                            value="city.name"
+                            ng-click="typeSave()"
+                            id="city{{ $index }}"/>
+                        <label  for="city{{ $index }}">{{ city.name }}</label>
+
+
+                    </li>
+                </ul>
+            </li>
         </ul>
     <!--<form>-->
         <!--<label>Beds</label>-->

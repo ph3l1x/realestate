@@ -5,7 +5,7 @@ function retsSearchFormDirective(retsAPI) {
         transclude: true,
         templateUrl: '/sites/all/modules/real_angular/themes/search_form.html',
         link: function(scope, element, attrs) {
-
+			scope.lTypeNameArray = [];
             var createMarker = function(i, lat, long, item) {
                 var ret = {
                     latitude: lat,
@@ -28,7 +28,7 @@ function retsSearchFormDirective(retsAPI) {
                                 markers = [];
                         query.forEach(function(value, key) {
                             if (value.selected = true) {
-                                if (value.filter == 'L_Type_' || value.filter == 'Beds_') {
+                                if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' || value.filter == 'L_City') {
                                     sendValue.push({
                                         filter: value.filter,
                                         name: value.name
@@ -54,6 +54,10 @@ function retsSearchFormDirective(retsAPI) {
             retsAPI.listingType().success(function(result) {
                 scope.lTypes = result;
             });
+			
+            retsAPI.citiesList().success(function(result) {
+                scope.cities = result;
+            });
 
             /* Default Values for Min and Max Price */
             scope.priceMinValue = parseFloat(200000).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -61,22 +65,38 @@ function retsSearchFormDirective(retsAPI) {
             scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
             scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
             
-            scope.lTypeNameArray = [];
+            
             scope.typeSave = function() {
                 scope.lTypeNameArray = scope.lTypes.filter(function(type) {
                     return type.selected;
                 });
+				
+				if(scope.bedding){
+					scope.lTypeNameArray.push({
+											filter: scope.column,
+											name: scope.bedding,
+											selected : true
+										});
+				}
                 queryGenerator(scope.lTypeNameArray);
             };
             
             scope.bedding = '';
-            scope.beddingSave = function(bedding) {
+            scope.column = '';
+            scope.beddingSave = function(type,bedding) {
+				if(type == "Beds"){
+					var column = "L_Keyword2";
+				}
+				else if(type == "Baths"){
+					var column = "LM_Dec_3";
+				}
                 scope.bedding = bedding;
+                scope.column = column;
 
 				console.log(scope.lTypeNameArray.length);
 				for(var i = 0, len = scope.lTypeNameArray.length; i < len;  i++) {
 					//alert(scope.lTypeNameArray[ i ].filter);
-					if( scope.lTypeNameArray[ i ].filter == "Beds_" ){
+					if( scope.lTypeNameArray[ i ].filter == column ){
 	
 						scope.lTypeNameArray.splice(i, 1);
 						
@@ -85,7 +105,7 @@ function retsSearchFormDirective(retsAPI) {
 				}
 		
                 scope.lTypeNameArray.push({
-                                        filter: 'Beds_',
+                                        filter: column,
                                         name: bedding,
                                         selected : true
                                     });
