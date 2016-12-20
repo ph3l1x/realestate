@@ -3,7 +3,12 @@
         <ul class="searchParent">
             <li class="first parentLI">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="City, MLS#, Zip">
+                    <input ng-model="myValue" ng-change="myFunc()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
+					<ul class="searchChild">
+						<li class="childLI" ng-repeat="city in search track by $index">
+							<label  for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></label>
+						</li>
+					</ul>
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
@@ -40,41 +45,61 @@
                         <div class="priceMin pm"><input ng-value="priceMinValue" class="form-control priceInputMin" type="text" /></div><div class="priceDash mm"><i class="fa fa-minus" aria-hidden="true"></i></div>
                         <div class="priceMax pm"><input ng-value="priceMaxValue" class="form-control priceInputMax" type="text" /></div>
                     </div>
+					<ul class="searchChild" id="priceMin">
+						<li class="childLI ng-scope"><a ng-click="priceSave(0,priceMaxValueWithoutFormat)" href="#" data-value="0">0</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(50000,priceMaxValueWithoutFormat)" href="#" data-value="50000">$50,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(100000,priceMaxValueWithoutFormat)" href="#" data-value="100000">$100,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(150000,priceMaxValueWithoutFormat)" href="#" data-value="150000">$150,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(200000,priceMaxValueWithoutFormat)" href="#" data-value="200000">$200,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(300000,priceMaxValueWithoutFormat)" href="#" data-value="300000">$300,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(400000,priceMaxValueWithoutFormat)" href="#" data-value="400000">$400,000+</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMaxValueWithoutFormat)" href="#" data-value="500000">$500,000+</a></li>
+					</ul>
+					<ul class="searchChild" id="priceMax" style="display:none;">
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 25000))" href="#" data-value="{{priceMinValueWithoutFormat + 25000}})">${{priceMinValueWithoutFormat + 25000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 50000))" href="#" data-value="{{priceMinValueWithoutFormat + 50000}})">${{priceMinValueWithoutFormat + 50000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 75000))" href="#" data-value="{{priceMinValueWithoutFormat + 75000}})">${{priceMinValueWithoutFormat + 75000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 100000))" href="#" data-value="{{priceMinValueWithoutFormat + 100000}})">${{priceMinValueWithoutFormat + 100000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 125000))" href="#" data-value="{{priceMinValueWithoutFormat + 125000}})">${{priceMinValueWithoutFormat + 125000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 150000))" href="#" data-value="{{priceMinValueWithoutFormat + 150000}})">${{priceMinValueWithoutFormat + 150000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 175000))" href="#" data-value="{{priceMinValueWithoutFormat + 175000}})">${{priceMinValueWithoutFormat + 175000}}</a></li>
+						<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 200000))" href="#" data-value="{{priceMinValueWithoutFormat + 200000}})">${{priceMinValueWithoutFormat + 200000}}</a></li>
+					</ul>
                 </div>
             </li>
-            <li class="parentLI">
+            <li class="parentLI bedding">
                 <a ng-click="showCurrentSelection = 3" href="#">
-                    0+ Beds <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    {{bedding}}+ Beds <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </a>
 				<ul ng-show="showCurrentSelection === 3" class="searchChild">
 
-					<a ng-click="beddingSave('Beds',1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
-					<a ng-click="beddingSave('Beds',2)" href="#"><li data-value="2" class="childLI ng-scope" >2+</li></a>
-					<a ng-click="beddingSave('Beds',3)" href="#"><li data-value="3" class="childLI ng-scope" >3+</li></a>
-					<a ng-click="beddingSave('Beds',4)" href="#"><li data-value="4" class="childLI ng-scope" >4+</li></a>
-					<a ng-click="beddingSave('Beds',5)" href="#"><li data-value="5" class="childLI ng-scope" >5+</li></a>
-					<a ng-click="beddingSave('Beds',6)" href="#"><li data-value="6" class="childLI ng-scope" >6+</li></a>
+					<li data-value="0" class="childLI ng-scope {{bedding == 1 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',1)" href="#">1+</a></li>
+					<li data-value="2" class="childLI ng-scope {{bedding == 2 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',2)" href="#">2+</a></li>
+					<li data-value="3" class="childLI ng-scope {{bedding == 3 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',3)" href="#">3+</a></li>
+					<li data-value="4" class="childLI ng-scope {{bedding == 4 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',4)" href="#">4+</a></li>
+					<li data-value="5" class="childLI ng-scope {{bedding == 5 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',5)" href="#">5+</a></li>
+					<li data-value="6" class="childLI ng-scope {{bedding == 6 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',6)" href="#">6+</a></li>
                 </ul>
 			</li>
-            <li class="parentLI"> 
+            <li class="parentLI bedding"> 
                 <a ng-click="showCurrentSelection = 4" href="#">
-                    0+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    {{bathing}}+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </a>
 				<ul ng-show="showCurrentSelection === 4" class="searchChild">
 
-					<a ng-click="beddingSave('Baths',1)" href="#"><li data-value="0" class="childLI ng-scope" >1+</li></a>
-					<a ng-click="beddingSave('Baths',1.5)" href="#"><li data-value="2" class="childLI ng-scope" >1.5+</li></a>
-					<a ng-click="beddingSave('Baths',2)" href="#"><li data-value="3" class="childLI ng-scope" >2+</li></a>
-					<a ng-click="beddingSave('Baths',2.5)" href="#"><li data-value="4" class="childLI ng-scope" >2.5+</li></a>
-					<a ng-click="beddingSave('Baths',3)" href="#"><li data-value="5" class="childLI ng-scope" >3+</li></a>
-					<a ng-click="beddingSave('Baths',3.5)" href="#"><li data-value="6" class="childLI ng-scope" >3.5+</li></a>
+					<li data-value="0" class="childLI ng-scope {{bathing == 1 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',1)" href="#">1+</a></li>
+					<li data-value="2" class="childLI ng-scope {{bathing == 1.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',1.5)" href="#">1.5+</a></li>
+					<li data-value="3" class="childLI ng-scope {{bathing == 2 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',2)" href="#">2+</a></li>
+					<li data-value="4" class="childLI ng-scope {{bathing == 2.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',2.5)" href="#">2.5+</a></li>
+					<li data-value="5" class="childLI ng-scope {{bathing == 3 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',3)" href="#">3+</a></li>
+					<li data-value="6" class="childLI ng-scope {{bathing == 3.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>
                 </ul>
 			</li>
-            <li class="parentLI">
+            <!--<li class="parentLI">
                 <a ng-click="showCurrentSelection = 5" href="#">
                     Listing City <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </a>
-                <!-- Child Menu -->
+               
                 <ul ng-show="showCurrentSelection === 5" class="searchChild">
                     <li class="childLI" ng-repeat="city in cities track by $index">
                         <input
@@ -88,7 +113,7 @@
 
                     </li>
                 </ul>
-            </li>
+            </li>-->
         </ul>
     <!--<form>-->
         <!--<label>Beds</label>-->

@@ -101,6 +101,25 @@ function retsAPI($http, $q) {
             }
         })
     };
+	
+    service.customSearch = function(search) {
+        return $http({
+            url: 'http://rets.mindimage.net/search.php?list=search&search='+search,
+            method: 'get',
+            withCredentials: false,
+            crossDomain: true,
+            headers: {
+                'Content-Type' : 'application/json',
+                'Access-Control-Allow-Headers' : '*'
+            }
+        }).success(function(data) {
+            if(data) {
+                return data;
+            } else {
+                return $q.reject();
+            }
+        })
+    };
     
     return service;
 }

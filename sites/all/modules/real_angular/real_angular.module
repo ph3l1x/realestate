@@ -29,6 +29,9 @@ function real_angular_search() {
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/directives/retsSearchResults.directive.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/services/retsAPI.service.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/app.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/custom.js');
+/*     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/simple-autocomplete.js');
+    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/sample.js'); */
 
     return theme('real_angular');
 }
