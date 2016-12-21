@@ -105,6 +105,13 @@ function retsSearchFormDirective(retsAPI) {
 				scope.isPriceSet = 1;
 				scope.priceMinValueWithoutFormat = min;
 				scope.priceMaxValueWithoutFormat = max;
+				
+				//alert(min);
+				scope.priceMinValueSmall = parseFloat(min).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").slice(0, -4);
+				scope.priceMaxValueSmall = parseFloat(max).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").slice(0, -4);
+				
+				alert(scope.priceMinValueSmall);
+			
 				if(scope.bedding){
 					scope.lTypeNameArray.push({
 											filter: scope.column,
