@@ -251,7 +251,7 @@ $databases = array (
     array (
       'database' => 'realestate',
       'username' => 'realestate',
-      'password' => 'giznad0',
+      'password' => 'Obkml1ZptVoZjHQd',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
