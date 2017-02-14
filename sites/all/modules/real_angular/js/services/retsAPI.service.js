@@ -55,11 +55,12 @@ function retsAPI($http, $q) {
             crossDomain: true,
             headers: {
                 'Content-Type' : 'application/json',
-                'Access-Control-Allow-Headers' : '*'
+                'Access-Control-Allow-Headers' : '*' 
             }
         }).success(function (response) {
                for(var i = 0, len = response.length; i < len; i++) {
-                   response[i]['ImageCount'] = response[i].IMAGES.length;
+                //   console.log(response[i]['ImageCount'] = response[i].IMAGES.length);
+            //       response[i]['ImageCount'] = response[i].IMAGES.length;
                    response[i]['L_AskingPrice'] = parseFloat(response[i]['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                    return response;
                }
