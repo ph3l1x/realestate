@@ -1,4 +1,6 @@
 jQuery(document).ready(function(){
+	
+	var selectedItem = false;
 
 	jQuery("body").on("click", "#priceMin li a", function(){
 		jQuery(this).parent().parent().find(".active").removeClass("active");
@@ -32,18 +34,23 @@ jQuery(document).ready(function(){
 	
 	jQuery("body").on("click", ".bedding ul li a", function(){
 		
-		jQuery(this).parent().parent().hide();
+		jQuery(this).parent().parent().toggle();
+
 	});
 	
 	jQuery("body").on("click",".parentLI a",function(){
+
 		
+	
  		if (jQuery(this).next().hasClass(".divChild")) {
 			
 		}
 		else{
-			jQuery(this).parent().find("ul").toggle();
+			//jQuery(this).parent().find("ul").toggle();
 		} 
 		jQuery(this).next().toggle();
+		
+		
 	})
 	
 	
