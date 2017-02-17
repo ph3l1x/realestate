@@ -2,19 +2,6 @@ function retsAPI($http, $q) {
     var service = {};
     
     service.get = function(values) {
-        // var val = [];
-        // var newName = [];
-        // values.forEach(function(value, i) {
-        //     if(i > 0) {
-        //         newName.push({name: value.name.join('|')});
-        //     }
-        //     console.log('i', i);
-        //     console.log('newname', newName);
-        //     console.log("value", value);
-        //     val.push(value.filter + '=' + value.name);
-        // });
-        // console.log("SSSSSSSS", val);
-        //
         var def = $q.defer();
         return $http({
             // url: 'http://rets.mindimage.net/search.php?' + val.join('&'),
@@ -30,23 +17,13 @@ function retsAPI($http, $q) {
         }).success(function (response) {
             def.resolve(response);
 
-            // console.log("DEF.PROMISE", def.promise);
-            // resolve.forEach(function(item) {
-            //     console.log("ITEM", item);
-            //     /**
-            //      * Update and modify values here if needed.
-            //      */
-            //     item['L_AskingPrice'] = parseFloat(item['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-            //     item['ImageCount'] = item.IMAGES.length;
-            //
-            // });
-
             return def.promise;
 
         }).error(function(theError) {
             console.log("ERROR GETTING LISTING DATA", theError);
         })
     };
+    
     service.default = function() {
         return $http({
             url: 'http://rets.mindimage.net/search.php',
@@ -59,13 +36,12 @@ function retsAPI($http, $q) {
             }
         }).success(function (response) {
                for(var i = 0, len = response.length; i < len; i++) {
-                //   console.log(response[i]['ImageCount'] = response[i].IMAGES.length);
-            //       response[i]['ImageCount'] = response[i].IMAGES.length;
                    response[i]['L_AskingPrice'] = parseFloat(response[i]['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                    return response;
                }
         })
     };
+
     service.listingType = function() {
         return $http({
             url: 'http://rets.mindimage.net/search.php?list=listingTypes',
@@ -84,6 +60,7 @@ function retsAPI($http, $q) {
             }
         })
     };
+    
     service.citiesList = function() {
         return $http({
             url: 'http://rets.mindimage.net/search.php?list=citiesList',

@@ -31,18 +31,18 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery("body").on("click", ".bedding ul li a", function(){
-
+		
 		jQuery(this).parent().parent().hide();
 	});
 	
 	jQuery("body").on("click",".parentLI a",function(){
 		
-/* 		if (jQuery(this).next().hasClass(".divChild")) {
+ 		if (jQuery(this).next().hasClass(".divChild")) {
 			
 		}
 		else{
 			jQuery(this).parent().find("ul").toggle();
-		} */
+		} 
 		jQuery(this).next().toggle();
 	})
 	

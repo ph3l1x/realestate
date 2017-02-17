@@ -67,6 +67,8 @@
 					</ul>
                 </div>
             </li>
+
+            
             <li class="parentLI bedding">
                 <a ng-click="showCurrentSelection = 3" href="#">
                     {{bedding}}+ Beds <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -81,6 +83,8 @@
 					<li data-value="6" class="childLI ng-scope {{bedding == 6 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',6)" href="#">6+</a></li>
                 </ul>
 			</li>
+			
+			
             <li class="parentLI bedding"> 
                 <a ng-click="showCurrentSelection = 4" href="#">
                     {{bathing}}+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -95,6 +99,11 @@
 					<li data-value="6" class="childLI ng-scope {{bathing == 3.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>
                 </ul>
 			</li>
+			
+			
+			
+			
+			
             <!--<li class="parentLI">
                 <a ng-click="showCurrentSelection = 5" href="#">
                     Listing City <i class="fa fa-caret-down" aria-hidden="true"></i>

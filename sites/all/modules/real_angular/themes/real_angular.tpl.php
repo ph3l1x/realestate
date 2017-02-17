@@ -8,8 +8,10 @@
             center='map.center'
             zoom='map.zoom'
             options='options'
+            events='events'
             refresh="true"
-            bounds="map.bounds">
+            bounds="map.bounds"
+            control="mapObj">
             <ui-gmap-markers
                 fit="true"
                 models="markers"
@@ -23,7 +25,7 @@
                     show="window.show"
                     coords="window.model"
                     options="window.options"
-                    templateUrl="'/sites/all/modules/real_angular/themes/infowindow.html'"
+                    templateUrl="'/sites/all/modules/real_angular/themes/popupwindow.html'"
                     templateParameter="window.model"
                     ng-cloak>
                 </ui-gmap-window>
