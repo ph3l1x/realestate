@@ -48,6 +48,9 @@ function retsSearchFormDirective(retsAPI) {
                             }
                         }
                         scope.markers = markers;
+                        scope.markers_visible = markers;
+                        
+                        scope.myValue = "";
                     });
                     
                 };
@@ -105,6 +108,13 @@ function retsSearchFormDirective(retsAPI) {
                 scope.isPriceSet = 1;
                 scope.priceMinValueWithoutFormat = min;
                 scope.priceMaxValueWithoutFormat = max;
+                
+                scope.priceMinValue = parseFloat(min).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                scope.priceMaxValue = parseFloat(max).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
+                scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
+                
+                
                 if (scope.bedding) {
                     scope.lTypeNameArray.push({
                         filter: scope.column,
@@ -118,7 +128,7 @@ function retsSearchFormDirective(retsAPI) {
                     if (scope.lTypeNameArray[i].filter == "L_SystemPrice") {
 
                         scope.lTypeNameArray.splice(i, 1);
-
+                        break;
                     }
 
                 }
@@ -136,6 +146,7 @@ function retsSearchFormDirective(retsAPI) {
             scope.city = '';
             scope.column = '';
             scope.beddingSave = function(type, bedding) {
+                scope.search = [];
 
                 /* 				alert(type);
                 				alert(bedding); */
@@ -161,6 +172,7 @@ function retsSearchFormDirective(retsAPI) {
                     if (scope.lTypeNameArray[i].filter == column) {
 
                         scope.lTypeNameArray.splice(i, 1);
+                        break;
 
                     }
 

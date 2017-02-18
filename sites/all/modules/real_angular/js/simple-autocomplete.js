@@ -21,6 +21,7 @@ angular.module('simple-autocomplete', [])
 										'ng-repeat="option in matchingOptions"' +
 										'ng-mouseenter="onOptionHover(option)"' +
 										'ng-mousedown="selectOption(option)"' +
+										'ng-mouseleave="onOptionLeave(option)"' +
 										'ng-if="!noMatches">' +
 										'<span>{{option[displayProperty]}}</span>' +
 									'</li>' +
@@ -49,7 +50,7 @@ angular.module('simple-autocomplete', [])
 				};
 
 				$scope.processSearchTerm = function(term) {
-					// console.log('ch-ch-ch-changin');
+					console.log('ch-ch-ch-changin');
 					if (term.length > 0) {
 						if ($scope.selectedOption) {
 							if (term != $scope.selectedOption[$scope.displayProperty]) {

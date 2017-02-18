@@ -39,11 +39,10 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery("body").on("click",".parentLI a",function(){
-
-		
+		//jQuery(this).parent().parent().parent().toggle();
 	
  		if (jQuery(this).next().hasClass(".divChild")) {
-			
+			console.log(this);
 		}
 		else{
 			//jQuery(this).parent().find("ul").toggle();
