@@ -71,6 +71,21 @@ function retsSearchFormDirective(retsAPI) {
             scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
             scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
 
+            scope.slider = {
+                minValue: scope.priceMinValueWithoutFormat,
+                maxValue: scope.priceMaxValueWithoutFormat,
+                options: {
+                    floor: 0,
+                    ceil: 1000000,
+                    step: 10000,
+                    minRange: 10000,
+                    maxRange: 900000,
+                    translate: function(value) {
+                      return '$' + value;
+                    }
+                }
+            };
+
             scope.myValue = '';
 
             scope.myFunc = function() {
@@ -79,10 +94,14 @@ function retsSearchFormDirective(retsAPI) {
                 });
             };
 
-
+            scope.onItemSelectFunction = function(item) {
+                console.log(item);
+                scope.typeSave();
+            };
+            
             scope.typeSave = function() {
-                scope.lTypeNameArray = scope.lTypes.filter(function(type) {
-                    return type.selected;
+                scope.lTypeNameArray = scope.lTypesOutput.filter(function(type) {
+                    return type.ticked;
                 });
 
                 if (scope.bedding) {

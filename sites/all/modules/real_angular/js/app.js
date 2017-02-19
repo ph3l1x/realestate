@@ -1,5 +1,5 @@
 
-var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute', 'uiGmapgoogle-maps']).
+var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute', 'uiGmapgoogle-maps', 'isteven-multi-select', 'rzModule']).
     controller('retsMap', retsMapController).
     controller('infoWindow', infoWindowController).
     directive('retsSearchForm', retsSearchFormDirective).

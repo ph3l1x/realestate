@@ -21,31 +21,17 @@
                 &nbsp;
             </li>
             
-            <li class="">
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Listing Type
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li class="" ng-repeat="lType in lTypes track by $index">
-                        <input
-                            type="checkbox"
-                            ng-model="lType.selected"
-                            value="lType.name"
-                            ng-click="typeSave()"
-                            id="lType{{ $index }}"/>
-                        <label  for="lType{{ $index }}">{{ lType.name }}</label>
-                    </li>
-                  </ul>
-                </div>
-                <!--<a ng-click="showCurrentSelection = 1" href="#">-->
-                <!--    Listing Type <i class="fa fa-caret-down" aria-hidden="true"></i>-->
-                <!--</a>-->
-                <!-- Child Menu -->
-                <!--<ul ng-show="showCurrentSelection === 1" class="searchChild">-->
-                    
-                <!--</ul>-->
+            <li>
+                <div     
+                    isteven-multi-select
+                    input-model="lTypes"
+                    output-model="lTypesOutput"
+                    on-item-click="onItemSelectFunction(data)"
+                    button-label="icon name"
+                    item-label="icon name maker"
+                    tick-property="ticked"
+                >
+                </div>  
             </li>
             
             <li>
@@ -54,17 +40,19 @@
             
             <li class="">
                 
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <div class="dropdown" >
+                  <button style="width: 300px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     ${{ priceMinValueSmall }}k-${{ priceMaxValueSmall }}k
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
+                      <div style="margin-right: 5px; margin-left: 5px;">
+                          <rzslider
+                            rz-slider-model="slider.minValue"
+                            rz-slider-high="slider.maxValue"
+                            rz-slider-options="slider.options">
+                          </rzslider>
+                      </div> 
                   </ul>
                 </div>
      <!--           <a ng-click="showCurrentSelection = 2" href="#">-->
@@ -215,4 +203,8 @@
         <!--<input class="form-control form-text" type="textarea" ng-change="retsFormChange()" ng-model="form.L_Keyword2"/>-->
     <!--</form>-->
     </div>
+    
+
 </div>
+
+
