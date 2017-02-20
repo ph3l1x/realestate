@@ -4,8 +4,9 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
             latitude: 43.6376107,
             longitude: -116.314943
         },
-        zoom: 100,
+        zoom: 1000,
         bounds: {},
+        isDragging: false
         //show: false
     };
     
@@ -22,11 +23,40 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
     };
     
     $scope.events = {
-        bounds_changed: function(e) {
+        dragend: function(e) {
+            
             $timeout(function() {
                 $scope.updateSideBar();
                 
+                console.log(e.bounds);
+                
+                var sendValue = [],
+                        markers = [];
+                        
+                sendValue.push({
+                    bound: 'Bounds',
+                    name: e.bounds.northeast.latitude + ',' + e.bounds.northeast.longitude + ',' + e.bounds.southwest.latitude + ','
+                    + e.bounds.southwest.longitude
+                });
+                
+                
+                retsAPI.get(sendValue).then(function(searchResult) {
+                    //   searchResult.data.forEach(function(item) {
+                    for (var i = 0, len = searchResult.data.length; i < len; i++) {
+                        if (searchResult.data[i]['IMAGES']) {
+                            searchResult.data[i]['L_AskingPrice'] = parseFloat(searchResult.data[i]['L_AskingPrice']).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            searchResult.data[i]['ImageCount'] = searchResult.data[i].IMAGES.length;
+                            markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
+                        }
+                    }
+                    $scope.markers = markers;
+                    $scope.markers_visible = markers;
+                    
+                    $scope.myValue = "";
+                });
+                
             }, 1000);
+            
         }
     };
 

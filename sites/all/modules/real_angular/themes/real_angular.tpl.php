@@ -9,6 +9,7 @@
             center='map.center'
             zoom='map.zoom'
             options='options'
+            dragging="map.isDragging"
             events='events'
             refresh="true"
             bounds="map.bounds"

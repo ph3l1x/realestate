@@ -34,7 +34,7 @@ jQuery(document).ready(function(){
 	
 	jQuery("body").on("click", ".bedding ul li a", function(){
 		
-		jQuery(this).parent().parent().toggle();
+	//	jQuery(this).parent().parent().toggle();
 
 	});
 	

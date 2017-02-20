@@ -4,11 +4,11 @@
             <li class="first ">
                 <div class="input-group">
                     <input ng-model="myValue" ng-change="myFunc()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
-					<ul class="searchChild">
-						<li class="childLI" ng-repeat="city in search track by $index">
-							<label  for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></label>
-						</li>
-					</ul>
+                    <ul class="searchChild">
+                        <li class="" ng-repeat="city in search track by $index">
+                            <div for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></div>
+                        </li>
+                    </ul>
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
@@ -16,168 +16,125 @@
                     </div>
                 </div>
             </li>
-            
+
             <li>
                 &nbsp;
             </li>
-            
+
             <li>
-                <div     
-                    isteven-multi-select
-                    input-model="lTypes"
-                    output-model="lTypesOutput"
-                    on-item-click="onItemSelectFunction(data)"
-                    button-label="icon name"
-                    item-label="icon name maker"
-                    tick-property="ticked"
-                >
-                </div>  
+                <div isteven-multi-select input-model="lTypes" output-model="lTypesOutput" on-item-click="onItemSelectFunction(data)" button-label="icon name" item-label="icon name maker" tick-property="ticked">
+                </div>
             </li>
-            
+
             <li>
                 &nbsp;
             </li>
-            
+
             <li class="">
-                
-                <div class="dropdown" >
-                  <button style="width: 300px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    ${{ priceMinValueSmall }}k-${{ priceMaxValueSmall }}k
+
+                <div class="dropdown">
+                    <button ng-click="refreshSlider()" style="width: 300px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    ${{ slider.minValue.toString().substr(0, 3) }}k-${{ slider.maxValue.toString().substr(0, 3) }}k
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
-                      <div style="margin-right: 5px; margin-left: 5px;">
-                          <rzslider
-                            rz-slider-model="slider.minValue"
-                            rz-slider-high="slider.maxValue"
-                            rz-slider-options="slider.options">
-                          </rzslider>
-                      </div> 
-                  </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
+                        <div style="margin-right: 5px; margin-left: 5px;">
+                            <rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options">
+                            </rzslider>
+                        </div>
+                    </ul>
                 </div>
-     <!--           <a ng-click="showCurrentSelection = 2" href="#">-->
-     <!--               ${{ priceMinValueSmall }}k-${{ priceMaxValueSmall }}k <i class="fa fa-caret-down" aria-hidden="true"></i>-->
-     <!--           </a>-->
-                <!-- Child Menu -->
-     <!--           <div ng-show="showCurrentSelection === 2" class="priceChild divChild">-->
-     <!--               <div class="priceContainer">-->
-     <!--                   <div class="priceMin pm"><input ng-value="priceMinValue" class="form-control priceInputMin" type="text" /></div><div class="priceDash mm"><i class="fa fa-minus" aria-hidden="true"></i></div>-->
-     <!--                   <div class="priceMax pm"><input ng-value="priceMaxValue" class="form-control priceInputMax" type="text" /></div>-->
-     <!--               </div>-->
-					<!--<ul class="searchChild" id="priceMin">-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(0,priceMaxValueWithoutFormat)" href="#" data-value="0">0</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(50000,priceMaxValueWithoutFormat)" href="#" data-value="50000">$50,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(100000,priceMaxValueWithoutFormat)" href="#" data-value="100000">$100,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(150000,priceMaxValueWithoutFormat)" href="#" data-value="150000">$150,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(200000,priceMaxValueWithoutFormat)" href="#" data-value="200000">$200,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(300000,priceMaxValueWithoutFormat)" href="#" data-value="300000">$300,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(400000,priceMaxValueWithoutFormat)" href="#" data-value="400000">$400,000+</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMaxValueWithoutFormat)" href="#" data-value="500000">$500,000+</a></li>-->
-					<!--</ul>-->
-					<!--<ul class="searchChild" id="priceMax" style="display:none;">-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 25000))" href="#" data-value="{{priceMinValueWithoutFormat + 25000}})">${{priceMinValueWithoutFormat + 25000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 50000))" href="#" data-value="{{priceMinValueWithoutFormat + 50000}})">${{priceMinValueWithoutFormat + 50000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 75000))" href="#" data-value="{{priceMinValueWithoutFormat + 75000}})">${{priceMinValueWithoutFormat + 75000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 100000))" href="#" data-value="{{priceMinValueWithoutFormat + 100000}})">${{priceMinValueWithoutFormat + 100000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 125000))" href="#" data-value="{{priceMinValueWithoutFormat + 125000}})">${{priceMinValueWithoutFormat + 125000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 150000))" href="#" data-value="{{priceMinValueWithoutFormat + 150000}})">${{priceMinValueWithoutFormat + 150000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 175000))" href="#" data-value="{{priceMinValueWithoutFormat + 175000}})">${{priceMinValueWithoutFormat + 175000}}</a></li>-->
-					<!--	<li class="childLI ng-scope"><a ng-click="priceSave(priceMinValueWithoutFormat,(priceMinValueWithoutFormat + 200000))" href="#" data-value="{{priceMinValueWithoutFormat + 200000}})">${{priceMinValueWithoutFormat + 200000}}</a></li>-->
-					<!--</ul>-->
-     <!--           </div>-->
             </li>
 
 
             <li>
                 &nbsp;
             </li>
-            
+
             <li class=" bedding">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{bedding}}+ Beds
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li data-value="0" class=" ng-scope {{bedding == 1 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',1)" href="#">1+</a></li>
+                        <li data-value="2" class=" ng-scope {{bedding == 2 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',2)" href="#">2+</a></li>
+                        <li data-value="3" class=" ng-scope {{bedding == 3 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',3)" href="#">3+</a></li>
+                        <li data-value="4" class=" ng-scope {{bedding == 4 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',4)" href="#">4+</a></li>
+                        <li data-value="5" class=" ng-scope {{bedding == 5 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',5)" href="#">5+</a></li>
+                        <li data-value="6" class=" ng-scope {{bedding == 6 ? 'active' : ''}}"><a ng-click="beddingSave('Beds',6)" href="#">6+</a></li>
+                    </ul>
                 </div>
-    <!--            <a ng-click="showCurrentSelection = 3" href="#">-->
-    <!--                {{bedding}}+ Beds <i class="fa fa-caret-down" aria-hidden="true"></i>-->
-    <!--            </a>-->
-				<!--<ul ng-show="showCurrentSelection === 3" class="searchChild">-->
 
-				<!--	<li data-value="0" class="childLI ng-scope {{bedding == 1 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',1)" href="#">1+</a></li>-->
-				<!--	<li data-value="2" class="childLI ng-scope {{bedding == 2 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',2)" href="#">2+</a></li>-->
-				<!--	<li data-value="3" class="childLI ng-scope {{bedding == 3 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',3)" href="#">3+</a></li>-->
-				<!--	<li data-value="4" class="childLI ng-scope {{bedding == 4 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',4)" href="#">4+</a></li>-->
-				<!--	<li data-value="5" class="childLI ng-scope {{bedding == 5 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',5)" href="#">5+</a></li>-->
-				<!--	<li data-value="6" class="childLI ng-scope {{bedding == 6 ? 'active' : ''}}" ><a ng-click="beddingSave('Beds',6)" href="#">6+</a></li>-->
-    <!--            </ul>-->
-			</li>
-			
-			<li>
+            </li>
+
+            <li>
                 &nbsp;
             </li>
-			
-            <li class=" bedding"> 
-            
+
+            <li class=" bedding">
+
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{bathing}}+ Baths
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li data-value="0" class=" ng-scope {{bathing == 1 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1)" href="#">1+</a></li>
+                        <li data-value="2" class=" ng-scope {{bathing == 1.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1.5)" href="#">1.5+</a></li>
+                        <li data-value="3" class=" ng-scope {{bathing == 2 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2)" href="#">2+</a></li>
+                        <li data-value="4" class=" ng-scope {{bathing == 2.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2.5)" href="#">2.5+</a></li>
+                        <li data-value="5" class=" ng-scope {{bathing == 3 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3)" href="#">3+</a></li>
+                        <li data-value="6" class=" ng-scope {{bathing == 3.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>
+                    </ul>
                 </div>
-            
-    <!--            <a ng-click="showCurrentSelection = 4" href="#">-->
-    <!--                {{bathing}}+ Baths <i class="fa fa-caret-down" aria-hidden="true"></i>-->
-    <!--            </a>-->
-				<!--<ul ng-show="showCurrentSelection === 4" class="searchChild">-->
 
-				<!--	<li data-value="0" class="childLI ng-scope {{bathing == 1 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',1)" href="#">1+</a></li>-->
-				<!--	<li data-value="2" class="childLI ng-scope {{bathing == 1.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',1.5)" href="#">1.5+</a></li>-->
-				<!--	<li data-value="3" class="childLI ng-scope {{bathing == 2 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',2)" href="#">2+</a></li>-->
-				<!--	<li data-value="4" class="childLI ng-scope {{bathing == 2.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',2.5)" href="#">2.5+</a></li>-->
-				<!--	<li data-value="5" class="childLI ng-scope {{bathing == 3 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',3)" href="#">3+</a></li>-->
-				<!--	<li data-value="6" class="childLI ng-scope {{bathing == 3.5 ? 'active' : ''}}" ><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>-->
-    <!--            </ul>-->
-			</li>
-			
-			<li>
+            </li>
+
+            <li>
                 &nbsp;
             </li>
-			
-			<li class="">
+
+            <li class="">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button ng-click="refreshSlider()" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     More
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
+                        <li class="dropdown-header">Filter SqFt</li>
+                        
+                        <div style="margin-right: 5px; margin-left: 5px;">
+                            <rzslider rz-slider-model="sliderSqFt.minValue" rz-slider-high="sliderSqFt.maxValue" rz-slider-options="sliderSqFt.options">
+                            </rzslider>
+                        </div>
+                        
+                        <br>
+                        
+                        <li class="dropdown-header">Filter Year Built</li>
+                        
+                        <div style="margin-right: 5px; margin-left: 5px;">
+                            <rzslider rz-slider-model="sliderYear.minValue" rz-slider-high="sliderYear.maxValue" rz-slider-options="sliderYear.options">
+                            </rzslider>
+                        </div>
+                        
+                        <br>
+                        
+                        <li class="dropdown-header">Filter Keyword</li>
+                        
+                        <div style="margin-right: 5px; margin-left: 5px;">
+                            <input type="textarea" name="keywordFilter" ng-change="updateKeywords()" ng-model-options="{ updateOn: 'blur' }" ng-model="keyWordFilter" placeholder="Garage, pool, waterfront, etc" />
+                        </div>
+                        
+                    </ul>
                 </div>
             </li>
-			
-			
-			
-			
-			
+
+
+
+
+
             <!--<li class="parentLI">
                 <a ng-click="showCurrentSelection = 5" href="#">
                     Listing City <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -198,13 +155,11 @@
                 </ul>
             </li>-->
         </ul>
-    <!--<form>-->
+        <!--<form>-->
         <!--<label>Beds</label>-->
         <!--<input class="form-control form-text" type="textarea" ng-change="retsFormChange()" ng-model="form.L_Keyword2"/>-->
-    <!--</form>-->
+        <!--</form>-->
     </div>
-    
+
 
 </div>
-
-

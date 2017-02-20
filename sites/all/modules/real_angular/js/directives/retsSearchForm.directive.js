@@ -4,7 +4,7 @@ function retsSearchFormDirective(retsAPI) {
         replace: true,
         transclude: true,
         templateUrl: '/sites/all/modules/real_angular/themes/search_form.html',
-        link: function(scope, element, attrs) {
+        link: function(scope, element, attrs, timeout) {
             scope.lTypeNameArray = [];
             var createMarker = function(i, lat, long, item) {
                     var ret = {
@@ -29,7 +29,9 @@ function retsSearchFormDirective(retsAPI) {
                         
                     query.forEach(function(value, key) {
                         if (value.selected = true) {
-                            if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' || value.filter == 'L_City' || value.filter == 'L_SystemPrice') {
+                            if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' 
+                            || value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27'
+                            || value.filter == 'LM_Int4_1' || value.filter == "L_Remarks") {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -70,23 +72,84 @@ function retsSearchFormDirective(retsAPI) {
             scope.priceMinValueWithoutFormat = 200000;
             scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
             scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
-
+            
             scope.slider = {
                 minValue: scope.priceMinValueWithoutFormat,
                 maxValue: scope.priceMaxValueWithoutFormat,
+                ceilLabel: '1M',
                 options: {
                     floor: 0,
                     ceil: 1000000,
                     step: 10000,
                     minRange: 10000,
                     maxRange: 900000,
+
                     translate: function(value) {
                       return '$' + value;
+                    },
+                    onEnd: function() {
+                        scope.priceSave(scope.slider.minValue, scope.slider.maxValue);        
                     }
+                    
+                }
+            };
+            
+            scope.sliderSqFt = {
+                minValue: 1500,
+                maxValue: 5000,
+                options: {
+                    floor: 0,
+                    ceil: 10000,
+                    step: 100,
+                    minRange: 500,
+                    maxRange: 7000,
+                    onEnd: function() {
+                        scope.sqFtSave(scope.sliderSqFt.minValue, scope.sliderSqFt.maxValue);
+                    }
+                    
+                }
+            };
+            
+            scope.sliderYear = {
+                minValue: 1900,
+                maxValue: 2010,
+                options: {
+                    floor: 1850,
+                    ceil: 2017,
+                    step: 10,
+                    minRange: 10,
+                    maxRange: 100,
+                    showTicks: true,
+                    onEnd: function() {
+                        scope.saveYear(scope.sliderYear.minValue, scope.sliderYear.maxValue);
+                    }
+                    
                 }
             };
 
             scope.myValue = '';
+
+            scope.updateKeywords = function() {
+                //L_Keyword2
+                var keywords = scope.keyWordFilter;
+                
+                if (keywords.length > 0) {
+                    keywords = keywords.split(',');
+                }
+                
+                if (keywords.length > 0) {
+                    for (var keyword in keywords) {
+                        scope.lTypeNameArray.push({
+                            filter: 'L_Remarks',
+                            name: keywords[keyword].trim(),
+                            selected: true
+                        });
+                    }
+                }
+                
+                queryGenerator(scope.lTypeNameArray);
+                
+            };
 
             scope.myFunc = function() {
                 retsAPI.customSearch(scope.myValue).success(function(result) {
@@ -122,6 +185,40 @@ function retsSearchFormDirective(retsAPI) {
             };
 
             scope.isPriceSet = 0;
+
+            scope.sqFtSave = function(min, max) {
+                scope.lTypeNameArray.push({
+                    filter: 'LM_int4_27',
+                    name: min + "-" + max,
+                    selected: true
+                });
+                
+                queryGenerator(scope.lTypeNameArray);
+            };
+            
+            scope.saveYear = function(min, max) {
+                scope.lTypeNameArray.push({
+                    filter: 'LM_Int4_1',
+                    name: min + "-" + max,
+                    selected: true
+                });
+                
+                for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
+
+                    if (scope.lTypeNameArray[i].filter == "LM_Int4_1") {
+
+                        scope.lTypeNameArray[i] = {
+                                filter: 'LM_Int4_1',
+                                name: min + "-" + max,
+                                selected: true
+                            };
+                        break;
+                    }
+
+                }
+                
+                queryGenerator(scope.lTypeNameArray);
+            };
 
             scope.priceSave = function(min, max) {
                 scope.isPriceSet = 1;
@@ -214,7 +311,7 @@ function retsSearchFormDirective(retsAPI) {
                 queryGenerator(scope.lTypeNameArray);
             }
         },
-        controller: function($scope, $element) {
+        controller: function($scope, $element, $timeout) {
             $scope.retsFormChange = function() {
                  retsAPI
                      .get($scope.form)
@@ -223,6 +320,12 @@ function retsSearchFormDirective(retsAPI) {
             
                      })
              }
+             
+             $scope.refreshSlider = function () {
+                $timeout(function () {
+                    $scope.$broadcast('rzSliderForceRender');
+                });
+            };
         }
     }
 }
