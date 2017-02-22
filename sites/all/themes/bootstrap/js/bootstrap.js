@@ -13,41 +13,41 @@ var Drupal = Drupal || {};
   Drupal.behaviors.bootstrap = {
     attach: function(context) {
       // Provide some Bootstrap tab/Drupal integration.
-      // d$(context).find('.tabbable').once('bootstrap-tabs', function () {
-      //   var d$wrapper = d$(this);
-      //   var d$tabs = d$wrapper.find('.nav-tabs');
-      //   var d$content = d$wrapper.find('.tab-content');
-      //   var borderRadius = parseInt(d$content.css('borderBottomRightRadius'), 10);
-      //   var bootstrapTabResize = function() {
-      //     if (d$wrapper.hasClass('tabs-left') || d$wrapper.hasClass('tabs-right')) {
-      //       d$content.css('min-height', d$tabs.outerHeight());
-      //     }
-      //   };
-      //   // Add min-height on content for left and right tabs.
-      //   bootstrapTabResize();
-      //   // Detect tab switch.
-      //   if (d$wrapper.hasClass('tabs-left') || d$wrapper.hasClass('tabs-right')) {
-      //     d$tabs.on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-      //       bootstrapTabResize();
-      //       if (d$wrapper.hasClass('tabs-left')) {
-      //         if (d$(e.target).parent().is(':first-child')) {
-      //           d$content.css('borderTopLeftRadius', '0');
-      //         }
-      //         else {
-      //           d$content.css('borderTopLeftRadius', borderRadius + 'px');
-      //         }
-      //       }
-      //       else {
-      //         if (d$(e.target).parent().is(':first-child')) {
-      //           d$content.css('borderTopRightRadius', '0');
-      //         }
-      //         else {
-      //           d$content.css('borderTopRightRadius', borderRadius + 'px');
-      //         }
-      //       }
-      //     });
-      //   }
-      // });
+      d$(context).find('.tabbable').once('bootstrap-tabs', function () {
+        var d$wrapper = d$(this);
+        var d$tabs = d$wrapper.find('.nav-tabs');
+        var d$content = d$wrapper.find('.tab-content');
+        var borderRadius = parseInt(d$content.css('borderBottomRightRadius'), 10);
+        var bootstrapTabResize = function() {
+          if (d$wrapper.hasClass('tabs-left') || d$wrapper.hasClass('tabs-right')) {
+            d$content.css('min-height', d$tabs.outerHeight());
+          }
+        };
+        // Add min-height on content for left and right tabs.
+        bootstrapTabResize();
+        // Detect tab switch.
+        if (d$wrapper.hasClass('tabs-left') || d$wrapper.hasClass('tabs-right')) {
+          d$tabs.on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+            bootstrapTabResize();
+            if (d$wrapper.hasClass('tabs-left')) {
+              if (d$(e.target).parent().is(':first-child')) {
+                d$content.css('borderTopLeftRadius', '0');
+              }
+              else {
+                d$content.css('borderTopLeftRadius', borderRadius + 'px');
+              }
+            }
+            else {
+              if (d$(e.target).parent().is(':first-child')) {
+                d$content.css('borderTopRightRadius', '0');
+              }
+              else {
+                d$content.css('borderTopRightRadius', borderRadius + 'px');
+              }
+            }
+          });
+        }
+      });
     }
   };
 
@@ -56,18 +56,18 @@ var Drupal = Drupal || {};
    */
   Drupal.behaviors.bootstrapFormHasError = {
     attach: function (context, settings) {
-      // if (settings.bootstrap && settings.bootstrap.formHasError) {
-      //   var d$context = d$(context);
-      //   d$context.find('.form-item.has-error:not(.form-type-password.has-feedback)').once('error', function () {
-      //     var d$formItem = d$(this);
-      //     var d$input = d$formItem.find(':input');
-      //     d$input.on('keyup focus blur', function () {
-      //       var value = d$input.val() || false;
-      //       d$formItem[value ? 'removeClass' : 'addClass']('has-error');
-      //       d$input[value ? 'removeClass' : 'addClass']('error');
-      //     });
-      //   });
-      // }
+      if (settings.bootstrap && settings.bootstrap.formHasError) {
+        var d$context = d$(context);
+        d$context.find('.form-item.has-error:not(.form-type-password.has-feedback)').once('error', function () {
+          var d$formItem = d$(this);
+          var d$input = d$formItem.find(':input');
+          d$input.on('keyup focus blur', function () {
+            var value = d$input.val() || false;
+            d$formItem[value ? 'removeClass' : 'addClass']('has-error');
+            d$input[value ? 'removeClass' : 'addClass']('error');
+          });
+        });
+      }
     }
   };
 
@@ -76,39 +76,39 @@ var Drupal = Drupal || {};
    */
   Drupal.behaviors.bootstrapPopovers = {
     attach: function (context, settings) {
-      // if (settings.bootstrap && settings.bootstrap.popoverEnabled) {
-      //   var d$currentPopover = d$();
-      //   if (settings.bootstrap.popoverOptions.triggerAutoclose) {
-      //     d$(document).on('click', function (e) {
-      //       if (d$currentPopover.length && !d$(e.target).is('[data-toggle=popover]') && d$(e.target).parents('.popover.in').length === 0) {
-      //         d$currentPopover.popover('hide');
-      //         d$currentPopover = d$();
-      //       }
-      //     });
-      //   }
-      //   var elements = d$(context).find('[data-toggle=popover]').toArray();
-      //   for (var i = 0; i < elements.length; i++) {
-      //     var d$element = d$(elements[i]);
-      //     var options = d$.extend({}, settings.bootstrap.popoverOptions, d$element.data());
-      //     if (!options.content) {
-      //       options.content = function () {
-      //         var target = d$(this).data('target');
-      //         return target && d$(target) && d$(target).length && d$(target).clone().removeClass('element-invisible').wrap('<div/>').parent()[d$(this).data('bs.popover').options.html ? 'html' : 'text']() || '';
-      //       }
-      //     }
-      //     d$element.popover(options).on('click', function (e) {
-      //       e.preventDefault();
-      //     });
-      //     if (settings.bootstrap.popoverOptions.triggerAutoclose) {
-      //       d$element.on('show.bs.popover', function () {
-      //         if (d$currentPopover.length) {
-      //           d$currentPopover.popover('hide');
-      //         }
-      //         d$currentPopover = d$(this);
-      //       });
-      //     }
-      //   }
-      // }
+      if (settings.bootstrap && settings.bootstrap.popoverEnabled) {
+        var d$currentPopover = d$();
+        if (settings.bootstrap.popoverOptions.triggerAutoclose) {
+          d$(document).on('click', function (e) {
+            if (d$currentPopover.length && !d$(e.target).is('[data-toggle=popover]') && d$(e.target).parents('.popover.in').length === 0) {
+              d$currentPopover.popover('hide');
+              d$currentPopover = d$();
+            }
+          });
+        }
+        var elements = d$(context).find('[data-toggle=popover]').toArray();
+        for (var i = 0; i < elements.length; i++) {
+          var d$element = d$(elements[i]);
+          var options = d$.extend({}, settings.bootstrap.popoverOptions, d$element.data());
+          if (!options.content) {
+            options.content = function () {
+              var target = d$(this).data('target');
+              return target && d$(target) && d$(target).length && d$(target).clone().removeClass('element-invisible').wrap('<div/>').parent()[d$(this).data('bs.popover').options.html ? 'html' : 'text']() || '';
+            }
+          }
+          d$element.popover(options).on('click', function (e) {
+            e.preventDefault();
+          });
+          if (settings.bootstrap.popoverOptions.triggerAutoclose) {
+            d$element.on('show.bs.popover', function () {
+              if (d$currentPopover.length) {
+                d$currentPopover.popover('hide');
+              }
+              d$currentPopover = d$(this);
+            });
+          }
+        }
+      }
     }
   };
 

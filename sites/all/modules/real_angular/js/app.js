@@ -13,6 +13,10 @@ var app = angular.module('real_angular', ['node', 'nodes', 'ngRoute', 'uiGmapgoo
         }]);
 
 
+app.config(function($locationProvider) {
+  $locationProvider.html5Mode(false);
+});
+
     // controller('RetsSearchCtrl', ['$scope']).
     // config(function($routeProvider) {
     //     $routeProvider.

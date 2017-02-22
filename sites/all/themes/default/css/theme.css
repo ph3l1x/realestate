@@ -50,7 +50,7 @@ html, body {
         color: #B7B7B7; }
       .topLinks ul li a {
         color: #000;
-        transition: all 0.3s ease; }
+        transition: all 0.2s ease; }
       .topLinks ul li a:hover {
         text-decoration: none;
         color: #AC1F2D; }
@@ -83,21 +83,25 @@ html, body {
   #block-superfish-1 h2.block-title {
     display: none; }
   #block-superfish-1 ul#superfish-1 {
-    padding-top: 5px; }
-    #block-superfish-1 ul#superfish-1 li {
+    padding-top: 5px;
+    float: left;
+    height: 100%; }
+    #block-superfish-1 ul#superfish-1 li.sf-depth-1 {
       padding: 10px;
       font-family: "Ubuntu", sans-serif;
       font-size: 18px; }
-      #block-superfish-1 ul#superfish-1 li a {
+      #block-superfish-1 ul#superfish-1 li.sf-depth-1 a {
         color: white;
         transition: all 0.3s ease; }
-      #block-superfish-1 ul#superfish-1 li a:hover {
+      #block-superfish-1 ul#superfish-1 li.sf-depth-1 a:hover {
         color: #AC1F2D;
         text-decoration: none; }
-      #block-superfish-1 ul#superfish-1 li ul {
+      #block-superfish-1 ul#superfish-1 li.sf-depth-1 ul {
         background: rgba(0, 0, 0, 0.8);
         margin-top: 23px;
         border-radius: 0; }
+        #block-superfish-1 ul#superfish-1 li.sf-depth-1 ul li {
+          padding: 10px; }
 
 .not-front video {
   display: none; }
@@ -126,19 +130,24 @@ section h1.page-header {
   top: 0;
   z-index: 100;
   width: 100%; }
+
 .page-home-search .ph-sticky .headerContainer {
   background: #333 !important; }
+
 .page-home-search .ph-stickySearch {
   position: fixed !important;
   top: 110px;
   width: 100%;
   z-index: 100;
   background: #fff; }
+
 .page-home-search section {
   padding-left: 0;
   padding-right: 0; }
+
 .page-home-search nav {
   display: none; }
+
 .page-home-search .searchContainer {
   float: left;
   width: 100%;
@@ -148,9 +157,11 @@ section h1.page-header {
     list-style: none; }
     .page-home-search .searchContainer ul li {
       float: left; }
+
 .page-home-search #real_angular {
   height: 100%;
   width: 100%; }
+
 .page-home-search .angular-google-map-container {
   position: fixed !important;
   top: 170px;
@@ -159,20 +170,26 @@ section h1.page-header {
   left: 0;
   height: 100%;
   width: 100%; }
+
 .page-home-search .searchMapContainer {
   height: calc(100vh - 170px);
   position: relative;
   overflow: hidden; }
+
 .page-home-search .searchListingsContainer {
   float: right;
   width: 645px;
   margin-top: 170px; }
+
 .page-home-search .mlsResultRow {
   padding: 0; }
+
 .page-home-search .listingRows {
   padding: 0 0 3px 0; }
+
 .page-home-search .listingResultsAgentContainer {
   padding: 10px; }
+
 .page-home-search .listingContainer {
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   font-family: Ubuntu, sans-serif;
@@ -226,8 +243,10 @@ section h1.page-header {
     transition: all 0.3s ease; }
   .page-home-search .listingContainer a:hover .listingBackdrop {
     background: none; }
+
 .page-home-search .selected .listingBackdrop {
   background: none; }
+
 .page-home-search .searchContainer {
   padding-top: 13px;
   background: #f4f4f4;
@@ -257,14 +276,17 @@ section h1.page-header {
           padding: 11px 15px 0; }
           .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI label {
             font-weight: normal; }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked), .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked),
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked {
             position: absolute;
             left: -9999px; }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label, .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label,
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label {
             position: relative;
             padding-left: 25px;
             cursor: pointer; }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label:before, .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label:before {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label:before,
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label:before {
             content: '';
             position: absolute;
             left: 0;
@@ -275,7 +297,8 @@ section h1.page-header {
             background: #f8f8f8;
             border-radius: 3px;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label:after, .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label:after {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked) + label:after,
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label:after {
             content: '✔';
             position: absolute;
             top: 3px;
@@ -290,7 +313,8 @@ section h1.page-header {
           .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked + label:after {
             opacity: 1;
             transform: scale(1); }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:disabled:not(:checked) + label:before, .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:disabled:checked + label:before {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:disabled:not(:checked) + label:before,
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:disabled:checked + label:before {
             box-shadow: none;
             border-color: #bbb;
             background-color: #ddd; }
@@ -298,7 +322,8 @@ section h1.page-header {
             color: #999; }
           .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:disabled + label {
             color: #aaa; }
-          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked:focus + label:before, .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked):focus + label:before {
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:checked:focus + label:before,
+          .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI [type="checkbox"]:not(:checked):focus + label:before {
             border: 1px dotted blue; }
           .page-home-search .searchContainer ul.searchParent li.parentLI ul.searchChild li.childLI label:hover:before {
             border: 1px solid #4778d9 !important; }
@@ -352,3 +377,47 @@ section h1.page-header {
       position: relative;
       right: -17px;
       bottom: 48px; }
+
+section.preface .video-content {
+  text-align: center;
+  font-family: "Ubuntu", sans-serif;
+  color: white; }
+  section.preface .video-content .video-content-inner {
+    position: relative;
+    top: 40%;
+    transform: translateY(-80%); }
+  section.preface .video-content .home-search {
+    margin-top: 40px; }
+  section.preface .video-content h1 {
+    font-size: 4vw; }
+  section.preface .video-content h2 {
+    font-size: 2.8vw; }
+  section.preface .video-content input.form-control {
+    width: 80%;
+    height: 42px; }
+  section.preface .video-content button.search-icon {
+    left: 1px;
+    height: 42px;
+    color: #a3a3a3; }
+  section.preface .video-content button.search-icon:hover {
+    background: white;
+    border-color: #ccc; }
+  section.preface .video-content button.search-btn {
+    border-radius: 0;
+    border-left: none;
+    background: #882719;
+    color: white;
+    transition: all 0.2s ease;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0px;
+    float: left;
+    height: 42px;
+    border: none; }
+  section.preface .video-content button.search-btn:hover {
+    background: #AC1F2D; }
+
+section.preface .fullscreen-bg__video {
+  position: absolute;
+  z-index: -100; }

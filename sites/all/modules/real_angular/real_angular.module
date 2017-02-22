@@ -30,7 +30,7 @@ function real_angular_search() {
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/services/retsAPI.service.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/app.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/custom.js');
-    drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/jquery-3.1.1.min.js');
+    //drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/jquery-3.1.1.min.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/bootstrap-select.min.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/isteven-multi-select.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/rzslider.min.js');

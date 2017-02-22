@@ -3,14 +3,14 @@
         <ul class="searchParent">
             <li class="first ">
                 <div class="input-group">
-                    <input ng-model="myValue" ng-change="myFunc()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
+                    <input id="mls_search" ng-model="myValue" ng-change="myFunc()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
                     <ul class="searchChild">
                         <li class="" ng-repeat="city in search track by $index">
                             <div for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></div>
                         </li>
                     </ul>
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
+                        <button class="btn btn-default" type="submit" id="searchBtn">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
@@ -104,29 +104,58 @@
                   </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
                         <li class="dropdown-header">Filter SqFt</li>
-                        
+                        <br>
+
                         <div style="margin-right: 5px; margin-left: 5px;">
                             <rzslider rz-slider-model="sliderSqFt.minValue" rz-slider-high="sliderSqFt.maxValue" rz-slider-options="sliderSqFt.options">
                             </rzslider>
                         </div>
-                        
+
                         <br>
-                        
+
                         <li class="dropdown-header">Filter Year Built</li>
                         
+                        <br>
+
                         <div style="margin-right: 5px; margin-left: 5px;">
                             <rzslider rz-slider-model="sliderYear.minValue" rz-slider-high="sliderYear.maxValue" rz-slider-options="sliderYear.options">
                             </rzslider>
                         </div>
-                        
+
                         <br>
-                        
+
                         <li class="dropdown-header">Filter Keyword</li>
-                        
+                        <br>
+                        <br>
+
                         <div style="margin-right: 5px; margin-left: 5px;">
                             <input type="textarea" name="keywordFilter" ng-change="updateKeywords()" ng-model-options="{ updateOn: 'blur' }" ng-model="keyWordFilter" placeholder="Garage, pool, waterfront, etc" />
                         </div>
+
+                        <br>
+
+                        <li class="dropdown-header">
+                            Lot Size
+                        </li>
+                        <br>
+                        <br>
                         
+                        
+                        <div class="form-group" id="lotSize" style="margin-right: 5px; margin-left: 5px;">
+                          <select class="form-control" id="sel1" ng-change="updateLotSize()" ng-model="lot_size" ng-init="lot_size = lot_size || 'Standard Lot 6000-9999 SF'" >
+                            <option selected disabled>Choose here</option>
+                            <option value="Sm Lot 5999 SF">Small lot</option>
+                            <option value="Standard Lot 6000-9999 SF">Standard lot</option>
+                            <option value="10000 SF - .49 AC">10000 sqft</option>
+                            <option value="1/2 - .99 AC">1/2 - .99 acres</option>
+                            <option value="1 - 4.99 AC">1 - 4.99 acres</option>
+                            <option value="5 - 9.9 Acres">5 - 9.9 acres</option>
+                            <option value="10 - 19.9 Acres">10 - 19.9 acres</option>
+                            <option value="20 - 40 Acres">20 - 40 acres</option>
+                            <option value="Over 40 Acres">OVer 40 acres</option>
+                          </select>
+                        </div>
+
                     </ul>
                 </div>
             </li>

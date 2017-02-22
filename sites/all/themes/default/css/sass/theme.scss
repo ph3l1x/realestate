@@ -62,7 +62,7 @@ html, body {
 			}
 			a {
 				color: #000;
-				transition: all 0.3s ease;
+				transition: all 0.2s ease;
 			}
 			a:hover {
 				text-decoration: none;
@@ -107,7 +107,9 @@ html, body {
 	}
 	ul#superfish-1 {
 		padding-top: 5px;
-		li {
+		float: left;
+		height: 100%;
+		li.sf-depth-1 {
 			padding: 10px;
 			font-family: "Ubuntu", sans-serif;
 			font-size: 18px;
@@ -123,6 +125,9 @@ html, body {
 				background: rgba(0, 0, 0, .8);
 				margin-top: 23px;
 				border-radius: 0;
+				li {
+					padding: 10px;
+				}
 			}
 		}
 	}
@@ -487,6 +492,62 @@ section h1.page-header {
 			}
 		}
 	}
+}
 
+section.preface {
+	.video-content {
+		text-align: center;
+		font-family: "Ubuntu", sans-serif;
+		color: white;
+		.video-content-inner {
+			position: relative;
+			top: 40%;
+			transform: translateY(-80%);
+		}
+		.home-search {
+			margin-top:40px;
+		}
+		h1 {
+			font-size: 4vw;
+		}
+		h2 {
+			font-size: 2.8vw;
+		}
+		input.form-control {
+			width: 80%;
+			height: 42px;
+		}
+		button.search-icon {
+			//bottom: 17px;
+			left: 1px;
+			height: 42px;
+			color: #a3a3a3;
+		}
+		button.search-icon:hover {
+			background: white;
+			border-color: #ccc;
+		}
+		button.search-btn {
+			border-radius: 0;
+			border-left: none;
+			background: #882719;
+			color: white;
+			transition: all 0.2s ease;
+			font-family: "Ubuntu", sans-serif;
+			font-size: 20px;
+			font-weight: bold;
+			margin-top: 0px;
+			float: left;
+			height: 42px;
+			border: none;
+		}
+		button.search-btn:hover {
+			background: #AC1F2D;
+		}
+	}
+	.fullscreen-bg__video {
+		position: absolute;
+		z-index: -100;
+	}
 }
 

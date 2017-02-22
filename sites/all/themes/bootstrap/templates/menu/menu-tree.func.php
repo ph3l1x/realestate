@@ -27,7 +27,7 @@ function bootstrap_menu_tree(&$variables) {
  * Bootstrap theme wrapper function for the primary menu links.
  */
 function bootstrap_menu_tree__primary(&$variables) {
-  return '<div class="navbar-container"><ul class="menu nav navbar-nav">' . $variables['tree'] . '</ul></div>';
+  return '<ul class="menu nav navbar-nav">' . $variables['tree'] . '</ul>';
 }
 
 /**

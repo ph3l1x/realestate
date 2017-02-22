@@ -1,5 +1,5 @@
 jQuery(document).ready(function(){
-	
+
 	var selectedItem = false;
 
 	jQuery("body").on("click", "#priceMin li a", function(){
@@ -9,6 +9,10 @@ jQuery(document).ready(function(){
 		jQuery(".priceContainer div.priceMax input").trigger("focus");
 	});
 
+	jQuery("body").on("click", "#lotSize", function(e) {
+		e.stopPropagation();
+	});
+	
 	jQuery("body").on("focus", ".priceContainer div.priceMax input", function(){
 		jQuery("#priceMin").hide();
 		jQuery("#priceMax").show();
