@@ -1,0 +1,38 @@
+<?php
+function real_listings_menu() {
+  $items = array();
+  $items['listings/%'] = array(
+    'title' => t('Listings'),
+    'page arguments' => array(1),
+    'page callback' => 'real_listings_results',
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+function real_listings_results($mls) {
+ $mlsData = json_decode(get_mls_data($mls));
+
+  var_dump($mlsData->L_AskingPrice);
+return("HI");
+//  return $mlsData->L_ListingID;
+}
+
+function get_mls_data($mls)  {
+//  $httpheader = array(
+//    'Content-Type: application/json',
+//    'Accept: application/json'
+//  );
+  $postData = array('mls' => $mls);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, "http://rets.mindimage.net/mls.php");
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//  curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);
+  $results = curl_exec($ch);
+  curl_close($ch);
+
+  return $results;
+}
