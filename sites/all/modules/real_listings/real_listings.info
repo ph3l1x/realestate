@@ -1,0 +1,7 @@
+name = RealEstate Listings Module
+description = Custom Module to display Real Estate Listings Data
+core = 7.x
+
+version = "7.x-1.3"
+core = "7.x"
+project = "real_listings"

@@ -4,9 +4,10 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
             latitude: 43.6376107,
             longitude: -116.314943
         },
-        zoom: 1000,
+        zoom: 8,
         bounds: {},
-        isDragging: false
+        isDragging: false,
+        shouldFit: false
         //show: false
     };
     
@@ -116,16 +117,18 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
             // console.log(instances[0].map);
         })
         .then(function() {
-            retsAPI.default().success(function(result) {
-                var i = 0;
-                result.forEach(function(item) {
-                    markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'], item));
-                    i++;
+            if ($scope.loaded_from_url) {
+                retsAPI.default().success(function(result) {
+                    var i = 0;
+                    result.forEach(function(item) {
+                        markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'], item));
+                        i++;
+                    });
+                    $scope.markers = markers;
+                    $scope.markers_visible = markers;
+                    console.log("MARKERS: ", $scope.markers);
                 });
-                $scope.markers = markers;
-                $scope.markers_visible = markers;
-                console.log("MARKERS: ", $scope.markers);
-            });
+            }
         });
 
     uiGmapGoogleMapApi.then(function(maps) {

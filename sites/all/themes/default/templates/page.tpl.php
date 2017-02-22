@@ -80,9 +80,9 @@
     </nav>
   <?php endif; ?>
   <header role="banner" id="page-header" class="ph-sticky container-fluid">
-<!--    <video autoplay="" class="fullscreen-bg__video" loop="" muted="" poster="/sites/default/files/Boise-Is-Waiting.jpg" width="100%">-->
-<!--      <source src="/sites/default/files/Boise-Is-Waiting.mp4" type="video/mp4" />-->
-<!--    </video>-->
+    <!--    <video autoplay="" class="fullscreen-bg__video" loop="" muted="" poster="/sites/default/files/Boise-Is-Waiting.jpg" width="100%">-->
+    <!--      <source src="/sites/default/files/Boise-Is-Waiting.mp4" type="video/mp4" />-->
+    <!--    </video>-->
     <?php if (!empty($site_slogan)): ?>
       <p class="lead"><?php print $site_slogan; ?></p>
     <?php endif; ?>
@@ -90,15 +90,21 @@
     <div class="headerContainer container-fluid">
       <div class="container">
         <?php if ($logo): ?>
-          <a class="col-sm-2 logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+          <a class="col-sm-2 logo navbar-btn pull-left"
+             href="<?php print $front_page; ?>"
+             title="<?php print t('Home'); ?>">
+            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
           </a>
         <?php endif; ?>
         <?php print render($page['header']); ?>
       </div>
     </div>
   </header> <!-- /#page-header -->
-
+  <?php if (!empty($page['preface'])): ?>
+    <section class="preface">
+      <?php print render($page['preface']); ?>
+    </section>
+  <?php endif; ?>
   <div class="">
 
     <?php if (!empty($page['sidebar_first'])): ?>
@@ -109,9 +115,10 @@
 
     <section<?php print $content_column_class; ?>>
       <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+        <div
+          class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+      <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if (!empty($title)): ?>

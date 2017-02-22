@@ -15,7 +15,7 @@
             bounds="map.bounds"
             control="mapObj">
             <ui-gmap-markers
-                fit="true"
+                fit="map.shouldFit"
                 models="markers"
                 coords="'self'"
                 idKey="id"

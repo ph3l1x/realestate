@@ -1,5 +1,15 @@
 jQuery(document).ready(function($) {
 
+    var updateHomePreface = function() {
+        var vw = $('.fullscreen-bg__video').width(),
+            vh = $('.fullscreen-bg__video').height();
+
+        $('.video-content').css({
+            height: vh,
+            width: vw
+        });
+        console.log(vh, vw);
+    };
     var updateMapSize = function() {
         var mapContainerWidth = $('.searchMapContainer').width(),
             mapContainerHeight = $('.searchMapContainer').height();
@@ -20,8 +30,10 @@ jQuery(document).ready(function($) {
     };
 
     updateMapSize();
+    updateHomePreface();
     $(window).resize(function() {
         updateMapSize();
+        updateHomePreface();
     });
 
     // Scroll Header Fix
@@ -34,5 +46,6 @@ jQuery(document).ready(function($) {
        //     $('.searchContainer').removeClass('stickySearch');
        // }
     });
+
 
 });
