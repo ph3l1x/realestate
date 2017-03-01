@@ -9,7 +9,7 @@ jQuery(document).ready(function(){
 		jQuery(".priceContainer div.priceMax input").trigger("focus");
 	});
 
-	jQuery("body").on("click", "#lotSize", function(e) {
+	jQuery("body").on("click", "#lotSize, #baths", function(e) {
 		e.stopPropagation();
 	});
 	
@@ -38,8 +38,19 @@ jQuery(document).ready(function(){
 	
 	jQuery("body").on("click", ".bedding ul li a", function(){
 		
+		console.log('test');
 	//	jQuery(this).parent().parent().toggle();
 
+	});
+	
+	jQuery("body").on("click", function() {
+		if (jQuery(".searchChild :visible").length > 0) {
+			jQuery(".searchChild :visible").hide();	
+		}
+	});
+	
+	jQuery(".searchChild :hidden").on("change", function() {
+		jQuery(".searchChild").show();	
 	});
 	
 	jQuery("body").on("click",".parentLI a",function(){
