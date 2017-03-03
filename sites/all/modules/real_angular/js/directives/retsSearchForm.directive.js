@@ -1,4 +1,4 @@
-function retsSearchFormDirective(retsAPI) {
+function retsSearchFormDirective(retsAPI, $timeout) {
     return {
         restrict: 'A',
         replace: true,
@@ -31,7 +31,7 @@ function retsSearchFormDirective(retsAPI) {
                         if (value.selected = true) {
                             if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' ||
                                 value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27' ||
-                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1') {
+                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' || value.filter == 'L_ListingID') {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -49,9 +49,23 @@ function retsSearchFormDirective(retsAPI) {
                                 markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
                             }
                         }
+                        scope.map.shouldFit = false;
                         scope.markers = markers;
                         scope.markers_visible = markers;
-
+                        
+                        for (const queryPart of searchResult.config.data) {
+                            if (queryPart.filter == 'L_City') {
+                                scope.map.center.latitude = searchResult.data[0].LMD_MP_Latitude;
+                                scope.map.center.longitude = searchResult.data[0].LMD_MP_Longitude; 
+                            }
+                        }
+                        
+                        $timeout(function() {
+                            scope.map.shouldFit = false;  
+                            //scope.map.zoom = 8;
+                        }, 2000);
+                        
+                        
                         scope.myValue = "";
                     });
 
@@ -108,6 +122,7 @@ function retsSearchFormDirective(retsAPI) {
                 maxValue: scope.priceMaxValueWithoutFormat,
                 ceilLabel: '1M',
                 options: {
+                    ceilLabel: '1M',
                     floor: 0,
                     ceil: 1000000,
                     step: 10000,
@@ -115,6 +130,10 @@ function retsSearchFormDirective(retsAPI) {
                     maxRange: 900000,
 
                     translate: function(value) {
+                        if (value.toString().length > 6) {
+                            value = value.toString()[0] + 'M+';
+                        }
+                        
                         return '$' + value;
                     },
                     onEnd: function() {
@@ -190,6 +209,7 @@ function retsSearchFormDirective(retsAPI) {
             scope.onItemSelectFunction = function(item) {
                 console.log(item);
                 scope.typeSave();
+                
             };
 
             scope.typeSave = function() {
@@ -305,23 +325,45 @@ function retsSearchFormDirective(retsAPI) {
             scope.bathing = 0;
             scope.city = '';
             scope.column = '';
+            
+            scope.updateMLS = function() {
+                scope.beddingSave('City', scope.myValue);
+            }
+            
             scope.beddingSave = function(type, bedding) {
                 scope.search = [];
+                scope.lTypeNameArray = [];
 
                 /* 				alert(type);
                 				alert(bedding); */
 
+                var column = 'L_City';
+
                 if (type == "Beds") {
                     scope.bedding = bedding;
-                    var column = "L_Keyword2";
+                    column = "L_Keyword2";
                 }
                 else if (type == "Baths") {
-                    scope.bathing = bedding;
-                    var column = "LM_Dec_3";
+                    scope.bathing = scope.baths;
+                    column = "LM_Dec_3";
                 }
                 else if (type == "City") {
-                    scope.city = bedding;
-                    var column = "L_City";
+                    let intval = parseInt(bedding);
+                    
+                    if (intval) {
+                        if (intval.toString().length > 5) {
+                            scope.city = bedding;
+                            column = "L_ListingID";
+                        } else {
+                            scope.city = bedding;
+                            column = "L_Zip";
+                        }
+                        
+                    } else {
+                        scope.listing_id = bedding;
+                        column = "L_City";
+                    }
+                    
                 }
 
                 scope.column = column;
@@ -337,12 +379,21 @@ function retsSearchFormDirective(retsAPI) {
                     }
 
                 }
-
-                scope.lTypeNameArray.push({
-                    filter: column,
-                    name: bedding,
-                    selected: true
-                });
+                
+                if (type == "Baths") {
+                    scope.lTypeNameArray.push({
+                        filter: column,
+                        name: scope.baths,
+                        selected: true
+                    });
+                } else {
+                    scope.lTypeNameArray.push({
+                        filter: column,
+                        name: bedding,
+                        selected: true
+                    });
+                }
+                
 
                 if (scope.isPriceSet) {
                     scope.lTypeNameArray.push({
@@ -371,11 +422,28 @@ function retsSearchFormDirective(retsAPI) {
                 var sendValue = [],
                     markers = [];
 
-
-                sendValue.push({
-                    citySearch: searchVal.query,
-                    name: searchVal.query
-                });
+                let intval = parseInt(searchVal.query);
+                if (intval) {
+                    if (intval.toString().length > 5) {
+                        sendValue.push({
+                            filter: 'L_ListingID',
+                            name: searchVal.query
+                        });
+                    } else {
+                        sendValue.push({
+                            filter: 'L_Zip',
+                            name: searchVal.query
+                        });
+                    }
+                } else {
+                    sendValue.push({
+                        filter: 'L_City',
+                        name: searchVal.query
+                    });
+                }
+                
+                
+                
 
                 var createMarker = function(i, lat, long, item) {
                     var ret = {
@@ -424,6 +492,8 @@ function retsSearchFormDirective(retsAPI) {
 
                     $scope.myValue = "";
                 });
+            } else {
+                $scope.loaded_from_url = true;
             }
 
 

@@ -6,12 +6,12 @@
         class="listingRows col-md-12 col-lg-6"
         ng-repeat="result in markers_visible track by $index"
         ng-class="{selected: result == window.model}"
-        ng-mouseover="window.model = result" 
+        ng-mouseover="hoverElement(result)" 
         >
         <div class="mlsResultRow">
             <div class="mlsResultRowInner">
                 <div class="listingContainer">
-                    <a href="#">
+                    <a href="/listings/{{ result.results.L_ListingID }}">
                         <div class="listingBackdrop listingStyles"></div>
                         <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.results.L_IMAGES }}"  alt=""> 
                         <div class="imageCount listingStyles floats">{{ result.results.ImageCount }} photos</div>

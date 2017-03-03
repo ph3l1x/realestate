@@ -1,16 +1,16 @@
 <div class="searchContainer ph-stickySearch">
     <div class="searchContainerInner container">
         <ul class="searchParent">
-            <li class="first ">
+            <li class="first parentLI">
                 <div class="input-group">
-                    <input id="mls_search" ng-model="myValue" ng-change="myFunc()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
-                    <ul class="searchChild">
-                        <li class="" ng-repeat="city in search track by $index">
-                            <div for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></div>
-                        </li>
-                    </ul>
+                    <input ng-model="myValue" ng-model-options='{ debounce: 500 }' ng-change="myFunc()" ng-keyup="$event.keyCode == 13 && updateMLS()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
+					<ul class="searchChild">
+						<li class="childLI" ng-repeat="city in search track by $index">
+							<label  for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></label>
+						</li>
+					</ul>
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit" id="searchBtn">
+                        <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
@@ -31,12 +31,20 @@
             </li>
 
             <li class="">
-
                 <div class="dropdown">
                     <button ng-click="refreshSlider()" style="width: 300px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    ${{ slider.minValue.toString().substr(0, 3) }}k-${{ slider.maxValue.toString().substr(0, 3) }}k
-                    <span class="caret"></span>
-                  </button>
+                        
+                        ${{ slider.minValue.toString().substr(0, 3) }}k
+                        -
+                        <span ng-if="slider.maxValue > 999999">
+                            1M+
+                        </span>
+                        <span ng-if="slider.maxValue < 999999">
+                            ${{ slider.maxValue.toString().substr(0, 3) }}k
+                        </span>
+                        
+                        <span class="caret"></span>
+                      </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
                         <div style="margin-right: 5px; margin-left: 5px;">
                             <rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options">
@@ -75,20 +83,7 @@
 
             <li class=" bedding">
 
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{bathing}}+ Baths
-                    <span class="caret"></span>
-                  </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li data-value="0" class=" ng-scope {{bathing == 1 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1)" href="#">1+</a></li>
-                        <li data-value="2" class=" ng-scope {{bathing == 1.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1.5)" href="#">1.5+</a></li>
-                        <li data-value="3" class=" ng-scope {{bathing == 2 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2)" href="#">2+</a></li>
-                        <li data-value="4" class=" ng-scope {{bathing == 2.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2.5)" href="#">2.5+</a></li>
-                        <li data-value="5" class=" ng-scope {{bathing == 3 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3)" href="#">3+</a></li>
-                        <li data-value="6" class=" ng-scope {{bathing == 3.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>
-                    </ul>
-                </div>
+
 
             </li>
 
@@ -103,6 +98,45 @@
                     <span class="caret"></span>
                   </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
+                        
+                            <!--<div class="dropdown" >-->
+                            <!--    <button id="baths" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                            <!--        {{bathing}}+ Baths-->
+                            <!--        <span class="caret"></span>-->
+                            <!--      </button>-->
+                            <!--    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                            <!--        <li data-value="0" class=" ng-scope {{bathing == 1 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1)" href="#">1+</a></li>-->
+                            <!--        <li data-value="2" class=" ng-scope {{bathing == 1.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',1.5)" href="#">1.5+</a></li>-->
+                            <!--        <li data-value="3" class=" ng-scope {{bathing == 2 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2)" href="#">2+</a></li>-->
+                            <!--        <li data-value="4" class=" ng-scope {{bathing == 2.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',2.5)" href="#">2.5+</a></li>-->
+                            <!--        <li data-value="5" class=" ng-scope {{bathing == 3 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3)" href="#">3+</a></li>-->
+                            <!--        <li data-value="6" class=" ng-scope {{bathing == 3.5 ? 'active' : ''}}"><a ng-click="beddingSave('Baths',3.5)" href="#">3.5+</a></li>-->
+                            <!--    </ul>-->
+                            <!--</div>-->
+                        
+                        
+                        <br>
+
+                        <li class="dropdown-header">
+                            Baths
+                        </li>
+                        <br>
+                        <br>
+
+
+                        <div class="form-group" id="baths" style="margin-right: 5px; margin-left: 5px;">
+                            <select class="form-control" id="sel1" ng-change="beddingSave('Baths')" ng-model="baths">
+                            <option selected disabled>Choose here</option>
+                            <option ng-click="beddingSave('Baths',1)" value="1">1+</option>
+                            <option ng-click="beddingSave('Baths',2)" value="2">2+</option>
+                            <option ng-click="beddingSave('Baths',3)" value="3">3+</option>
+                            <option ng-click="beddingSave('Baths',4)" value="4">4+</option>
+                            <option ng-click="beddingSave('Baths',5)" value="5">5+</option>
+                            <option ng-click="beddingSave('Baths',6)" value="6">6+</option>
+                        </select>
+                        </div>
+                        
+
                         <li class="dropdown-header">Filter SqFt</li>
                         <br>
 
@@ -114,7 +148,7 @@
                         <br>
 
                         <li class="dropdown-header">Filter Year Built</li>
-                        
+
                         <br>
 
                         <div style="margin-right: 5px; margin-left: 5px;">
@@ -129,7 +163,7 @@
                         <br>
 
                         <div style="margin-right: 5px; margin-left: 5px;">
-                            <input type="textarea" name="keywordFilter" ng-change="updateKeywords()" ng-model-options="{ updateOn: 'blur' }" ng-model="keyWordFilter" placeholder="Garage, pool, waterfront, etc" />
+                            <input type="text" name="keywordFilter" ng-change="updateKeywords()" ng-model-options="{ updateOn: 'blur' }" ng-model="keyWordFilter" placeholder="Garage, pool, waterfront, etc" />
                         </div>
 
                         <br>
@@ -139,10 +173,10 @@
                         </li>
                         <br>
                         <br>
-                        
-                        
+
+
                         <div class="form-group" id="lotSize" style="margin-right: 5px; margin-left: 5px;">
-                          <select class="form-control" id="sel1" ng-change="updateLotSize()" ng-model="lot_size" ng-init="lot_size = lot_size || 'Standard Lot 6000-9999 SF'" >
+                            <select class="form-control" id="sel1" ng-change="updateLotSize()" ng-model="lot_size" ng-init="lot_size = lot_size || 'Standard Lot 6000-9999 SF'">
                             <option selected disabled>Choose here</option>
                             <option value="Sm Lot 5999 SF">Small lot</option>
                             <option value="Standard Lot 6000-9999 SF">Standard lot</option>
