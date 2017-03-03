@@ -24,8 +24,10 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
     };
     
     $scope.events = {
-        dragend: function(e) {
-            
+        idle: function(e) {
+            if ($scope.map.isDragging) {
+                return;
+            }
             $timeout(function() {
                 $scope.updateSideBar();
                 
@@ -80,6 +82,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
             }, 1000);
             
         }
+        
     };
 
     $scope.options = {

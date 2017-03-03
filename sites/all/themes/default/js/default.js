@@ -48,4 +48,10 @@ jQuery(document).ready(function($) {
     });
 
 
+    // Home Page Search Button
+    $('.rets-search-button').on('click', function () {
+        window.location.replace("/home_search#?query=" + $('.rets-search-input').val());
+        console.log($('.rets-search-input').val());
+    });
+
 });

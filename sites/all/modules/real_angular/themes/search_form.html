@@ -31,12 +31,20 @@
             </li>
 
             <li class="">
-
                 <div class="dropdown">
                     <button ng-click="refreshSlider()" style="width: 300px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    ${{ slider.minValue.toString().substr(0, 3) }}k-${{ slider.maxValue.toString().substr(0, 3) }}k
-                    <span class="caret"></span>
-                  </button>
+                        
+                        ${{ slider.minValue.toString().substr(0, 3) }}k
+                        -
+                        <span ng-if="slider.maxValue > 999999">
+                            1M+
+                        </span>
+                        <span ng-if="slider.maxValue < 999999">
+                            ${{ slider.maxValue.toString().substr(0, 3) }}k
+                        </span>
+                        
+                        <span class="caret"></span>
+                      </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
                         <div style="margin-right: 5px; margin-left: 5px;">
                             <rzslider rz-slider-model="slider.minValue" rz-slider-high="slider.maxValue" rz-slider-options="slider.options">

@@ -6,7 +6,7 @@
         class="listingRows col-md-12 col-lg-6"
         ng-repeat="result in markers_visible track by $index"
         ng-class="{selected: result == window.model}"
-        ng-mouseover="window.model = result" 
+        ng-mouseover="hoverElement(result)" 
         >
         <div class="mlsResultRow">
             <div class="mlsResultRowInner">

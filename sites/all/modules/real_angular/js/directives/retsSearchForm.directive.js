@@ -53,8 +53,12 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                         scope.markers = markers;
                         scope.markers_visible = markers;
                         
-                        scope.map.center.latitude = searchResult.data[0].LMD_MP_Latitude;
-                        scope.map.center.longitude = searchResult.data[0].LMD_MP_Longitude; 
+                        for (const queryPart of searchResult.config.data) {
+                            if (queryPart.filter == 'L_City') {
+                                scope.map.center.latitude = searchResult.data[0].LMD_MP_Latitude;
+                                scope.map.center.longitude = searchResult.data[0].LMD_MP_Longitude; 
+                            }
+                        }
                         
                         $timeout(function() {
                             scope.map.shouldFit = false;  
@@ -118,6 +122,7 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 maxValue: scope.priceMaxValueWithoutFormat,
                 ceilLabel: '1M',
                 options: {
+                    ceilLabel: '1M',
                     floor: 0,
                     ceil: 1000000,
                     step: 10000,
@@ -125,6 +130,10 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     maxRange: 900000,
 
                     translate: function(value) {
+                        if (value.toString().length > 6) {
+                            value = value.toString()[0] + 'M+';
+                        }
+                        
                         return '$' + value;
                     },
                     onEnd: function() {

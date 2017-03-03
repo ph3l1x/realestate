@@ -4,7 +4,12 @@ function retsSearchResultsDirective() {
         templateUrl: '/sites/all/modules/real_angular/themes/search_results.html',
         replace: false,
         link: function (scope, element, attrs) {
-
+            
+            scope.hoverElement = function hoverElement(result) {
+                scope.window.model = result;
+                result.show = true;
+            }
+            
             // scope.retsFormChange = function() {
             //     retsAPI
             //         .get(scope.form)
