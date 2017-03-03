@@ -555,18 +555,28 @@ section#content-section {
   color: white;
   section#block-block-5 {
     background: rgba(0,0,0,.8);
-    .advantages-container {
-      display: -webkit-flex;
-      display:  flex;
-      -webkit-flex-direction: row;
-      flex-direction: row;
-      //-webkit-align-items: center;
-      //align-items: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      h2 {
-
-      }
+		.advantages-container {
+	    .advantages-container-inner {
+	  	  display: -webkit-flex;
+	  	  display: flex;
+		    flex-flow: row wrap;
+		    .advantages-reasons-box {
+			    flex-grow: 1;
+			    flex-basis: 33%;
+			    flex-direction: column;
+			    .advantages-icon {
+				    float:left;
+				    i {
+					    font-size: 80px;
+					    padding-right: 10px;
+				    }
+			    }
+			    .advantages-text {
+				    float:left;
+				    width: 80%;
+			    }
+		    }
+	    }
     }
   }
 }
