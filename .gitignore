@@ -4,3 +4,4 @@ rets-cron.log
 .idea/*
 /.idea/
 .idea/workspace.xml
+/node_modules/*

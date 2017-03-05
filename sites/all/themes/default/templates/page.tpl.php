@@ -112,7 +112,6 @@
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-
     <section<?php print $content_column_class; ?> id="content-section">
       <?php if (!empty($page['highlighted'])): ?>
         <div
