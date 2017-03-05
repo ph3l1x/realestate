@@ -4,10 +4,12 @@ jQuery(document).ready(function($) {
         var vw = $('.fullscreen-bg__video').width(),
             vh = $('.fullscreen-bg__video').height();
 
-        $('.video-content').css({
-            height: vh,
-            width: vw
-        });
+        $('.video-content').height(vh - 20);
+        $('.video-content').width(vw);
+        // $('.video-content').css({
+        //     height: vh - 20,
+        //     width: vw
+        // });
         console.log(vh, vw);
     };
     var updateMapSize = function() {
@@ -30,6 +32,7 @@ jQuery(document).ready(function($) {
     };
 
     updateMapSize();
+    updateHomePreface();
     updateHomePreface();
     $(window).resize(function() {
         updateMapSize();

@@ -378,10 +378,14 @@ section h1.page-header {
       right: -17px;
       bottom: 48px; }
 
+section.preface section#block-block-4 {
+  position: relative; }
+
 section.preface .video-content {
   text-align: center;
   font-family: "Ubuntu", sans-serif;
-  color: white; }
+  color: white;
+  display: block; }
   section.preface .video-content .video-content-inner {
     position: relative;
     top: 40%;
@@ -426,11 +430,31 @@ section#content-section {
   padding: 0;
   color: white; }
   section#content-section section#block-block-5 {
+    font-family: Ubuntu, sans-serif;
+    font-size: 17px;
     background: rgba(0, 0, 0, 0.8); }
-    section#content-section section#block-block-5 .advantages-container {
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-direction: row;
-      flex-direction: row;
-      -webkit-justify-content: center;
-      justify-content: center; }
+    section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box {
+      margin-bottom: 20px; }
+      section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box .advantages-icon {
+        float: left;
+        margin-top: 16px;
+        background: #AC1F2D;
+        border-radius: 50%;
+        height: 110px;
+        width: 110px;
+        margin-right: 20px; }
+        section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box .advantages-icon i {
+          font-size: 70px;
+          width: 100%;
+          text-align: center;
+          padding-top: 20px; }
+      section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box .advantages-text {
+        float: left;
+        width: 80%; }
+        section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box .advantages-text h3 {
+          font-size: 28px; }
+    section#content-section section#block-block-5 .advantages-container .advantages-container-inner .advantages-reasons-box:nth-child(3) {
+      clear: both; }
+    section#content-section section#block-block-5 .advantages-container h2 {
+      margin-left: 15px;
+      font-size: 40px; }
