@@ -1,7 +1,7 @@
 <div class="advantages-container">
     <h2>Reasons To Hire a Realtor</h2>
     <div class="advantages-container-inner">
-        <div class="col-sm-6 col-sm-6 advantages-reasons-box reason1">
+        <div class="col-sm-6 advantages-reasons-box reason1">
             <div class="advantages-icon">
                 <i class="fa fa-graduation-cap" aria-hidden="true"></i>
             </div>
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 advantages-reasons-box reason1">
+        <div class="col-sm-6 advantages-reasons-box reason2">
             <div class="advantages-icon">
                 <i class="fa fa-shield" aria-hidden="true"></i>
             </div>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 advantages-reasons-box reason2">
+        <div class="col-sm-6 advantages-reasons-box reason3">
             <div class="advantages-icon">
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 advantages-reasons-box reason3">
+        <div class="col-sm-6 advantages-reasons-box reason4">
             <div class="advantages-icon">
                 <i class="fa fa-map" aria-hidden="true"></i>
             </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 advantages-reasons-box reason4">
+        <div class="col-sm-6 advantages-reasons-box reason5">
             <div class="advantages-icon">
                 <i class="fa fa-pie-chart" aria-hidden="true"></i>
             </div>
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 advantages-reasons-box reason5">
+        <div class="col-sm-6 advantages-reasons-box reason6">
             <div class="advantages-icon">
                 <i class="fa fa-users" aria-hidden="true"></i>
             </div>

@@ -49,7 +49,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                                 markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
                             }
                         }
-                        scope.map.shouldFit = false;
                         scope.markers = markers;
                         scope.markers_visible = markers;
                         
@@ -60,12 +59,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                             }
                         }
                         
-                        $timeout(function() {
-                            scope.map.shouldFit = false;  
-                            //scope.map.zoom = 8;
-                        }, 2000);
-                        
-                        
                         scope.myValue = "";
                     });
 
@@ -75,9 +68,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 scope.lTypes = result;
             });
 
-            /*             retsAPI.citiesList().success(function(result) {
-                            scope.cities = result;
-                        }); */
 
             /* Default Values for Min and Max Price */
             scope.priceMinValue = parseFloat(200000).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -87,11 +77,11 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
             scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
 
-            //scope.lot_size = 'Lot Size';
-
-
 
             scope.updateLotSize = function() {
+                
+                
+                
                 var found = false;
 
                 for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {

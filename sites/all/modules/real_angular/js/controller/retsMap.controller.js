@@ -65,24 +65,13 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                             markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
                         }
                     }
-                    
-                    
-                    $scope.map.shouldFit = false; 
+
                     $scope.markers = markers;
                     $scope.markers_visible = markers;
-                    
-                    $timeout(function() {
-                            $scope.map.shouldFit = false; 
-                            //$scope.map.zoom = 8;
-                        }, 1500);
-                    
                     $scope.myValue = "";
                 });
-                
-            }, 1000);
-            
+            }, 200);
         }
-        
     };
 
     $scope.options = {
@@ -112,8 +101,6 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
         }
     };
 
-
-
     var createMarker = function(i, lat, long, item) {
         var ret = {
             latitude: lat,
@@ -142,16 +129,16 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
         })
         .then(function() {
             if ($scope.loaded_from_url) {
-                retsAPI.default().success(function(result) {
-                    var i = 0;
-                    result.forEach(function(item) {
-                        markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'], item));
-                        i++;
-                    });
-                    $scope.markers = markers;
-                    $scope.markers_visible = markers;
-                    console.log("MARKERS: ", $scope.markers);
-                });
+                // retsAPI.default().success(function(result) {
+                //     var i = 0;
+                //     result.forEach(function(item) {
+                //         markers.push(createMarker(item['L_ListingID'], item['LMD_MP_Latitude'], item['LMD_MP_Longitude'], item));
+                //         i++;
+                //     });
+                //     $scope.markers = markers;
+                //     $scope.markers_visible = markers;
+                //     console.log("MARKERS: ", $scope.markers);
+                // });
             }
         });
 

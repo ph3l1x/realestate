@@ -6,13 +6,23 @@
 
 
 
-
-$query = "select distinct L_Type_ from Listings";
-$rows = mysqli_query($link, $query);
-
-var_dump($rows);
-
+$results = json_decode($listings);
+kpr($results);
+?>
+<section class="least_expensive">
+  <button class="left"><</button>
+  <button class="right">></button>
+  <div class="least_expensive_container">
+<?php
+foreach($results as $data) {
+  ?>
+  <div class="least_expensive_slider">
+    <img src="http://rets.mindimage.net/<?php print $data->L_IMAGES ?>-1.jpg&w=100">
+  </div>
+  <?php
+  print $data->L_ListingID;
+}
 
 ?>
-
-cha cha cha
+  </div>
+</section>
