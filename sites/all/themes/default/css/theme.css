@@ -459,13 +459,200 @@ section#content-section {
       margin-left: 15px;
       font-size: 40px; }
 
-section.least_expensive {
-  position: relative; }
-  section.least_expensive .least_expensive_container {
-    margin: 0 auto;
-    width: 80%; }
-    section.least_expensive .least_expensive_container button.left {
-      position: absolute; }
-    section.least_expensive .least_expensive_container img {
-      width: 420px;
-      height: 200px; }
+section.least_expensive #slick-1-slider img {
+  width: 420px;
+  height: 200px; }
+
+.listingContainer {
+  font-family: Arial;
+  color: #333;
+  font-size: 15px; }
+  .listingContainer .listingContainerInner .listingHeaderContainer {
+    border: 1px solid #caced2;
+    border-radius: 5px;
+    background-color: #f4f4f4; }
+    .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner {
+      padding: 25px; }
+      .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .top {
+        margin-bottom: 20px; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .top h3 {
+          margin: 0;
+          font-size: 1.75em;
+          color: #555; }
+      .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle {
+        display: inline-block;
+        padding-left: 0; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .listPrice {
+          font-size: 1.4em; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .forSale {
+          color: green;
+          background: url("images/dot.png") repeat-y;
+          background-position: 125px 0; }
+          .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .forSale i {
+            font-size: 36px;
+            margin-left: 19px; }
+  .listingContainer .listingContainerInner .listingContentContainer {
+    margin-top: 20px;
+    float: left;
+    width: 100%;
+    clear: both; }
+    .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer {
+      padding-left: 0;
+      padding-right: 0; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner {
+        border: 1px solid #caced2;
+        border-radius: 5px;
+        background: #f4f4f4;
+        padding: 20px;
+        float: left;
+        width: 100%; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul {
+          float: left;
+          list-style: inside none none;
+          padding-left: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li {
+            border-top: 1px solid #caced2;
+            border-bottom: 1px solid #caced2;
+            border-right: 1px solid #caced2;
+            float: left;
+            padding: 10px;
+            cursor: pointer;
+            transition: .5s; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:hover, .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul .tabButtonActive {
+            background: #f3e1e1; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:first-of-type {
+            border-radius: 5px 0 0 5px;
+            border-left: 1px solid #caced2; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:last-of-type {
+            border-radius: 0 5px 5px 0;
+            border-right: 1px solid #caced2; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .tabbedContent {
+          clear: both;
+          width: 100%;
+          overflow: hidden; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapImages {
+          position: relative; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapStreet {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapMap {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapSatellite {
+          position: relative;
+          display: none; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .description {
+        margin-bottom: 20px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft {
+        padding-left: 0; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft ul {
+          margin: 0;
+          list-style: none;
+          padding: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft ul li label {
+            display: inline-block;
+            margin-right: 15px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentRight ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentRight ul li label {
+          display: inline-block;
+          margin-right: 15px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer h2.moreInfoBlock {
+        clear: both;
+        color: #555;
+        float: left;
+        font-size: 23px;
+        margin: 19px 0 -12px;
+        width: 100%; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid #caced2;
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-markup .moreInfoContainer .moreInfoContainerInner .moreInfoLeft {
+          float: left;
+          width: 30%; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-markup .moreInfoContainer .moreInfoContainerInner .moreInfoRight {
+          float: left;
+          width: 65%;
+          padding-left: 10px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--first-name {
+          float: left;
+          width: 49%;
+          margin-top: 15px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--last-name {
+          float: right;
+          width: 49%;
+          margin-top: 15px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--email-address {
+          clear: both; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-textarea {
+          clear: both;
+          position: relative;
+          top: 10px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin-top: 20px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul {
+          float: left;
+          list-style: inside none none;
+          padding-left: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li {
+            border-top: 1px solid #caced2;
+            border-bottom: 1px solid #caced2;
+            border-right: 1px solid #caced2;
+            float: left;
+            padding: 10px;
+            cursor: pointer;
+            transition: .5s; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:hover, .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul .tabButtonActive1 {
+            background: #f3e1e1; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:first-of-type {
+            border-radius: 5px 0 0 5px;
+            border-left: 1px solid #caced2; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:last-of-type {
+            border-radius: 0 5px 5px 0;
+            border-right: 1px solid #caced2; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabbedContent {
+          clear: both;
+          width: 100%;
+          overflow: hidden; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl {
+          clear: both;
+          margin: 5px 0;
+          float: left;
+          width: 100%; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl dt {
+            float: left;
+            width: 25%;
+            padding-right: 5%;
+            font-weight: bold; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl dd {
+            float: left;
+            width: 70%;
+            margin: 0; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabInteriorInfo {
+          position: relative; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabExteriorInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabMoreInfoInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabTaxesInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabUtilitiesInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabSchoolInfo {
+          position: relative;
+          display: none; }

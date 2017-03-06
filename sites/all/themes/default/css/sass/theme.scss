@@ -1,3 +1,5 @@
+$bg: #f4f4f4;
+
 body {
   color: #333;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -606,17 +608,329 @@ section#content-section {
   }
 }
 section.least_expensive {
-  position: relative;
-  .least_expensive_container {
-    margin: 0 auto;
-    width: 80%;
-    button.left {
-      position: absolute;
-
-    }
+  #slick-1-slider {
     img {
       width: 420px;
       height: 200px;
+    }
+  }
+//  position: relative;
+//  .least_expensive_container {
+//    margin: 0 auto;
+//    width: 80%;
+//    button.left {
+//      position: absolute;
+//
+//    }
+//    img {
+//      width: 420px;
+//      height: 200px;
+//    }
+//  }
+}
+
+.listingContainer {
+  font-family: Arial;
+  color: #333;
+  font-size: 15px;
+
+  .listingContainerInner {
+    .listingHeaderContainer {
+      border: 1px solid #caced2;
+      border-radius: 5px;
+      background-color: $bg;
+
+      .listingHeaderContainerInner {
+        padding: 25px;
+
+        .top {
+          margin-bottom: 20px;
+          h3 {
+            margin: 0;
+            font-size: 1.75em;
+            color: #555;
+          }
+        }
+        .middle {
+          display: inline-block;
+          padding-left: 0;
+
+          .listPrice {
+            font-size: 1.4em;
+          }
+
+          .forSale {
+            color: green;
+            background: url('images/dot.png') repeat-y;
+            background-position: 125px 0;
+
+            i {
+              font-size: 36px;
+              margin-left: 19px;
+            }
+          }
+
+          .row {
+
+          }
+        }
+      }
+    }
+    .listingContentContainer {
+      margin-top: 20px;
+      float: left;
+      width: 100%;
+      clear: both;
+
+      .listingContentContainerInner {
+        .listingLeftContentContainer {
+          padding-left: 0;
+          padding-right: 0;
+          .listingLeftContentContainerInner {
+            border: 1px solid #caced2;
+            border-radius: 5px;
+            background: $bg;
+            padding: 20px;
+            float: left;
+            width: 100%;
+
+            .imageMapsContainer {
+              .imageMapContainerInner {
+                .imageMapTabs {
+                  ul {
+                    float: left;
+                    list-style: inside none none;
+                    padding-left: 0;
+
+                    li {
+                      border-top: 1px solid #caced2;
+                      border-bottom: 1px solid #caced2;
+                      border-right: 1px solid #caced2;
+                      float: left;
+                      padding: 10px;
+                      cursor: pointer;
+                      transition: .5s;
+
+                    }
+                    li:hover, .tabButtonActive {
+                      background: #f3e1e1;
+
+                    }
+                    li:first-of-type {
+                      border-radius: 5px 0 0 5px;
+                      border-left: 1px solid #caced2;
+                    }
+                    li:last-of-type {
+                      border-radius: 0 5px 5px 0;
+                      border-right: 1px solid #caced2;
+                    }
+                  }
+                }
+                .imageMapTabs {
+
+                }
+                .tabbedContent {
+                  clear: both;
+                  width: 100%;
+                  overflow: hidden;
+
+                }
+                .mapImages {
+                  position: relative;
+                }
+                .mapStreet {
+                  position: relative;
+                  display: none;
+                }
+                .mapMap {
+                  position: relative;
+                  display: none;
+                }
+                .mapSatellite {
+                  position: relative;
+                  display: none;
+                }
+              }
+            }
+          }
+          .description {
+            margin-bottom: 20px;
+          }
+          .contentLeft {
+            padding-left: 0;
+            ul {
+              margin: 0;
+              list-style: none;
+              padding: 0;
+
+              li {
+                label {
+                  display: inline-block;
+                  margin-right: 15px;
+
+                }
+              }
+            }
+          }
+          .contentRight {
+            ul {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              li {
+                label {
+                  display: inline-block;
+                  margin-right: 15px;
+
+                }
+              }
+            }
+          }
+          h2.moreInfoBlock {
+            clear: both;
+            color: #555;
+            float: left;
+            font-size: 23px;
+            margin: 19px 0 -12px;
+            width: 100%;
+          }
+          .moreInformationBlock {
+            clear: both;
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #caced2;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+
+            form {
+              .webform-component-markup {
+                .moreInfoContainer {
+                  .moreInfoContainerInner {
+                    .moreInfoLeft {
+                      float: left;
+                      width: 30%;
+                    }
+                    .moreInfoRight {
+                      float: left;
+                      width: 65%;
+                      padding-left: 10px;
+                    }
+                  }
+                }
+              }
+              .webform-component--first-name {
+                float: left;
+                width: 49%;
+                margin-top: 15px;
+              }
+              .webform-component--last-name {
+                float: right;
+                width: 49%;
+                margin-top: 15px;
+              }
+              .webform-component--email-address {
+                clear: both;
+              }
+              .webform-component-textarea {
+                clear: both;
+                position: relative;
+                top: 10px;
+              }
+            }
+          }
+          .listingDetailsContainer {
+            clear: both;
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+
+            .listingDetailsContainerInner {
+              .listingDetailsTabs {
+                ul {
+                  float: left;
+                  list-style: inside none none;
+                  padding-left: 0;
+
+                  li {
+                    border-top: 1px solid #caced2;
+                    border-bottom: 1px solid #caced2;
+                    border-right: 1px solid #caced2;
+                    float: left;
+                    padding: 10px;
+                    cursor: pointer;
+                    transition: .5s;
+
+                  }
+                  li:hover, .tabButtonActive1 {
+                    background: #f3e1e1;
+
+                  }
+                  li:first-of-type {
+                    border-radius: 5px 0 0 5px;
+                    border-left: 1px solid #caced2;
+                  }
+                  li:last-of-type {
+                    border-radius: 0 5px 5px 0;
+                    border-right: 1px solid #caced2;
+                  }
+                }
+              }
+              .tabbedContent {
+                clear: both;
+                width: 100%;
+                overflow: hidden;
+
+              }
+              .listingTabContent {
+                dl {
+                  clear: both;
+                  margin: 5px 0;
+                  float: left;
+                  width: 100%;
+
+                  dt {
+                    float: left;
+                    width: 25%;
+                    padding-right: 5%;
+                    font-weight: bold;
+                  }
+                  dd {
+                    float: left;
+                    width: 70%;
+                    margin: 0;
+
+                  }
+                }
+              }
+              .tabInteriorInfo {
+                position: relative;
+              }
+              .tabExteriorInfo {
+                position: relative;
+                display: none;
+              }
+              .tabMoreInfoInfo {
+                position: relative;
+                display: none;
+              }
+              .tabTaxesInfo {
+                position: relative;
+                display: none;
+              }
+              .tabUtilitiesInfo {
+                position: relative;
+                display: none;
+              }
+              .tabSchoolInfo {
+                position: relative;
+                display: none;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

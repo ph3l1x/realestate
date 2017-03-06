@@ -31,7 +31,8 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                         if (value.selected = true) {
                             if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' ||
                                 value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27' ||
-                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' || value.filter == 'L_ListingID') {
+                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' || 
+                                value.filter == 'L_ListingID' || value.filter == "Bounds") {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -326,6 +327,12 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
                 /* 				alert(type);
                 				alert(bedding); */
+
+                scope.lTypeNameArray.push({
+                    filter: 'Bounds',
+                    name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ','
+                    + scope.map.bounds.southwest.longitude
+                });
 
                 var column = 'L_City';
 
