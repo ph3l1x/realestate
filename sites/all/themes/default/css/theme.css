@@ -458,3 +458,14 @@ section#content-section {
     section#content-section section#block-block-5 .advantages-container h2 {
       margin-left: 15px;
       font-size: 40px; }
+
+section.least_expensive {
+  position: relative; }
+  section.least_expensive .least_expensive_container {
+    margin: 0 auto;
+    width: 80%; }
+    section.least_expensive .least_expensive_container button.left {
+      position: absolute; }
+    section.least_expensive .least_expensive_container img {
+      width: 420px;
+      height: 200px; }

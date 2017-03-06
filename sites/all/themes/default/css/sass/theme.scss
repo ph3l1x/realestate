@@ -605,4 +605,19 @@ section#content-section {
     }
   }
 }
+section.least_expensive {
+  position: relative;
+  .least_expensive_container {
+    margin: 0 auto;
+    width: 80%;
+    button.left {
+      position: absolute;
+
+    }
+    img {
+      width: 420px;
+      height: 200px;
+    }
+  }
+}
 
