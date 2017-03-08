@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
 
         $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
             $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-            $ChanceToShow: 1                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+            $ChanceToShow: 2                               //[Required] 0 Never, 1 Mouse Over, 2 Always
         },
 
         $ThumbnailNavigatorOptions: {                       //[Optional] Options to specify and enable thumbnail navigator or not

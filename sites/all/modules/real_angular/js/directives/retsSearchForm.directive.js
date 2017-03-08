@@ -26,7 +26,8 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 queryGenerator = function(query) {
                     var sendValue = [],
                         markers = [];
-
+                    
+                    /*
                     scope.column = column;
 
                     //console.log(scope.lTypeNameArray.length);
@@ -40,6 +41,8 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                         }
 
                     }
+                    
+                    */
 
                     query.forEach(function(value, key) {
                         if (value.selected = true) {
