@@ -26,23 +26,7 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 queryGenerator = function(query) {
                     var sendValue = [],
                         markers = [];
-                    
-                    /*
-                    scope.column = column;
 
-                    //console.log(scope.lTypeNameArray.length);
-                    for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
-                        //alert(scope.lTypeNameArray[ i ].filter);
-                        if (scope.lTypeNameArray[i].filter == column) {
-
-                            scope.lTypeNameArray.splice(i, 1);
-                            break;
-
-                        }
-
-                    }
-                    
-                    */
 
                     query.forEach(function(value, key) {
                         if (value.selected = true) {
@@ -204,6 +188,26 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     }
                 }
 
+                if (scope.lTypeNameArray.filter(function(type) {
+                        return type.filter == 'Bounds';
+                    }).length == 0) {
+                    scope.lTypeNameArray.push({
+                        filter: 'Bounds',
+                        name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                            scope.map.bounds.southwest.longitude
+                    });
+                }
+
+                for (let type in scope.lTypeNameArray) {
+                    if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                        scope.lTypeNameArray[type] = {
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        }
+                    }
+                }
+
                 queryGenerator(scope.lTypeNameArray);
 
             };
@@ -228,8 +232,15 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
                 let selectedTypes = [];
                 for (let type in scope.lTypeNameArray) {
-                    selectedTypes.push(scope.lTypeNameArray[type].name);
+                    if (scope.lTypeNameArray[type].filter == 'L_Type_') {
+                        selectedTypes.push(scope.lTypeNameArray[type].name);
+                    }
                 }
+
+
+                scope.lTypeNameArray = scope.lTypeNameArray.filter(function(type) {
+                    return type.filter != 'L_Type_';
+                });
 
                 selectedTypes = selectedTypes.join(',');
 
@@ -239,18 +250,33 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     selected: true
                 });
 
-                scope.lTypeNameArray.push({
-                    filter: 'Bounds',
-                    name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
-                        scope.map.bounds.southwest.longitude
-                });
-
                 if (scope.bedding) {
                     scope.lTypeNameArray.push({
                         filter: scope.column,
                         name: scope.bedding,
                         selected: true
                     });
+                }
+
+
+                if (scope.lTypeNameArray.filter(function(type) {
+                        return type.filter == 'Bounds';
+                    }).length == 0) {
+                    scope.lTypeNameArray.push({
+                        filter: 'Bounds',
+                        name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                            scope.map.bounds.southwest.longitude
+                    });
+                }
+
+                for (let type in scope.lTypeNameArray) {
+                    if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                        scope.lTypeNameArray[type] = {
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        }
+                    }
                 }
 
                 if (scope.isPriceSet) {
@@ -276,6 +302,27 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                             selected: true
                         };
                         break;
+                    }
+                }
+
+
+                if (scope.lTypeNameArray.filter(function(type) {
+                        return type.filter == 'Bounds';
+                    }).length == 0) {
+                    scope.lTypeNameArray.push({
+                        filter: 'Bounds',
+                        name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                            scope.map.bounds.southwest.longitude
+                    });
+                }
+
+                for (let type in scope.lTypeNameArray) {
+                    if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                        scope.lTypeNameArray[type] = {
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        }
                     }
                 }
 
@@ -309,6 +356,26 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     name: min + "-" + max,
                     selected: true
                 });
+
+                if (scope.lTypeNameArray.filter(function(type) {
+                        return type.filter == 'Bounds';
+                    }).length == 0) {
+                    scope.lTypeNameArray.push({
+                        filter: 'Bounds',
+                        name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                            scope.map.bounds.southwest.longitude
+                    });
+                }
+
+                for (let type in scope.lTypeNameArray) {
+                    if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                        scope.lTypeNameArray[type] = {
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        }
+                    }
+                }
 
                 queryGenerator(scope.lTypeNameArray);
             };
@@ -347,6 +414,28 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     name: scope.priceMinValueWithoutFormat + "-" + scope.priceMaxValueWithoutFormat,
                     selected: true
                 });
+
+
+                if (scope.lTypeNameArray.filter(function(type) {
+                        return type.filter == 'Bounds';
+                    }).length == 0) {
+                    scope.lTypeNameArray.push({
+                        filter: 'Bounds',
+                        name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                            scope.map.bounds.southwest.longitude
+                    });
+                }
+
+                for (let type in scope.lTypeNameArray) {
+                    if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                        scope.lTypeNameArray[type] = {
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        }
+                    }
+                }
+
                 queryGenerator(scope.lTypeNameArray);
             }
 
@@ -361,26 +450,63 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
             scope.beddingSave = function(type, bedding) {
                 scope.search = [];
-                scope.lTypeNameArray = [];
+
 
                 /* 				alert(type);
                 				alert(bedding); */
 
-                scope.lTypeNameArray.push({
-                    filter: 'Bounds',
-                    name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
-                        scope.map.bounds.southwest.longitude
-                });
+
 
                 var column = 'L_City';
 
                 if (type == "Beds") {
                     scope.bedding = bedding;
                     column = "L_Keyword2";
+
+                    if (scope.lTypeNameArray.filter(function(type) {
+                            return type.filter == 'Bounds';
+                        }).length == 0) {
+                        scope.lTypeNameArray.push({
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        });
+                    }
+
+                    for (let type in scope.lTypeNameArray) {
+                        if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                            scope.lTypeNameArray[type] = {
+                                filter: 'Bounds',
+                                name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                    scope.map.bounds.southwest.longitude
+                            }
+                        }
+                    }
                 }
                 else if (type == "Baths") {
                     scope.bathing = scope.baths;
                     column = "LM_Dec_3";
+
+
+                    if (scope.lTypeNameArray.filter(function(type) {
+                            return type.filter == 'Bounds';
+                        }).length == 0) {
+                        scope.lTypeNameArray.push({
+                            filter: 'Bounds',
+                            name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                scope.map.bounds.southwest.longitude
+                        });
+                    }
+
+                    for (let type in scope.lTypeNameArray) {
+                        if (scope.lTypeNameArray[type].filter == 'Bounds') {
+                            scope.lTypeNameArray[type] = {
+                                filter: 'Bounds',
+                                name: scope.map.bounds.northeast.latitude + ',' + scope.map.bounds.northeast.longitude + ',' + scope.map.bounds.southwest.latitude + ',' +
+                                    scope.map.bounds.southwest.longitude
+                            }
+                        }
+                    }
                 }
                 else if (type == "City") {
                     let intval = parseInt(bedding);

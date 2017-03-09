@@ -4,10 +4,7 @@
  * Contains template for rendering least expensive block.
  */
 
-
-
 $results = json_decode($listings);
-kpr($results);
 $element = array();
 $items = array();
 $attach = array();
@@ -20,8 +17,10 @@ $settings = array(
 );
 
 ?>
-<section class="least_expensive">
-  <div class="least_expensive_container">
+<section class="home_block_slider">
+  <div class="home_block_slider_container">
+    <h2>Least Expensive</h2>
+    <div class="title-sub">The most affordable listings in Boise</div>
 <?php
 foreach($results as $data) {
     $checkImage = 'http://rets.mindimage.net/images/' . $data->L_ListingID . '-1.jpg';
@@ -37,19 +36,37 @@ foreach($results as $data) {
       ));
       @$image = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($imageTag))->xpath("//img/@src"));
     }
+    $description = '<div class="listingContainer">
+                    <a href="/listings/' . $data->L_ListingID . '">
+                        <div class="listingBackdrop listingStyles"></div>
+                        <div class="imageCount listingStyles floats">' . $data->L_PictureCount . ' photos</div>
+                        <div class="propertyType listingStyles">' . $data->L_Type_ . ' for sale</div>
+                        <div class="priceLineItems listingStyles">
+                            <div class="askingPrice floats">$' . number_format($data->L_AskingPrice) . '&nbsp;</div>
+                            <div class="beds floats mini">' . $data->L_Keyword2 . ' bds &nbsp;</div>
+                            <div class="baths floats mini">' . $data->LM_Dec_3 . 'ba &nbsp;</div>
+                            <div class="sqft floats mini">' . $data->LM_int4_27 . ' sqft &nbsp;</div>
+                        </div>
+                        <div class="addressContainer listingStyles">
+                            <div class="street floats">' . $data->L_Address . ', </div>
+                            <div class="state floats">' . $data->L_City . ' - </div>
+                            <div class="city floats">' . $data->L_State . '</div>
+                        </div>
+                    </a>
+                </div>';
     $items[] = array(
       'slide' => '<img src="' . $image . '"/>',
       'caption' => array(
-      'title' => t('THE TEST'),
+      'data' => $description
       ),
     );
 }
 
 $element = slick_build($items, $options, $settings);
-kpr($element);
 print render($element);
-
-
 ?>
+    <div class="button-area">
+    <button type="button" class="see-more"><span>See more listings</span></button>
+    </div>
   </div>
 </section>

@@ -5,6 +5,15 @@ function real_blocks_block_info() {
   $blocks['least_expensive'] = array(
     'info' => t('Least Expensive Block'),
   );
+  $blocks['most_expensive'] = array(
+    'info' => t('Most Expensive Block'),
+  );
+  $blocks['newest'] = array(
+    'info' => t('New To Market Block'),
+  );
+  $blocks['updated'] = array(
+    'info' => t('Recently Updated Listings'),
+  );
 
   return $blocks;
 }
@@ -12,12 +21,30 @@ function real_blocks_block_info() {
 function real_blocks_block_view($delta='') {
   $block = array();
   if($delta == 'least_expensive') {
-
     $listings = file_get_contents('http://rets.mindimage.net/mls.php?action=least_expensive');
-
-
     $block['subject'] = t('Least Expensive Listings');
-    $block['content'] = theme('real_blocks', [
+    $block['content'] = theme('least_expensive', [
+      'listings'=> $listings,
+    ]);
+  }
+  if($delta == 'most_expensive') {
+    $listings = file_get_contents('http://rets.mindimage.net/mls.php?action=most_expensive');
+    $block['subject'] = t('Most Expensive Listings');
+    $block['content'] = theme('most_expensive', [
+      'listings'=> $listings,
+    ]);
+  }
+  if($delta == 'newest') {
+    $listings = file_get_contents('http://rets.mindimage.net/mls.php?action=newest');
+    $block['subject'] = t('Newest To Market');
+    $block['content'] = theme('newest', [
+      'listings'=> $listings,
+    ]);
+  }
+  if($delta == 'updated') {
+    $listings = file_get_contents('http://rets.mindimage.net/mls.php?action=updated');
+    $block['subject'] = t('Recently Updated Listings');
+    $block['content'] = theme('updated', [
       'listings'=> $listings,
     ]);
   }
@@ -25,8 +52,17 @@ function real_blocks_block_view($delta='') {
 }
 function real_blocks_theme() {
   $theme = array();
-  $theme['real_blocks'] = array(
+  $theme['least_expensive'] = array(
     'template' => 'templates/least_expensive',
+  );
+  $theme['most_expensive'] = array(
+    'template' => 'templates/most_expensive',
+  );
+  $theme['newest'] = array(
+    'template' => 'templates/newest',
+  );
+  $theme['updated'] = array(
+    'template' => 'templates/updated',
   );
   return $theme;
 }

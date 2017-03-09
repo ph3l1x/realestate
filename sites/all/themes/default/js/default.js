@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
 
+
     var updateHomePreface = function() {
         var vw = $('.fullscreen-bg__video').width(),
             vh = $('.fullscreen-bg__video').height();
@@ -41,6 +42,23 @@ jQuery(document).ready(function($) {
 
     // Scroll Header Fix
     $(window).scroll(function() {
+        var topDistance = $(window).scrollTop();
+        if(topDistance > '36') {
+            // Make Header Fixed
+            $('.headerContainer').css({
+                position: 'fixed',
+                top: '0',
+                width: '100%'
+            });
+        }
+        if(topDistance <= '36') {
+            $('.headerContainer').css({
+                position: 'relative',
+                top: 'inherit',
+                width: 'inhert'
+            });
+        }
+
        // if($(this).scrollTop() > 1) {
        //     $('header').addClass('sticky');
        //     $('.searchContainer').addClass('stickySearch');
@@ -57,4 +75,10 @@ jQuery(document).ready(function($) {
         console.log($('.rets-search-input').val());
     });
 
+    // Contact Us Slider
+    $('.emailSlideTab').on('click', function() {
+        console.log("hi");
+       $('.emailSlideContainer').toggleClass('email-sliding');
+        $('.emailSlideContainer i').toggleClass('fa-arrow-down fa-arrow-up');
+    });
 });

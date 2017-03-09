@@ -27,11 +27,11 @@ kpr($data);
 ?>
 <div class="listingContainer">
   <div class="listingContainerInner">
-    <div class="listingHeaderContainer">
+    <div class="listingHeaderContainer col-xs-12">
       <div class="listingHeaderContainerInner">
         <div class="top col-xs-12"><h3><?php print $data->L_Address . ' - ' . $data->L_City . ', ' . $data->L_State . ' ' . $data->L_Zip; ?></h3></div>
         <div class="middle col-xs-12">
-          <div class="forSale row col-sm-2">
+          <div class="forSale">
             <i class="fa fa-home"></i>
             <div class="forSaleText">FOR SALE</div>
           </div>
@@ -44,7 +44,7 @@ kpr($data);
             <div class="beds">Baths: <?php print $data->LM_Dec_3 ; ?></div>
           </div>
           <div class="row col-sm-4">
-            <div class="listingType"><?php print $data->L_Type; ?></div>
+            <div class="listingType"><?php print $data->L_Type_; ?></div>
             <div class="sqft"><?php print $data->LM_int4_27; ?> sq ft</div>
           </div>
         </div>
