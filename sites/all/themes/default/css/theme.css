@@ -459,9 +459,8 @@ section#content-section {
       margin-left: 15px;
       font-size: 40px; }
 
-section.least_expensive #slick-1-slider img {
-  width: 420px;
-  height: 200px; }
+section.least_expensive #slick-1 {
+  padding: 0 15px; }
 
 .listingContainer {
   font-family: Arial;

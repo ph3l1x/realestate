@@ -16,6 +16,8 @@ function real_listings_results($mls) {
   drupal_add_js(drupal_get_path('module', 'real_listings') . '/js/jssor.js');
   drupal_add_js(drupal_get_path('module', 'real_listings') . '/js/jssor.slider.js');
   drupal_add_js(drupal_get_path('module', 'real_listings') . '/js/jsinit.js');
+  drupal_add_js(drupal_get_path('module', 'real_listings') . '/js/listings_results.js');
+  drupal_add_css(drupal_get_path('module', 'real_listings') . '/css/jssor.css');
   $mlsData = json_decode(get_mls_data($mls));
   return theme('real_listings_results', array('data' => $mlsData));
 }

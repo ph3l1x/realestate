@@ -1,4 +1,5 @@
 <?php
+
 setlocale(LC_MONETARY, "en_US");
 
 function timeAgo($time) {
@@ -22,30 +23,29 @@ function timeAgo($time) {
   }
 }
 
-var_dump("YO");
 kpr($data);
 ?>
 <div class="listingContainer">
   <div class="listingContainerInner">
     <div class="listingHeaderContainer">
       <div class="listingHeaderContainerInner">
-        <div class="top col-xs-12"><h3><?php print $address . ' - ' . $city . ', ' . $state . ' ' . $zip; ?></h3></div>
+        <div class="top col-xs-12"><h3><?php print $data->L_Address . ' - ' . $data->L_City . ', ' . $data->L_State . ' ' . $data->L_Zip; ?></h3></div>
         <div class="middle col-xs-12">
           <div class="forSale row col-sm-2">
             <i class="fa fa-home"></i>
             <div class="forSaleText">FOR SALE</div>
           </div>
           <div class="row col-sm-3">
-            <div class="listPrice"><?php print money_format("%10.0n", $listPrice); ?></div>
-            <div class="listedDays"> Listed: <?php print timeAgo(strtotime($dateListed)) . ' ago'; ?></div>
+            <div class="listPrice">$<?php print number_format($data->L_AskingPrice); ?></div>
+            <div class="listedDays"> Listed: <?php print timeAgo(strtotime($data->L_ListingDate)) . ' ago'; ?></div>
           </div>
           <div class="row col-sm-3">
-            <div class="beds">Beds: <?php print $beds; ?></div>
-            <div class="beds">Baths: <?php print $baths; ?></div>
+            <div class="beds">Beds: <?php print $data->L_Keyword2; ?></div>
+            <div class="beds">Baths: <?php print $data->LM_Dec_3 ; ?></div>
           </div>
           <div class="row col-sm-4">
-            <div class="listingType"><?php print $listingType; ?></div>
-            <div class="sqft"><?php print $sqft; ?> sq ft</div>
+            <div class="listingType"><?php print $data->L_Type; ?></div>
+            <div class="sqft"><?php print $data->LM_int4_27; ?> sq ft</div>
           </div>
         </div>
       </div>
@@ -78,11 +78,24 @@ kpr($data);
                       </div>
                       <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
                         <?php
-                        if(isset($images)) {
-                          foreach ($images as $data) {
+                        if(isset($data->ALL_IMAGES)) {
+                          foreach ($data->ALL_IMAGES as $image) {
+                            $imageLocation = 'http://rets.mindimage.net/' . $image;
+                            $imageTagLarge = theme('imagecache_external', array(
+                              'path' => $imageLocation,
+                              'style_name' => 'gallery_large',
+                              'alt' => 'yadda',
+                            ));
+                            $imageTagsmall = theme('imagecache_external', array(
+                              'path' => $imageLocation,
+                              'style_name' => 'gallery_small',
+                              'alt' => 'yadda',
+                            ));
+                            @$imageLarge = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($imageTagLarge))->xpath("//img/@src"));
+                            @$imageSmall = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($imageTagsmall))->xpath("//img/@src"));
                             print '<div>';
-                            print '   <img u="image" src="' . image_style_url('gallery_large', $data['uri']) . '"/>';
-                            print '   <img u="thumb" src="' . image_style_url('gallery_small', $data['uri']) . '"/>';
+                            print '   <img u="image" src="' . $imageLarge . '"/>';
+                            print '   <img u="thumb" src="' . $imageSmall . '"/>';
                             print '</div>';
                           }
                         }
@@ -103,36 +116,36 @@ kpr($data);
                   </div>
                   <div class="imageMapContent mapStreet">
                     <iframe width="100%" height="350" frameborder="0"
-                            src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&location=<?php print $mlsData->LMD_MP_Latitude . ',' . $mlsData->LMD_MP_Longitude; ?>&heading=210&pitch=1&fov=35"></iframe>
+                            src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&location=<?php print $data->LMD_MP_Latitude . ',' . $data->LMD_MP_Longitude; ?>&heading=210&pitch=1&fov=35"></iframe>
                   </div>
                   <div class="imageMapContent mapMap">
                     <iframe width="100%" height="350" frameborder="0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $mlsData->L_Address) . ',' . $mlsData->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=12&maptype=roadmap"></iframe>
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=12&maptype=roadmap"></iframe>
                   </div>
                   <div class="imageMapContent mapSatellite">$address
                     <iframe width="100%" height="350" frameborder="0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $mlsData->L_Address) . ',' . $mlsData->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=12&maptype=roadmap"></iframe>
-                  </div>; ?>&zoom=10&maptype=satellite"></iframe>
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=10&maptype=satellite"></iframe>
+                  </div></iframe>
                   </div>
                 </div>
               </div>
             </div>
             <div class="description">
               <h3>Desecription</h3>
-              <?php print $remarks; ?>
+              <?php print $data->L_Remarks; ?>
             </div>
             <div class="contentLeft col-xs-12 col-sm-6">
               <ul>
-                <li><label>MLS ID#</label><?php print $mlsNumber; ?></li>
-                <li><label>Year Built:</label><?php print  $yearBuilt; ?></li>
-                <li><label>Listed:</label><?php print timeAgo(strtotime($dateListed)) . ' ago'; ?></li>
+                <li><label>MLS ID#</label><?php print $data->L_ListingID; ?></li>
+                <li><label>Year Built:</label><?php print  $data->LM_Int4_1; ?></li>
+                <li><label>Listed:</label><?php print timeAgo(strtotime($data->L_ListingDate)) . ' ago'; ?></li>
               </ul>
             </div>
             <div class="contentRight col-xs-12 col-sm-6">
               <ul>
-                <li><label>Listing Type: </label><?php print $listingType; ?></li>
-                <li><label>Beds:</label><?php print  $beds; ?></li>
-                <li><label>Baths:</label><?php print $baths; ?></li>
+                <li><label>Listing Type: </label><?php print $data->L_Type; ?></li>
+                <li><label>Beds:</label><?php print  $data->L_Keyword2; ?></li>
+                <li><label>Baths:</label><?php print $data->LM_Dec_3; ?></li>
               </ul>
             </div>
             <h2 class="moreInfoBlock">Want More Information?</h2>
@@ -151,242 +164,242 @@ kpr($data);
                     <li class="tabMoreInfo tabButton1">More Info</li>
                     <li class="tabTaxes tabButton1">Taxes</li>
                     <li class="tabUtilities tabButton1">Utilities</li>
-                    <li class="tabPublicFacts tabButton1">Public Facts</li>
+<!--                    <li class="tabPublicFacts tabButton1">Public Facts</li>-->
                     <li class="tabSchool tabButton1">Schools</li>
                   </ul>
                 </div>
                 <div class="tabbedContent">
                   <div class="listingTabContent tabInteriorInfo">
-                    <?php if (!empty($masterBedroomSize)) : ?>
+                    <?php if (!empty($data->LM_char5_1)) : ?>
                       <dl>
                         <dt>Master Bedroom</dt>
-                        <dd><?php print $masterBedroomSize; ?></dd>
+                        <dd><?php print $data->LM_char5_1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($bedroom2Size)) : ?>
+                    <?php if (!empty($data->LM_char5_2)) : ?>
                       <dl>
                         <dt>Bedroom 2</dt>
-                        <dd><?php print $bedroom2Size; ?></dd>
+                        <dd><?php print $data->LM_char5_2; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($bedroom3Size)) : ?>
+                    <?php if (!empty($data->LM_char5_3)) : ?>
                       <dl>
                         <dt>Bedroom 3</dt>
-                        <dd><?php print $bedroom3Size; ?></dd>
+                        <dd><?php print $data->LM_char5_3; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($bedroom4Size)) : ?>
+                    <?php if (!empty($data->LM_char5_4)) : ?>
                       <dl>
                         <dt>Bedroom 4</dt>
-                        <dd><?php print $bedroom4Size; ?></dd>
+                        <dd><?php print $data->LM_char5_4; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($bedroom5Size)) : ?>
+                    <?php if (!empty($data->LM_char5_5)) : ?>
                       <dl>
                         <dt>Bedroom 5</dt>
-                        <dd><?php print $bedroom5Size; ?></dd>
+                        <dd><?php print $data->LM_char5_5; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($kitchenFeatures)) : ?>
+                    <?php if (!empty($data->LFD_INCLUDEDKITCHENFEATURES_6)) : ?>
                       <dl>
                         <dt>Kitchen</dt>
-                        <dd><?php print $kitchenFeatures; ?></dd>
+                        <dd><?php print $data->LFD_INCLUDEDKITCHENFEATURES_6; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($fireplace)) : ?>
+                    <?php if (!empty($data->LFD_FIREPLACE_3)) : ?>
                       <dl>
                         <dt>Fireplace</dt>
-                        <dd><?php print $fireplace; ?></dd>
+                        <dd><?php print $data->LFD_FIREPLACE_3; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($stories)) : ?>
+                    <?php if (!empty($data->L_Keyword7)) : ?>
                       <dl>
                         <dt>Stories</dt>
-                        <dd><?php print $stories; ?></dd>
+                        <dd><?php print $data->L_Keyword7; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabExteriorInfo">
-                    <?php if (!empty($lotSize)) : ?>
+                    <?php if (!empty($data->L_Keyword1)) : ?>
                       <dl>
                         <dt>Lot Size</dt>
-                        <dd><?php print $lotSize; ?></dd>
+                        <dd><?php print $data->L_Keyword1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($lotLength)) : ?>
+                    <?php if (!empty($data->LM_Char10_2)) : ?>
                       <dl>
                         <dt>Lot Length</dt>
-                        <dd><?php print $lotLength; ?>'</dd>
+                        <dd><?php print $data->LM_Char10_2; ?>'</dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($lotWidth)) : ?>
+                    <?php if (!empty($data->LM_Char10_3)) : ?>
                       <dl>
                         <dt>Lot Width</dt>
-                        <dd><?php print $lotWidth; ?>'</dd>
+                        <dd><?php print $dfata->LM_Char10_3; ?>'</dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($garages)) : ?>
+                    <?php if (!empty($data->L_Keyword5)) : ?>
                       <dl>
                         <dt>Garages</dt>
-                        <dd><?php print $garages; ?></dd>
+                        <dd><?php print $data->L_Keyword5; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($sqft)) : ?>
+                    <?php if (!empty($data->LM_int4_27)) : ?>
                       <dl>
                         <dt>Square Feet</dt>
-                        <dd><?php print $sqft; ?></dd>
+                        <dd><?php print $data->LM_int4_27; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($priceSQFT)) : ?>
+                    <?php if (!empty($data->LM_Dec_12)) : ?>
                       <dl>
                         <dt>Approx Price SQFT</dt>
-                        <dd><?php print $priceSQFT; ?></dd>
+                        <dd>$<?php print $data->LM_Dec_12; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($sprinklerSystem)) : ?>
+                    <?php if (!empty($data->LFD_SPRINKLERSYSTEM_8)) : ?>
                       <dl>
                         <dt>Sprinkler System</dt>
-                        <dd><?php print $sprinklerSystem; ?></dd>
+                        <dd><?php print $data->LFD_SPRINKLERSYSTEM_8; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($roofing)) : ?>
+                    <?php if (!empty($data->LFD_ROOF_13)) : ?>
                       <dl>
                         <dt>Roofing</dt>
-                        <dd><?php print $roofing; ?></dd>
+                        <dd><?php print $data->LFD_ROOF_13; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($pool)) : ?>
+                    <?php if (!empty($data->LFD_POOLSPA_12)) : ?>
                       <dl>
                         <dt>Pool</dt>
-                        <dd><?php print $pool; ?></dd>
+                        <dd><?php print $data->LFD_POOLSPA_12; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabMoreInfoInfo">
-                    <?php if (!empty($dateListed)) : ?>
+                    <?php if (!empty($data->L_ListingDate)) : ?>
                       <dl>
                         <dt>Date Listed</dt>
-                        <dd><?php print $dateListed; ?></dd>
+                        <dd><?php print $data->L_ListingDate; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($yearBuilt)) : ?>
+                    <?php if (!empty($data->LM_Int4_1)) : ?>
                       <dl>
                         <dt>Year Built</dt>
-                        <dd><?php print $yearBuilt; ?></dd>
+                        <dd><?php print $data->LM_Int4_1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($water)) : ?>
+                    <?php if (!empty($data->LFD_WATER_17)) : ?>
                       <dl>
                         <dt>Water</dt>
-                        <dd><?php print $water; ?></dd>
+                        <dd><?php print $data->LFD_WATER_17; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($area)) : ?>
+                    <?php if (!empty($data->L_Area)) : ?>
                       <dl>
                         <dt>Area</dt>
-                        <dd><?php print $area; ?></dd>
+                        <dd><?php print $data->L_Area; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($county)) : ?>
+                    <?php if (!empty($data->LM_Char10_1)) : ?>
                       <dl>
                         <dt>County</dt>
-                        <dd><?php print $county; ?></dd>
+                        <dd><?php print $data->LM_Char10_1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($subdivision)) : ?>
+                    <?php if (!empty($data->LM_char10_70)) : ?>
                       <dl>
                         <dt>Subdivision</dt>
-                        <dd><?php print $subdivision; ?></dd>
+                        <dd><?php print $data->LM_char10_70; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($direction)) : ?>
+                    <?php if (!empty($data->LM_char100_1)) : ?>
                       <dl>
                         <dt>Directions</dt>
-                        <dd><?php print $direction; ?></dd>
+                        <dd><?php print $data->LM_char100_1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($lastUpdated)) : ?>
+                    <?php if (!empty($data->L_UpdateDate)) : ?>
                       <dl>
                         <dt>Last Updated</dt>
-                        <dd><?php print $lastUpdated; ?></dd>
+                        <dd><?php print $data->L_UpdateDate; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabTaxesInfo">
-                    <?php if (!empty($taxes)) : ?>
+                    <?php if (!empty($data->LM_Dec_15)) : ?>
                       <dl>
                         <dt>Tax Amount</dt>
-                        <dd>$<?php print $taxes; ?></dd>
+                        <dd>$<?php print $data->LM_Dec_15; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($taxYear)) : ?>
+                    <?php if (!empty($data->LM_Int2_10)) : ?>
                       <dl>
                         <dt>Tax Year</dt>
-                        <dd><?php print $taxYear; ?></dd>
+                        <dd><?php print $data->LM_Int2_10; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabUtilitiesInfo">
-                    <?php if (!empty($airConditioning)) : ?>
+                    <?php if (!empty($data->LFD_COOLING_1)) : ?>
                       <dl>
                         <dt>Cooling</dt>
-                        <dd><?php print $airConditioning; ?></dd>
+                        <dd><?php print $data->LFD_COOLING_1; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($heating)) : ?>
+                    <?php if (!empty($data->LFD_HEATING_5)) : ?>
                       <dl>
                         <dt>Heating</dt>
-                        <dd><?php print $heating; ?></dd>
+                        <dd><?php print $data->LFD_HEATING_5; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($sewer)) : ?>
+                    <?php if (!empty($data->LFD_SEWER_14)) : ?>
                       <dl>
                         <dt>Sewer</dt>
-                        <dd><?php print $sewer; ?></dd>
+                        <dd><?php print $data->LFD_SEWER_14; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($water)) : ?>
+                    <?php if (!empty($data->LFD_WATER_17)) : ?>
                       <dl>
                         <dt>Water</dt>
-                        <dd><?php print $water; ?></dd>
+                        <dd><?php print $data->LFD_WATER_17; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($irrigation)) : ?>
+                    <?php if (!empty($data->LM_char10_48)) : ?>
                       <dl>
                         <dt>Irrigation</dt>
-                        <dd><?php print $irrigation; ?></dd>
+                        <dd><?php print $data->LM_char10_48; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($irrigationDistrict)) : ?>
+                    <?php if (!empty($data->LM_Char25_14)) : ?>
                       <dl>
                         <dt>Irrigation District</dt>
-                        <dd><?php print $irrigationDistrict; ?></dd>
+                        <dd><?php print $data->LM_Char25_14; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabSchoolInfo">
-                    <?php if (!empty($schoolDistrict)) : ?>
+                    <?php if (!empty($data->LM_char10_42)) : ?>
                       <dl>
                         <dt>School District</dt>
-                        <dd><?php print $schoolDistrict; ?></dd>
+                        <dd><?php print $data->LM_char10_42; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($elementrySchool)) : ?>
+                    <?php if (!empty($data->LM_char10_43)) : ?>
                       <dl>
                         <dt>Elementry School</dt>
-                        <dd><?php print $elementrySchool; ?></dd>
+                        <dd><?php print $data->LM_char10_43; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($jrHighSchool)) : ?>
+                    <?php if (!empty($data->LM_char10_44)) : ?>
                       <dl>
                         <dt>Jr. High School</dt>
-                        <dd><?php print $jrHighSchool; ?></dd>
+                        <dd><?php print $data->LM_char10_44; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($highSchool)) : ?>
+                    <?php if (!empty($data->LM_char10_45)) : ?>
                       <dl>
                         <dt>High School</dt>
-                        <dd><?php print $highSchool; ?></dd>
+                        <dd><?php print $data->LM_char10_45; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
@@ -397,6 +410,9 @@ kpr($data);
         </div>
       </div>
     </div>
-    <div class="listingBy">Listing office: <?php print $officeName ?></div>
+    <div class="listingBy">
+        <h3>Listing Provided By:</h3>
+        <div class="listingOffice"><?php print $data->ListingOffice ?></div>
+        <div class="listingPhone"><?php print $data->ListingPhone; ?></div>
+    </div>
   </div>
-</div>

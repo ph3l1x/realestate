@@ -608,11 +608,17 @@ section#content-section {
   }
 }
 section.least_expensive {
-  #slick-1-slider {
-    img {
-      width: 420px;
-      height: 200px;
+  #slick-1 {
+    padding: 0 15px;
+    .slick-slide {
+      //margin-right: 7px;
     }
+  }
+  #slick-1-slider {
+    //img {
+    //  width: 420px;
+    //  height: 200px;
+    //}
   }
 //  position: relative;
 //  .least_expensive_container {
