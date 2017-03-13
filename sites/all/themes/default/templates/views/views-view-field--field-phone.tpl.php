@@ -22,4 +22,4 @@
  * the view is modified.
  */
 ?>
-  <i class="fa fa-phone" aria-hidden="true"></i><?php print $output; ?>
+    <i class="fa fa-mobile" aria-hidden="true"></i><?php print $output; ?>

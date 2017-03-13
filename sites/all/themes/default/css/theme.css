@@ -201,7 +201,8 @@ section h1.page-header {
   font-family: Ubuntu, sans-serif;
   color: #fff;
   font-size: 13px;
-  position: relative; }
+  position: relative;
+  height: 170px; }
   .listingContainer .listingStyles {
     position: absolute;
     z-index: 20; }
@@ -464,6 +465,8 @@ section#content-section {
   section#content-section section#block-block-5,
   section#content-section section#block-block-4 {
     color: white; }
+  section#content-section section#block-system-main {
+    padding: 15px; }
   section#content-section section#block-block-5 {
     font-family: Ubuntu, sans-serif;
     font-size: 17px;
@@ -513,7 +516,7 @@ section#content-section {
     color: #888; }
     section#content-section section#block-views-featured-agents-home-page-block .views-field-field-phone i {
       margin-right: 10px;
-      font-size: 20px; }
+      font-size: 24px; }
   section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email {
     font-size: 20px;
     color: #888; }
@@ -533,6 +536,8 @@ section#content-section {
   section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook a:hover {
     text-decoration: none;
     color: #AC1F2D; }
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-bio {
+    font-family: Arial; }
   section#content-section a.views-more-link {
     background: #882719;
     color: white;
@@ -785,7 +790,7 @@ section#block-system-main #first-time {
 
 .emailSlideContainer {
   position: fixed;
-  bottom: -502px;
+  bottom: -503px;
   right: 17px;
   transition: all 0.3s ease; }
   .emailSlideContainer .emailSlideContainerInner .emailSlideTab {
@@ -802,7 +807,10 @@ section#block-system-main #first-time {
   .emailSlideContainer .emailSlideContainerInner .emailSlideForm {
     width: 250px;
     padding: 10px;
-    background: white; }
+    background: white;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc; }
     .emailSlideContainer .emailSlideContainerInner .emailSlideForm textarea {
       font-size: 12px; }
     .emailSlideContainer .emailSlideContainerInner .emailSlideForm .form-group {
@@ -829,3 +837,30 @@ section#block-system-main #first-time {
 
 .email-sliding {
   bottom: 0; }
+
+.listingByContainer {
+  margin: 30px 0 -20px 0;
+  padding-left: 0; }
+  .listingByContainer .provided-by {
+    font-weight: bold; }
+
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px 0;
+  margin-top: 40px; }
+  footer h3 {
+    font-size: 20px; }
+  footer p {
+    font-weight: normal;
+    font-size: 13px;
+    font-family: Arial; }
+  footer #block-block-9 i, footer #block-block-8 i {
+    color: #b5b5b5;
+    font-size: 20px; }
+  footer a {
+    color: #fff;
+    transition: all 0.3s ease; }
+  footer a:hover {
+    text-decoration: none;
+    color: #BE212F; }

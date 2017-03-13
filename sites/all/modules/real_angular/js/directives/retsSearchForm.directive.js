@@ -27,13 +27,13 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     var sendValue = [],
                         markers = [];
 
-
+                    
                     query.forEach(function(value, key) {
                         if (value.selected = true) {
                             if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' ||
                                 value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27' ||
                                 value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' ||
-                                value.filter == 'L_ListingID' || value.filter == "Bounds") {
+                                value.filter == 'L_ListingID' || value.filter == "Bounds" || value.filter == 'L_Zip') {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -43,6 +43,12 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     });
 
                     retsAPI.get(sendValue).then(function(searchResult) {
+                        
+                        if (typeof searchResult.data == "string") {
+                            scope.lTypeNameArray = [];
+                            return;
+                        }
+                        
                         //   searchResult.data.forEach(function(item) {
                         for (var i = 0, len = searchResult.data.length; i < len; i++) {
                             if (searchResult.data[i]['IMAGES']) {
@@ -51,11 +57,12 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                                 markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
                             }
                         }
+                        
                         scope.markers = markers;
                         scope.markers_visible = markers;
 
                         for (const queryPart of searchResult.config.data) {
-                            if (queryPart.filter == 'L_City') {
+                            if (queryPart.filter == 'L_City' || queryPart.filter == 'L_Zip') {
                                 scope.map.center.latitude = searchResult.data[0].LMD_MP_Latitude;
                                 scope.map.center.longitude = searchResult.data[0].LMD_MP_Longitude;
                             }
@@ -81,9 +88,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
 
             scope.updateLotSize = function() {
-
-
-
                 var found = false;
 
                 for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
@@ -226,14 +230,14 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
             scope.typeSave = function() {
 
-                scope.lTypeNameArray = scope.lTypesOutput.filter(function(type) {
+                scope.lTypeNameArrayTemp = scope.lTypesOutput.filter(function(type) {
                     return type.ticked;
                 });
 
                 let selectedTypes = [];
-                for (let type in scope.lTypeNameArray) {
-                    if (scope.lTypeNameArray[type].filter == 'L_Type_') {
-                        selectedTypes.push(scope.lTypeNameArray[type].name);
+                for (let type in scope.lTypeNameArrayTemp) {
+                    if (scope.lTypeNameArrayTemp[type].filter == 'L_Type_') {
+                        selectedTypes.push(scope.lTypeNameArrayTemp[type].name);
                     }
                 }
 
@@ -249,14 +253,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     name: selectedTypes,
                     selected: true
                 });
-
-                if (scope.bedding) {
-                    scope.lTypeNameArray.push({
-                        filter: scope.column,
-                        name: scope.bedding,
-                        selected: true
-                    });
-                }
 
 
                 if (scope.lTypeNameArray.filter(function(type) {
@@ -279,13 +275,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     }
                 }
 
-                if (scope.isPriceSet) {
-                    scope.lTypeNameArray.push({
-                        filter: 'L_SystemPrice',
-                        name: scope.priceMinValueWithoutFormat + "-" + scope.priceMaxValueWithoutFormat,
-                        selected: true
-                    });
-                }
                 queryGenerator(scope.lTypeNameArray);
             };
 
@@ -391,13 +380,13 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
 
 
-                if (scope.bedding) {
-                    scope.lTypeNameArray.push({
-                        filter: scope.column,
-                        name: scope.bedding,
-                        selected: true
-                    });
-                }
+                // if (scope.bedding) {
+                //     scope.lTypeNameArray.push({
+                //         filter: scope.column,
+                //         name: scope.bedding,
+                //         selected: true
+                //     });
+                // }
 
                 for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
 
@@ -451,12 +440,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             scope.beddingSave = function(type, bedding) {
                 scope.search = [];
 
-
-                /* 				alert(type);
-                				alert(bedding); */
-
-
-
                 var column = 'L_City';
 
                 if (type == "Beds") {
@@ -509,6 +492,18 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     }
                 }
                 else if (type == "City") {
+                    scope.lTypeNameArray = scope.lTypeNameArray.filter(function (type) {
+                        
+                        if (type.filter == 'L_City')
+                            return false;
+                            
+                        if (type.filter == 'L_Zip')
+                            return false;
+                            
+                            
+                        return true;        
+                    });
+                    
                     let intval = parseInt(bedding);
 
                     if (intval) {
@@ -519,12 +514,20 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                         else {
                             scope.city = bedding;
                             column = "L_Zip";
+                            
+                            scope.lTypeNameArray = scope.lTypeNameArray.filter(function (type) {
+                                return type.filter != 'L_City';        
+                            });
                         }
 
                     }
                     else {
                         scope.listing_id = bedding;
                         column = "L_City";
+                        
+                        scope.lTypeNameArray = scope.lTypeNameArray.filter(function (type) {
+                            return type.filter != 'Bounds';
+                        });
                     }
 
                 }
@@ -554,15 +557,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     scope.lTypeNameArray.push({
                         filter: column,
                         name: bedding,
-                        selected: true
-                    });
-                }
-
-
-                if (scope.isPriceSet) {
-                    scope.lTypeNameArray.push({
-                        filter: 'L_SystemPrice',
-                        name: scope.priceMinValueWithoutFormat + "-" + scope.priceMaxValueWithoutFormat,
                         selected: true
                     });
                 }

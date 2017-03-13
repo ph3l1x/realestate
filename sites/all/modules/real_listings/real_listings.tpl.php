@@ -22,8 +22,8 @@ function timeAgo($time) {
     return $numberOfUnits . ' ' . $text . (($numberOfUnits > 1) ? 's' : '');
   }
 }
-
-kpr($data);
+// Debug data output for listing information.
+//kpr($data);
 ?>
 <div class="listingContainer">
   <div class="listingContainerInner">
@@ -120,16 +120,15 @@ kpr($data);
                   </div>
                   <div class="imageMapContent mapMap">
                     <iframe width="100%" height="350" frameborder="0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=12&maptype=roadmap"></iframe>
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $data->L_State . '+' . $data->L_Zip; ?>&zoom=12&maptype=roadmap"></iframe>
                   </div>
-                  <div class="imageMapContent mapSatellite">$address
+                  <div class="imageMapContent mapSatellite">
                     <iframe width="100%" height="350" frameborder="0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $mlsData->L_State . '+' . $mlsData->L_Zip; ?>&zoom=10&maptype=satellite"></iframe>
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5H6x7p9HksOY_0kZoI8ToLBtHRGp1wU4&q=<?php print str_replace(" ", "+", $data->L_Address) . ',' . $data->L_City . '+' . $data->L_State . '+' . $data->L_Zip; ?>&zoom=10&maptype=satellite"></iframe>
                   </div></iframe>
                   </div>
                 </div>
               </div>
-            </div>
             <div class="description">
               <h3>Desecription</h3>
               <?php print $data->L_Remarks; ?>
@@ -143,7 +142,7 @@ kpr($data);
             </div>
             <div class="contentRight col-xs-12 col-sm-6">
               <ul>
-                <li><label>Listing Type: </label><?php print $data->L_Type; ?></li>
+                <li><label>Listing Type: </label><?php print $data->L_Type_; ?></li>
                 <li><label>Beds:</label><?php print  $data->L_Keyword2; ?></li>
                 <li><label>Baths:</label><?php print $data->LM_Dec_3; ?></li>
               </ul>
@@ -235,7 +234,7 @@ kpr($data);
                     <?php if (!empty($data->LM_Char10_3)) : ?>
                       <dl>
                         <dt>Lot Width</dt>
-                        <dd><?php print $dfata->LM_Char10_3; ?>'</dd>
+                        <dd><?php print $data->LM_Char10_3; ?>'</dd>
                       </dl>
                     <?php endif; ?>
                     <?php if (!empty($data->L_Keyword5)) : ?>
@@ -378,28 +377,28 @@ kpr($data);
                     <?php endif; ?>
                   </div>
                   <div class="listingTabContent tabSchoolInfo">
-                    <?php if (!empty($schoolDistrict)) : ?>
+                    <?php if (!empty($data->LM_char10_42)) : ?>
                       <dl>
                         <dt>School District</dt>
-                        <dd><?php print $schoolDistrict; ?></dd>
+                        <dd><?php print $data->LM_char10_42; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($elementrySchool)) : ?>
+                    <?php if (!empty($data->LM_char10_43)) : ?>
                       <dl>
                         <dt>Elementry School</dt>
-                        <dd><?php print $elementrySchool; ?></dd>
+                        <dd><?php print $data->LM_char10_43; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($jrHighSchool)) : ?>
+                    <?php if (!empty($data->LM_char10_44)) : ?>
                       <dl>
                         <dt>Jr. High School</dt>
-                        <dd><?php print $jrHighSchool; ?></dd>
+                        <dd><?php print $data->LM_char10_44; ?></dd>
                       </dl>
                     <?php endif; ?>
-                    <?php if (!empty($highSchool)) : ?>
+                    <?php if (!empty($data->LM_char10_45)) : ?>
                       <dl>
                         <dt>High School</dt>
-                        <dd><?php print $highSchool; ?></dd>
+                        <dd><?php print $data->LM_char10_45; ?></dd>
                       </dl>
                     <?php endif; ?>
                   </div>
@@ -410,5 +409,7 @@ kpr($data);
         </div>
       </div>
     </div>
-    <div class="listingBy">Listing office: <?php print $officeName ?></div>
+    <div class="listingByContainer col-xs-12">
+        <div class="provided-by">Listing Provided by</div>
+        <div class="provided-office"><?php print $data->O_OrganizationName; ?> - <?php print $data->O_PhoneNumber1; ?></div>
   </div>

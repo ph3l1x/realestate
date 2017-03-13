@@ -1,4 +1,4 @@
-function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, retsAPI) {
+function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, retsAPI, $location) {
     $scope.map = {
         center: {
             latitude: 43.6376107,
@@ -10,6 +10,8 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
         shouldFit: false
         //show: false
     };
+    
+    $scope.loadedFromUrlFlag = false;
     
     $scope.mapObj= {};
     
@@ -46,7 +48,8 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                         if (value.selected = true) {
                             if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' ||
                                 value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27' ||
-                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1') {
+                                value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' ||
+                                value.filter == 'L_ListingID' || value.filter == "Bounds" || value.filter == 'L_Zip') {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -55,6 +58,16 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                         }
                     });
                 
+                
+                var searchVal = $location.search();
+
+                if (searchVal.query && !$scope.loadedFromUrlFlag) {
+                    $timeout(function() {
+                        $scope.loadedFromUrlFlag = true;    
+                    }, 3000);
+                    
+                    return;
+                }
                 
                 retsAPI.get(sendValue).then(function(searchResult) {
                     //   searchResult.data.forEach(function(item) {
@@ -68,6 +81,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
 
                     $scope.markers = markers;
                     $scope.markers_visible = markers;
+                    $scope.markers_visible[0].events.mouseover();
                     $scope.myValue = "";
                 });
             }, 200);
@@ -105,7 +119,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
         var ret = {
             latitude: lat,
             longitude: long,
-            show: false,
+            show: true,
             events: {
                 mouseover: function(marker, eventName, model, args) {
                     $scope.window.show = true;

@@ -610,6 +610,9 @@ section#content-section {
 	section#block-block-4 {
 		color: white;
 	}
+	section#block-system-main {
+		padding: 15px;
+	}
 	section#block-block-5 {
 		font-family: Ubuntu, sans-serif;
 		font-size: 17px;
@@ -678,7 +681,7 @@ section#content-section {
 			color: #888;
 			i {
 				margin-right: 10px;
-				font-size: 20px;
+				font-size: 24px;
 			}
 		}
 		.views-field-field-email {
@@ -708,6 +711,9 @@ section#content-section {
 				text-decoration: none;
 				color: #AC1F2D;
 			}
+		}
+		.views-field-field-bio {
+			font-family: Arial;
 		}
 	}
 	a.views-more-link {
@@ -1089,7 +1095,7 @@ section#block-system-main {
 
 .emailSlideContainer {
 	position: fixed;
-	bottom: -502px;
+	bottom: -503px;
 	right: 17px;
 	transition: all 0.3s ease;
 	.emailSlideContainerInner {
@@ -1110,6 +1116,9 @@ section#block-system-main {
 			width: 250px;
 			padding: 10px;
 			background: white;
+			border-top: 1px solid #ccc;
+			border-left: 1px solid #ccc;
+			border-right: 1px solid #ccc;
 			textarea {
 				font-size: 12px;
 			}
@@ -1152,4 +1161,39 @@ section#block-system-main {
 
 .email-sliding {
 	bottom: 0;
+}
+.listingByContainer {
+	margin: 30px 0 -20px 0;
+	padding-left: 0;
+	.provided-by {
+		font-weight:bold;
+	}
+}
+footer {
+	background: rgba(0,0,0,.8);
+	color: white;
+	padding: 20px 0;
+	margin-top:40px;
+	h3 {
+		font-size: 20px;
+	}
+	p {
+		font-weight:normal;
+		font-size:13px;
+		font-family: Arial;
+	}
+	#block-block-9, #block-block-8 {
+		i {
+			color: #b5b5b5;
+			font-size: 20px;
+		}
+	}
+	a {
+		color: #fff;
+		transition: all 0.3s ease;
+	}
+	a:hover {
+		text-decoration: none;
+		color: #BE212F;
+	}
 }
