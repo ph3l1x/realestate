@@ -21,6 +21,8 @@ function retsAPI($http, $q) {
 
         }).error(function(theError) {
             console.log("ERROR GETTING LISTING DATA", theError);
+            
+            return "error";
         })
     };
     

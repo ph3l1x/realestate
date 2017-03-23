@@ -5,7 +5,11 @@ function retsSearchFormDirective(retsAPI, $timeout) {
         transclude: true,
         templateUrl: '/sites/all/modules/real_angular/themes/search_form.html',
         link: function(scope, element, attrs, timeout, location) {
-            scope.lTypeNameArray = [];
+            if (!scope.lTypeNameArray) {
+                scope.lTypeNameArray = [];
+            }
+        
+            scope.inputPlaceholder = 'City, MLS, Zip #';
             var createMarker = function(i, lat, long, item) {
                     var ret = {
                         latitude: lat,
@@ -61,12 +65,15 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                         scope.markers = markers;
                         scope.markers_visible = markers;
 
-                        for (const queryPart of searchResult.config.data) {
-                            if (queryPart.filter == 'L_City' || queryPart.filter == 'L_Zip') {
-                                scope.map.center.latitude = searchResult.data[0].LMD_MP_Latitude;
-                                scope.map.center.longitude = searchResult.data[0].LMD_MP_Longitude;
+                        scope.map.shouldFit = true;
+    
+                        $timeout(function() {
+                            scope.map.shouldFit = false;
+                            if (searchResult.data.length == 1) {
+                                scope.map.zoom = 15;
                             }
-                        }
+                        }, 1000);
+                        
 
                         scope.myValue = "";
                     });
@@ -76,7 +83,8 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             retsAPI.listingType().success(function(result) {
                 scope.lTypes = result;
             });
-
+            
+            scope.queryGenerator = queryGenerator;
 
             /* Default Values for Min and Max Price */
             scope.priceMinValue = parseFloat(200000).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -85,33 +93,13 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             scope.priceMinValueWithoutFormat = 200000;
             scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
             scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
-
-
-            scope.updateLotSize = function() {
-                var found = false;
-
-                for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
-                    if (scope.lTypeNameArray[i].filter == "L_Keyword1") {
-                        found = true;
-                        scope.lTypeNameArray[i] = {
-                            filter: 'L_Keyword1',
-                            name: scope.lot_size,
-                            selected: true
-                        };
-                        break;
-                    }
-                }
-
-                if (!found) {
-                    scope.lTypeNameArray.push({
-                        filter: 'L_Keyword1',
-                        name: scope.lot_size,
-                        selected: true
-                    });
-                }
-
-                queryGenerator(scope.lTypeNameArray);
-            };
+            
+            scope.myValue = '';
+            scope.isPriceSet = 0;
+            scope.bedding = 0;
+            scope.bathing = 0;
+            scope.city = '';
+            scope.column = '';
 
             scope.slider = {
                 minValue: scope.priceMinValueWithoutFormat,
@@ -171,8 +159,32 @@ function retsSearchFormDirective(retsAPI, $timeout) {
 
                 }
             };
+            
+            scope.updateLotSize = function() {
+                var found = false;
 
-            scope.myValue = '';
+                for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
+                    if (scope.lTypeNameArray[i].filter == "L_Keyword1") {
+                        found = true;
+                        scope.lTypeNameArray[i] = {
+                            filter: 'L_Keyword1',
+                            name: scope.lot_size,
+                            selected: true
+                        };
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    scope.lTypeNameArray.push({
+                        filter: 'L_Keyword1',
+                        name: scope.lot_size,
+                        selected: true
+                    });
+                }
+
+                queryGenerator(scope.lTypeNameArray);
+            };
 
             scope.updateKeywords = function() {
                 //L_Keyword2
@@ -278,8 +290,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 queryGenerator(scope.lTypeNameArray);
             };
 
-            scope.isPriceSet = 0;
-
             scope.sqFtSave = function(min, max) {
                 var found = false;
                 for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
@@ -379,15 +389,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 scope.priceMinValueSmall = scope.priceMinValue.slice(0, -4);
                 scope.priceMaxValueSmall = scope.priceMaxValue.slice(0, -4);
 
-
-                // if (scope.bedding) {
-                //     scope.lTypeNameArray.push({
-                //         filter: scope.column,
-                //         name: scope.bedding,
-                //         selected: true
-                //     });
-                // }
-
                 for (var i = 0, len = scope.lTypeNameArray.length; i < len; i++) {
 
                     if (scope.lTypeNameArray[i].filter == "L_SystemPrice") {
@@ -428,11 +429,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                 queryGenerator(scope.lTypeNameArray);
             }
 
-            scope.bedding = 0;
-            scope.bathing = 0;
-            scope.city = '';
-            scope.column = '';
-
             scope.updateMLS = function() {
                 scope.beddingSave('City', scope.myValue);
             }
@@ -440,7 +436,8 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             scope.beddingSave = function(type, bedding) {
                 scope.search = [];
 
-                var column = 'L_City';
+                //4:23pm
+                var column = '';
 
                 if (type == "Beds") {
                     scope.bedding = bedding;
@@ -577,34 +574,39 @@ function retsSearchFormDirective(retsAPI, $timeout) {
             var searchVal = $location.search();
 
             if (searchVal.query) {
+                $scope.myValue = searchVal.query;
+                $scope.inputPlaceholder = searchVal.query;
+                
                 var sendValue = [],
                     markers = [];
+                    
+                    $scope.lTypeNameArray = [];
 
                 let intval = parseInt(searchVal.query);
                 if (intval) {
                     if (intval.toString().length > 5) {
-                        sendValue.push({
+                        $scope.lTypeNameArray.push({
                             filter: 'L_ListingID',
                             name: searchVal.query
                         });
                     }
                     else {
-                        sendValue.push({
+                        $scope.lTypeNameArray.push({
                             filter: 'L_Zip',
                             name: searchVal.query
                         });
                     }
                 }
                 else {
-                    sendValue.push({
+                    $scope.lTypeNameArray.push({
                         filter: 'L_City',
                         name: searchVal.query
                     });
                 }
-
-
-
-
+                $scope.loaded_from_url = true;
+                $scope.map.init = true;
+                
+/*
                 var createMarker = function(i, lat, long, item) {
                     var ret = {
                         latitude: lat,
@@ -623,7 +625,7 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     return ret;
                 }
 
-                retsAPI.get(sendValue).then(function(searchResult) {
+                retsAPI.get($scope.lTypeNameArray).then(function(searchResult) {
                     //   searchResult.data.forEach(function(item) {
                     for (var i = 0, len = searchResult.data.length; i < len; i++) {
                         if (searchResult.data[i]['IMAGES']) {
@@ -632,8 +634,6 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                             markers.push(createMarker(searchResult.data[i]['L_ListingID'], searchResult.data[i]['LMD_MP_Latitude'], searchResult.data[i]['LMD_MP_Longitude'], searchResult.data[i]));
                         }
                     }
-
-
 
                     $scope.map.shouldFit = true;
                     $scope.map.center = [searchResult.data[0]['LMD_MP_Latitude'], searchResult.data[0]['LMD_MP_Longitude']];
@@ -649,12 +649,16 @@ function retsSearchFormDirective(retsAPI, $timeout) {
                     $scope.markers_visible = markers;
 
                     $scope.loaded_from_url = false;
+                    $scope.map.init = true;
 
                     $scope.myValue = "";
+                    $scope.lTypeNameArray = [];
                 });
+                */
             }
             else {
                 $scope.loaded_from_url = true;
+                $scope.map.init = true;
             }
 
 

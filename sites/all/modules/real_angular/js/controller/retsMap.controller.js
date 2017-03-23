@@ -7,7 +7,8 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
         zoom: 11,
         bounds: {},
         isDragging: false,
-        shouldFit: false
+        shouldFit: false,
+        init: false
         //show: false
     };
     
@@ -27,7 +28,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
     
     $scope.events = {
         idle: function(e) {
-            if ($scope.map.isDragging) {
+            if ($scope.map.isDragging || !$scope.map.init) {
                 return;
             }
             $timeout(function() {
@@ -38,18 +39,28 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                 var sendValue = [],
                         markers = [];
                         
-                sendValue.push({
-                    bound: 'Bounds',
-                    name: e.bounds.northeast.latitude + ',' + e.bounds.northeast.longitude + ',' + e.bounds.southwest.latitude + ','
-                    + e.bounds.southwest.longitude
-                });
+                  
+                var searchVal = $location.search();
+
+                if (searchVal.query && !$scope.loadedFromUrlFlag) {
+                    //return;
+                } else {
+                    sendValue.push({
+                        bound: 'Bounds',
+                        name: e.bounds.northeast.latitude + ',' + e.bounds.northeast.longitude + ',' + e.bounds.southwest.latitude + ','
+                        + e.bounds.southwest.longitude
+                    });
+                }
+                  
                 
-                $scope.lTypeNameArray.forEach(function(value, key) {
+                
+                if ($scope.lTypeNameArray) {
+                    $scope.lTypeNameArray.forEach(function(value, key) {
                         if (value.selected = true) {
                             if (value.filter == 'L_Type_' || value.filter == 'L_Keyword2' || value.filter == 'LM_Dec_3' ||
                                 value.filter == 'L_City' || value.filter == 'L_SystemPrice' || value.filter == 'LM_int4_27' ||
                                 value.filter == 'LM_Int4_1' || value.filter == "L_Remarks" || value.filter == 'L_Keyword1' ||
-                                value.filter == 'L_ListingID' || value.filter == "Bounds" || value.filter == 'L_Zip') {
+                                value.filter == 'L_ListingID' || value.filter == 'L_Zip') {
                                 sendValue.push({
                                     filter: value.filter,
                                     name: value.name
@@ -57,17 +68,10 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                             }
                         }
                     });
-                
-                
-                var searchVal = $location.search();
-
-                if (searchVal.query && !$scope.loadedFromUrlFlag) {
-                    $timeout(function() {
-                        $scope.loadedFromUrlFlag = true;    
-                    }, 3000);
-                    
-                    return;
                 }
+                
+                
+                
                 
                 retsAPI.get(sendValue).then(function(searchResult) {
                     //   searchResult.data.forEach(function(item) {
@@ -81,7 +85,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
 
                     $scope.markers = markers;
                     $scope.markers_visible = markers;
-                    $scope.markers_visible[0].events.mouseover();
+                    //$scope.markers_visible[0].events.mouseover();
                     $scope.myValue = "";
                 });
             }, 200);

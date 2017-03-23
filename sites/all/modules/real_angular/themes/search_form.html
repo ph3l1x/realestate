@@ -3,7 +3,7 @@
         <ul class="searchParent">
             <li class="first parentLI">
                 <div class="input-group">
-                    <input ng-model="myValue" ng-model-options='{ debounce: 500 }' ng-change="myFunc()" ng-keyup="$event.keyCode == 13 && updateMLS()" type="text" class="form-control" placeholder="City, MLS#, Zip" value="myValue">
+                    <input ng-model="myValue" ng-model-options='{ debounce: 500 }' ng-change="myFunc()" ng-keyup="$event.keyCode == 13 && updateMLS()" type="text" class="form-control" placeholder="{{inputPlaceholder}}" value="myValue">
 					<ul class="searchChild">
 						<li class="childLI" ng-repeat="city in search track by $index">
 							<label  for="city{{ $index }}"><a href="javascript:void(0)" ng-click="beddingSave('City',city.name)">{{ city.name }}</a></label>

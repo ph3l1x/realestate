@@ -864,3 +864,12 @@ footer {
   footer a:hover {
     text-decoration: none;
     color: #BE212F; }
+
+article.node-homesinboise-team .field-name-field-name {
+  font-size: 30px;
+  margin: 10px 0 20px; }
+
+article.node-homesinboise-team .group-left {
+  float: left; }
+  article.node-homesinboise-team .group-left h3 {
+    display: none; }
