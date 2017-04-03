@@ -873,3 +873,34 @@ article.node-homesinboise-team .group-left {
   float: left; }
   article.node-homesinboise-team .group-left h3 {
     display: none; }
+
+article.node-homesinboise-team hr {
+  background: #bbb;
+  height: 1px;
+  width: 75%;
+  margin: 25px 0; }
+
+article.node-homesinboise-team .field-name-field-facebook i {
+  margin-right: 10px;
+  font-size: 24px; }
+
+article.node-homesinboise-team .field-name-field-facebook a {
+  color: #888; }
+
+article.node-homesinboise-team .field-name-field-facebook a:hover {
+  text-decoration: none;
+  color: #AC1F2D; }
+
+article.node-homesinboise-team .field-name-field-phone {
+  color: #888;
+  font-size: 12px;
+  margin-top: 10px; }
+  article.node-homesinboise-team .field-name-field-phone .field-item:before {
+    content: "C "; }
+
+article.node-homesinboise-team .field-name-field-email a {
+  color: #888;
+  font-size: 12px; }
+
+article.node-homesinboise-team .field-name-field-email a:hover {
+  color: #AC1F2D; }
