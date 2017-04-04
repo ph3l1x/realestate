@@ -105,7 +105,7 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
 
 
     $scope.addOnClick = function() {
-        console.log(this);
+        // console.log("addOnClickX", this);
     };
 
     $scope.window = {
@@ -128,9 +128,12 @@ function retsMapController($scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, 
                 mouseover: function(marker, eventName, model, args) {
                     $scope.window.show = true;
                     $scope.window.model = model;
+                    // console.log("YYY", $('.map-markers').parent());
+                    // console.log("MARKER", marker);
                 }
             }
         };
+        // console.log("Item", item);
 
         ret['results'] = item;
         ret['id'] = i;

@@ -11,24 +11,22 @@ jQuery(document).ready(function($) {
         //     height: vh - 20,
         //     width: vw
         // });
-        console.log(vh, vw);
     };
     var updateMapSize = function() {
         var mapContainerWidth = $('.searchMapContainer').width(),
             mapContainerHeight = $('.searchMapContainer').height();
-        console.log(mapContainerWidth);
 
         $('.gmap').css({
             height: mapContainerHeight,
-            width: mapContainerWidth - 15
+            width: mapContainerWidth,
         });
         $('.angular-google-map').css({
             height: mapContainerHeight,
-            width: mapContainerWidth - 15
+            width: mapContainerWidth,
         });
         $('.angular-google-map-container').css({
             height: mapContainerHeight,
-            width: mapContainerWidth - 15
+            width: mapContainerWidth,
         });
     };
 
@@ -72,12 +70,10 @@ jQuery(document).ready(function($) {
     // Home Page Search Button
     $('.rets-search-button').on('click', function () {
         window.location.replace("/home_search#?query=" + $('.rets-search-input').val());
-        console.log($('.rets-search-input').val());
     });
 
     // Contact Us Slider
     $('.emailSlideTab').on('click', function() {
-        console.log("hi");
        $('.emailSlideContainer').toggleClass('email-sliding');
         $('.emailSlideContainer i').toggleClass('fa-arrow-down fa-arrow-up');
     });

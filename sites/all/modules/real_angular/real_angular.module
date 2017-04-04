@@ -13,8 +13,17 @@ function real_angular_menu() {
 function real_angular_theme() {
     $themes = array();
     $themes['real_angular'] = array(
-        'template' => 'themes/real_angular',
-        'parameters' => array(),
+      'template' => 'themes/real_angular',
+      'parameters' => array(),
+      'variables' => array(
+        'agentNID' => NULL,
+        'agentPicture' => NULL,
+        'title' => NULL,
+        'agentMID' => NULL,
+        'facebook' => NULL,
+        'email' => NULL,
+        'phone' => NULL,
+      ),
     );
     return $themes;
 }
@@ -42,7 +51,38 @@ function real_angular_search() {
 /*     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/simple-autocomplete.js');
     drupal_add_js(drupal_get_path('module', 'real_angular') . '/js/sample.js'); */
 
-    return theme('real_angular');
+    $query = db_select('node', 'n');
+    $query->join('field_data_field_mls_agent_id', 'aid', 'n.nid = aid.entity_id');
+    $query->join('field_data_field_agent_image', 'iid', 'n.nid = iid.entity_id');
+    $query->join('file_managed', 'f', 'iid.field_agent_image_fid = f.fid');
+    $query->join('field_data_field_facebook', 'fb', 'n.nid = fb.entity_id');
+    $query->join('field_data_field_email', 'e', 'n.nid = e.entity_id');
+    $query->join('field_data_field_phone', 'p', 'n.nid = p.entity_id');
+    $results = $query
+        ->fields('n', array('nid', 'title'))
+        ->fields('aid', array('field_mls_agent_id_value'))
+        ->fields('iid', array('field_agent_image_fid'))
+        ->fields('f', array('uri'))
+        ->fields('fb', array('field_facebook_value'))
+        ->fields('e', array('field_email_email'))
+        ->fields('p', array('field_phone_value'))
+        ->condition('n.type', 'homesinboise_team')
+        ->range(0,1)
+        ->orderRandom()
+        ->execute()
+        ->fetchAssoc();
+//
+//    var_dump($results);
+//    var_dump($results['nid']);
+    return theme('real_angular', array(
+      'agentNID' => $results['nid'],
+      'agentPicture' => file_create_url($results['uri']),
+      'title' => $results['title'],
+      'agentMID' => $results['field_mls_agent_id_value'],
+      'facebook' => $results['field_facebook_value'],
+      'email' => $results['field_email_email'],
+      'phone' => $results['field_phone_value'],
+    ));
 }
 
 function real_angular_display() {

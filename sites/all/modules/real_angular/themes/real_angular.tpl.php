@@ -1,4 +1,3 @@
-
 <div id="real_angular" ng-controller="retsMap" ng-app="real_angular">
     <div rets-search-form></div>
     <div class="searchListingsContainer" rets-search-results></div>
@@ -34,8 +33,17 @@
             </ui-gmap-markers>
         </ui-gmap-google-map>
     </div>
-
-
-    </div>
 </div>
+<?php
+print '<div id="agent-details" 
+            style="visibility: hidden"
+            data-agentNID="' . $agentNID .'" 
+            data-agentPicture="' . $agentPicture .'" 
+            data-title="' . $title .'" 
+            data-agentMID="' . $agentMID .'" 
+            data-email="' . $email .'" 
+            data-facebook="' . $facebook .'" 
+            data-phone="' . $phone .'">
+        </div>';
 
+?>

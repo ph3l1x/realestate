@@ -8,7 +8,15 @@ function retsSearchResultsDirective() {
             scope.hoverElement = function hoverElement(result) {
                 scope.window.model = result;
                 result.show = true;
-            }
+            };
+            var selector = document.getElementById('agent-details');
+            scope.email = selector.getAttribute('data-email');
+            scope.agentNID = selector.getAttribute('data-agentNID');
+            scope.agentPicture = selector.getAttribute('data-agentPicture');
+            scope.title = selector.getAttribute('data-title');
+            scope.agentMID = selector.getAttribute('data-agentMID');
+            scope.facebook = selector.getAttribute('data-facebook');
+            scope.phone = selector.getAttribute('data-phone');
             
             // scope.retsFormChange = function() {
             //     retsAPI
