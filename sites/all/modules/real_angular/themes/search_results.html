@@ -1,41 +1,44 @@
+<!-- Available variables email, agentNID, agentPicture, title, agentMID, facebook, phone -->
 <div>
     <div class="listingResultsAgentContainer">
-        Random Real Estate Agent Will Appear Here.
+        <h3>Talk with a real person.</h3>
+        <div class="agentPicture"><a href="/node/{{ agentNID }}"><img src="{{ agentPicture }}"></a></div>
+        <div class="agentName">{{ title }}</div>
+        <div class="agentPhone">{{ phone }}</div>
+        <div class="askQuestion"><a href="mailto:{{ email }}"><i class="fa fa-question-circle" aria-hidden="true"></i> Ask me a question</a></div>
     </div>
-    <div
-        class="listingRows col-md-12 col-lg-6"
-        ng-repeat="result in markers_visible track by $index"
-        ng-class="{selected: result == window.model}"
-        ng-mouseover="hoverElement(result)" 
-        >
-        <div class="mlsResultRow">
-            <div class="mlsResultRowInner">
-                <div class="listingContainer">
-                    <a href="/listings/{{ result.results.L_ListingID }}">
-                        <div class="listingBackdrop listingStyles"></div>
-                        <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.results.L_IMAGES }}"  alt=""> 
-                        <div class="imageCount listingStyles floats">{{ result.results.ImageCount }} photos</div>
-                        <div class="propertyType listingStyles">{{ result.results.L_Type_ }} for sale</div>
-                        <div class="priceLineItems listingStyles">
-                            <div class="askingPrice floats">${{ result.results.L_AskingPrice }} &nbsp;</div>
-                            <div class="beds floats mini">{{ result.results.L_Keyword2 }} bds &nbsp;</div>
-                            <div class="baths floats mini">{{ result.results.LM_Dec_3 }} ba &nbsp;</div>
-                            <div class="sqft floats mini">{{ result.results.LM_int4_27 }} sqft &nbsp;</div>
-                        </div>
-                        <div class="addressContainer listingStyles">
-                            <!--<div class="streetNum floats">{{ result.results.LM_AddressNumber }}</div>-->
-                            <div class="street floats">{{ result.results.L_Address }}, </div>
-                            <div class="state floats">{{ result.results.L_City }}, </div>
-                            <div class="city floats">{{ result.results.L_State }}</div>
-                        </div>
-                    </a>
-
+    <div class="listingRowsContainer">
+        <div
+            class="listingRows col-md-12 col-lg-6"
+            ng-repeat="result in markers_visible track by $index"
+            ng-class="{selected: result == window.model}"
+            ng-mouseover="hoverElement(result)"
+            >
+            <div class="mlsResultRow">
+                <div class="mlsResultRowInner">
+                    <div class="listingContainer">
+                        <a href="/listings/{{ result.results.L_ListingID }}">
+                            <div class="listingBackdrop listingStyles"></div>
+                            <img typeof="foaf:Image" src="http://rets.mindimage.net/{{ result.results.L_IMAGES }}"  alt="">
+                            <div class="imageCount listingStyles floats">{{ result.results.ImageCount }} photos</div>
+                            <div class="propertyType listingStyles">{{ result.results.L_Type_ }} for sale</div>
+                            <div class="priceLineItems listingStyles">
+                                <div class="askingPrice floats">${{ result.results.L_AskingPrice }} &nbsp;</div>
+                                <div class="beds floats mini">{{ result.results.L_Keyword2 }} bds &nbsp;</div>
+                                <div class="baths floats mini">{{ result.results.LM_Dec_3 }} ba &nbsp;</div>
+                                <div class="sqft floats mini">{{ result.results.LM_int4_27 }} sqft &nbsp;</div>
+                            </div>
+                            <div class="addressContainer listingStyles">
+                                <!--<div class="streetNum floats">{{ result.results.LM_AddressNumber }}</div>-->
+                                <div class="street floats">{{ result.results.L_Address }}, </div>
+                                <div class="state floats">{{ result.results.L_City }}, </div>
+                                <div class="city floats">{{ result.results.L_State }}</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        
     </div>
-
 </div>
 

@@ -190,8 +190,8 @@ section h1.page-header {
     background: #fff;
   }
   section {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   nav {
     display: none;
@@ -1241,10 +1241,68 @@ article.node-homesinboise-team {
   .field-name-field-email {
     a {
       color: #888;
-      font-size:12px;
+      font-size: 12px;
     }
     a:hover {
       color: #AC1F2D;
     }
+  }
+}
+
+.map-markers {
+  .row {
+    margin-left: 0;
+  }
+  .col-md-2 {
+    padding-left: 0;
+  }
+  a {
+    color: #888;
+    font-family: Ubuntu, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    .popup-address {
+      font-size: 15px;
+      padding-bottom: 10px;
+    }
+    .popup-type {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  a:hover {
+    text-decoration: none;
+    color: #888;
+  }
+}
+
+.listingRowsContainer {
+  clear: both;
+}
+
+.listingResultsAgentContainer {
+  color: #888;
+  float: left;
+  width: 100%;
+  font-family: Ubuntu, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  margin-bottom: 10px;
+  font-size: 17px;
+  .agentPicture {
+    img {
+      max-width: 75px;
+      float: left;
+      margin-right: 10px;
+    }
+  }
+  h3 {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    font-size: 21px;
+  }
+  a {
+    color: #AC1F2D;
+  }
+  a:hover {
+    color: #AC1F2D;
   }
 }

@@ -1,8 +1,11 @@
-<div >
-    
-    {{hi}}
+<div class="map-markers">
     <div class="row">
-      <div class="col-md-2">{{ parameter.results.L_Address }}</div>
-
+        <a href="/listings/{{ parameter.results.L_ListingID }}">
+            <div class="popup-type">{{ parameter.results.L_Type_ }} for sale</div>
+            <div class="popup-address">{{ parameter.results.L_Address }}</div>
+            <div class="col-md-2">
+                <img src="http://rets.mindimage.net/{{ parameter.results.L_IMAGES }}">
+            </div>
+        </a>
     </div>
-</div> 
+</div>
