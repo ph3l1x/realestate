@@ -556,7 +556,7 @@ section.preface {
       margin-top: 40px;
     }
     h1 {
-      font-size: 4vw;
+      font-size: 3.5vw;
     }
     h3 {
       font-size: 2.8vw;
@@ -1305,4 +1305,11 @@ article.node-homesinboise-team {
   a:hover {
     color: #AC1F2D;
   }
+}
+section#block-block-12 {clear:both;
+  text-align: left;
+}
+section#block-block-12 img {
+  padding-right:20px;
+  max-height: 50px;
 }
