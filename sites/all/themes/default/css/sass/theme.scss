@@ -264,8 +264,13 @@ section h1.page-header {
   .listingResultsAgentContainer {
     padding: 10px;
   }
+.page-listings {
+	.emailDrawerLogo {
+		img {
+			margin-right: 20px;
+		}
+	}
 }
-
 .listingContainer {
   font-family: Ubuntu, sans-serif;
   color: #fff;
@@ -277,11 +282,11 @@ section h1.page-header {
     z-index: 20;
   }
   img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+ //   position: absolute;
+//    top: 0;
+//    bottom: 0;
+//    left: 0;
+//    right: 0;
   }
   a {
     color: #fff;
@@ -556,7 +561,7 @@ section.preface {
       margin-top: 40px;
     }
     h1 {
-      font-size: 4vw;
+      font-size: 3.5vw;
     }
     h3 {
       font-size: 2.8vw;
@@ -1305,4 +1310,11 @@ article.node-homesinboise-team {
   a:hover {
     color: #AC1F2D;
   }
+}
+section#block-block-12 {clear:both;
+  text-align: left;
+}
+section#block-block-12 img {
+  padding-right:20px;
+  max-height: 50px;
 }
