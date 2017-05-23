@@ -1097,7 +1097,11 @@ section#block-system-main {
 .page-home-search .emailSlideContainer {
   display: none;
 }
-
+.page-listings {
+  .emailSlideContainer {
+    bottom: -523px;
+  }
+}
 .emailSlideContainer {
   position: fixed;
   bottom: -503px;
