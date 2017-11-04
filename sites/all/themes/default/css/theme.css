@@ -77,7 +77,9 @@ h2 {
   position: relative;
   z-index: 5;
   background: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4); 
+  height: 110px;
+}
 
 .logo {
   position: relative;
