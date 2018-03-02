@@ -554,7 +554,7 @@ section#content-section {
   section#content-section section#block-views-featured-agents-home-page-block .views-field-field-bio,
   .view-featured-agents-home-page .views-field-field-bio {
     font-family: Arial; }
-  section#content-section a.views-more-link {
+  section#content-section a.views-more-link  {
     background: #882719;
     color: white;
     padding: 10px;
@@ -715,6 +715,7 @@ section.home_block_slider .slick {
         border: 1px solid #caced2;
         background: #fff;
         padding: 15px;
+        position: relative;
         border-radius: 5px; }
         .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-markup .moreInfoContainer .moreInfoContainerInner .moreInfoLeft {
           float: left;
