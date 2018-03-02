@@ -499,46 +499,60 @@ section#content-section {
       margin-left: 15px;
       font-size: 40px;
       color: white; }
-  section#content-section section#block-views-featured-agents-home-page-block h2.block-title {
+  section#content-section section#block-views-featured-agents-home-page-block h2.block-title,
+  .view-featured-agents-home-page h2.block-title {
     font-family: Ubuntu, sans-serif;
     font-size: 32px;
     color: #444;
     margin: 30px 0 30px 15px; }
-  section#content-section section#block-views-featured-agents-home-page-block img {
+  section#content-section section#block-views-featured-agents-home-page-block img,
+  .view-featured-agents-home-page img {
     display: inherit; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-name a {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-name a,
+  .view-featured-agents-home-page .views-field-field-name a {
     color: #888;
     font-size: 30px;
     font-weight: bold; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-name a:hover {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-name a:hover,
+  .view-featured-agents-home-page .views-field-field-name a:hover {
     color: #888;
     text-decoration: none; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-phone {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-phone,
+  .view-featured-agents-home-page .views-field-field-phone {
     font-size: 20px;
     color: #888; }
-    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-phone i {
+    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-phone i,
+    .view-featured-agents-home-page .views-field-field-phone i {
       margin-right: 10px;
       font-size: 24px; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email,
+  .view-featured-agents-home-page .views-field-field-email {
     font-size: 20px;
     color: #888; }
-    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email i {
+    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email i,
+    .view-featured-agents-home-page .views-field-field-email i {
       margin-right: 10px;
       font-size: 20px; }
-    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email a {
+    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email a,
+    .view-featured-agents-home-page .views-field-field-email a {
       color: #888; }
-    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email a:hover {
+    section#content-section section#block-views-featured-agents-home-page-block .views-field-field-email a:hover,
+    .view-featured-agents-home-page .views-field-field-email a:hover {
       color: #888;
       text-decoration: none; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook i {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook i,
+  .view-featured-agents-home-page .views-field-field-facebook i {
     margin-right: 10px;
     font-size: 20px; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook a {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook a,
+  .view-featured-agents-home-page .views-field-field-facebook a {
     color: #888; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook a:hover {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-facebook a:hover,
+  .view-featured-agents-home-page .views-field-field-facebook a:hover {
     text-decoration: none;
     color: #AC1F2D; }
-  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-bio {
+  section#content-section section#block-views-featured-agents-home-page-block .views-field-field-bio,
+  .view-featured-agents-home-page .views-field-field-bio {
     font-family: Arial; }
   section#content-section a.views-more-link {
     background: #882719;
